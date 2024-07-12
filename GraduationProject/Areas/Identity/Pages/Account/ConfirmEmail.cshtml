@@ -1,0 +1,30 @@
+﻿@page
+@model ConfirmEmailModel
+@using GraduationProject.Applications.Companies
+@inject CompanyService CompanyService
+
+@{
+    ViewData["Title"] = "Confirm email";
+    ViewData["StatusMessage"] = Model.StatusMessage;
+
+    var defaultCompany = await CompanyService.GetDefaultCompanyAsync();
+    var companyName = defaultCompany?.Name ?? string.Empty;
+}
+
+<partial name="~/Areas/Identity/Pages/Account/_StatusMessage.cshtml" model=@ViewData["StatusMessage"] />
+<div class="card-body register-card-body" style="margin-bottom:500px;">
+    <p class="login-box-msg">@ViewData["Title"]</p>
+    <p class="text-danger">Email confirmation.</p>
+   
+    <p class="mb-1">
+        <a asp-page="./ForgotPassword">I forgot my password</a>
+    </p>
+    <p class="mb-1">
+        <a asp-page="./ResendEmailConfirmation">Resend Confirmation</a>
+    </p>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

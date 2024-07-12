@@ -1,0 +1,1572 @@
+﻿@page
+@model GraduationProject.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    Layout = "/Views/Shared/_Layout.cshtml";
+    var topSellingProducts = Newtonsoft.Json.JsonConvert.DeserializeObject<List<dynamic>>(Model.TopSellingProductsJson);
+    var topPurchasedProducts = Newtonsoft.Json.JsonConvert.DeserializeObject<List<dynamic>>(Model.TopPurchasedProductsJson);
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+
+    <style>
+        :root {
+            --header-height: 4rem;
+            --first-color: hsl(176, 88%, 27%);
+            --first-color-alt: hsl(129, 44%, 94%);
+            --second-color: hsl(34, 94%, 87%);
+            --title-color: hsl(0, 0%, 13%);
+            --text-color: hsl(0, 0%, 13%);
+            --text-color-light: hsl(60, 1%, 56%);
+            --body-color: hsl(0, 0%, 100%);
+            --container-color: hsl(0, 0%, 93%);
+            --border-color: hsl(129, 36%, 85%);
+            --border-color-alt: hsl(113, 15%, 90%);
+            --body-font: 'Lato', sans-serif;
+            --second-font: 'Spartan', sans-serif;
+            --big-font-size: 3.5rem;
+            --h1-font-size: 2.75rem;
+            --h2-font-size: 2rem;
+            --h3-font-size: 1.75rem;
+            --h4-font-size: 1.375rem;
+            --large-font-size: 1.125rem;
+            --normal-font-size: 1rem;
+            --small-font-size: 0.875rem;
+            --smaller-font-size: 0.75rem;
+            --tiny-font-size: 0.6875rem;
+            --weight-400: 400;
+            --weight-500: 500;
+            --weight-600: 600;
+            --weight-700: 700;
+            --transition: cubic-bezier(0, 0, 0.05, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        input,
+        textarea,
+        body {
+            color: var(--text-color);
+            font-family: var(--body-font);
+            font-size: var(--normal-font-size);
+            font-weight: var(--weight-400);
+        }
+
+        body {
+            background: radial-gradient(#fff,#e7e4ed);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--second-font);
+            color: var(--title-color);
+            font-weight: var(--weight-600);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--second-font);
+            color: var(--title-color);
+            font-weight: var(--weight-600);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        p {
+            line-height: 1.5rem;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .col-2 {
+            flex-basis: 50%;
+            min-width: 300px;
+        }
+
+            .col-2 img {
+                max-width: 100%;
+                padding: 50px 70px;
+            }
+
+        .categories {
+            margin: 70px 0;
+        }
+
+        .col-4 {
+            flex-basis: 22%;
+            padding: 10px;
+            width: 500px;
+            height: 588px;
+            margin-bottom: 30px;
+            border: 2px solid #000;
+            transition: transform 0.5s;
+            border-radius: 25px;
+        }
+
+            .col-4:hover {
+                transform: translateY(-5px);
+            }
+
+            .col-4 img {
+                width: 100%;
+                height: 320px;
+                padding: 20px;
+            }
+
+            @@media (max-width: 768px) {
+            .header {
+                text-align: center;
+                padding: 30px 0;
+            }
+
+            .row {
+                flex-direction: column;
+            }
+
+            .col-2 {
+                flex-basis: 100%;
+            }
+
+            .col-2 img {
+                max-width: 80%;
+                margin: 20px auto;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header h5 {
+                font-size: 1.3em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+        }
+
+        .small-container {
+            margin: auto;
+           
+        }
+
+        @@media (max-width: 1200px) {
+            .col-4 {
+                width: 45%;
+                flex-basis: 45%;
+            }
+        }
+
+        @@media (max-width: 768px) {
+            .col-4 {
+                width: 100%;
+                flex-basis: 100%;
+            }
+        }
+
+        .offer {
+            background: radial-gradient(#fff,#e7e4ed);
+            margin-top: 80px;
+            padding: 30px 0;
+            margin-bottom: 80px;
+        }
+
+        .col-2 .offer-img {
+            padding: 50px;
+        }
+
+        small {
+            color: #555;
+        }
+
+        .mytitle {
+            text-align: center;
+            margin: 0 auto 80px;
+            position: relative;
+            line-height: 60px;
+            color: #555;
+        }
+
+            .mytitle::after {
+                content: '';
+                background: #ff523b;
+                width: 80px;
+                height: 5px;
+                border-radius: 5px;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+        .col-5 {
+            flex-basis: 22%;
+            padding: 10px;
+            width: 400px;
+            height: 450px;
+            margin-bottom: 30px;
+            border: 2px solid #000;
+            border-radius: 25px;
+            transition: transform 0.5s;
+        }
+
+            .col-5 img {
+                width: 100%;
+                height: 320px;
+                padding: 20px;
+            }
+
+        h4 {
+            color: #555;
+            font-weight: normal;
+        }
+
+        .col-5 p {
+            font-size: 14px;
+        }
+
+        .rating .fa {
+            color: #ff523b;
+        }
+
+        .col-5:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial {
+            padding-top: 80px;
+            padding-bottom: 100px;
+            margin-bottom:400px;
+            position: relative;
+        }
+
+            .testimonial .col-3 {
+                text-align: center;
+                padding: 40px 20px;
+                box-shadow: 0 0 20px 0px rgba(0,0,0,0.1);
+                cursor: pointer;
+                transition: transform 0.5s;
+                height: 400px;
+            }
+
+                .testimonial .col-3 img {
+                    width: 50px;
+                    margin-top: 20px;
+                    border-radius: 50%;
+                }
+
+                .testimonial .col-3:hover {
+                    transform: translateY(-10px);
+                }
+
+        .fa.fa-quote-left {
+            font-size: 34px;
+            color: #ff523b;
+        }
+
+        .col-3 p {
+            font-size: 12px;
+            margin: 12px 0;
+            color: #777;
+        }
+
+        .testimonial .col-3 h3 {
+            font-weight: 600;
+            color: #555;
+            font-size: 16px;
+        }
+
+        @@media (max-width: 992px) {
+        .testimonial .col-3 {
+        flex-basis: 45%;
+        margin-bottom: 30px;
+        }
+    }
+
+        @@media (max-width: 768px) {
+        .testimonial .col-3 {
+            flex-basis: 100%;
+            margin-bottom: 30px;
+        }
+
+        .row {
+                flex-direction: column;
+                align-items: center;
+            }
+    }
+
+        .form--input {
+            border: 1px solid var(--border-color-alt);
+            padding-inline: 1rem;
+            height: 45px;
+            border-radius: 0.25rem;
+            font-size: var(--small-font-size);
+        }
+
+        .flex {
+            display:flex;
+            align-items:center;
+            column-gap: 0.5rem;
+        }
+
+        .new--price {
+            color: var(--first-color);
+            font-weight : var(--weight-600);
+        }
+
+        .old--price {
+            color: var(--text-color-light);
+            font-size: var(--small-font-size);
+            text-decoration: line-through;
+        }
+
+
+
+        .nav,
+        .nav--menu,
+        .nav--list,
+        .MyActionBtn,
+        .header--user-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav {
+            height: calc(var(--header-height) + 3rem);
+            justify-content: space-between;
+            column-gap: 1rem;
+            background: radial-gradient(#fff,#ddd0f5);
+        }
+
+
+        .container {
+            max-width: 100%;
+            margin: auto;
+        }
+
+        .nav--menu {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            height: 4rem;
+        }
+
+        .nav--list {
+            display: flex;
+            column-gap: 2.5rem;
+            margin-right: auto;
+        }
+
+        .nav--link {
+            color: var(--title-color);
+            font-weight: var(--weight-700);
+            transition: all 0.2s var(--transition);
+        }
+
+            .active-link,
+            .nav--link:hover {
+                color: var(--first-color);
+            }
+
+        .header--search {
+            width: 100%;
+            max-width: 340px;
+            position: relative;
+        }
+
+            .header--search .form--input {
+                width: 100%;
+                background: radial-gradient(#fff,#e7e4ed);
+            }
+
+        .search--btn {
+            position: absolute;
+            top: 50%;
+            right: 1.25rem;
+            transform: translateY(-50%);
+            cursor: pointer;
+            border:none;
+        }
+
+        .header--user-actions {
+            display: flex;
+            align-items: center;
+            column-gap: 1.25rem;
+        }
+
+        .MyActionBtn {
+            position: relative;
+        }
+
+            .MyActionBtn img {
+                width: 30px;
+            }
+
+            .MyActionBtn .count {
+                position: absolute;
+                top: -0.625rem;
+                right: -0.625rem;
+                color: var(--body-color);
+                background-color: var(--first-color);
+                height: 18px;
+                width: 18px;
+                line-height: 18px;
+                border-radius: 50%;
+                text-align: center;
+                font-size: var(--tiny-font-size);
+                justify-content: center;
+                font-weight: var(--weight-600);
+                display:flex;
+            }
+
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .section--lg {
+            padding-block: 4rem;
+        }
+
+            .home--container {
+  
+               grid-template-columns: 5fr 7fr;
+                 align-items:center;
+            }
+
+            .home--subtitle,
+            .home--description {
+                font-size: var(--large-font-size);
+            }
+
+        .home--subtitle {
+            font-family: var(--second-color);
+            font-weight: var(--weight-600);
+            margin-bottom : 1rem;
+            display: block;
+        }
+
+        .home--title {
+            font-size: var(--h3-font-size);
+            font-weight: var(--weight-700);
+            line-height:1.4;
+        }
+
+        .home--title span{
+            color: var(--first-color);
+            font-size: var(--small-font-size);
+        }
+
+        .home--description {
+            margin-block: .5rem 2rem;
+        }
+
+        .home--img{
+            justify-self: flex-end;
+        }
+
+        .section {
+            padding-block: 2rem;
+        }
+
+        .section--title{
+            font-size: var(--h4-font-size);
+            margin-bottom: 1.5rem;
+        }
+
+        .section--title span {
+            color: var(--first-color);
+        }
+
+        .categories {
+            overflow:hidden;
+        }
+
+        .category--item {
+            text-align:center;
+            border:1px solid var(--border-color);
+            padding:0.625rem 0.625rem 1.25rem;
+            border-radius: 1.25rem;
+            transition: transform 0.5s;
+            height:210px;
+        }
+
+            .category--item:hover {
+            transform: translateY(-5px);
+        }
+
+        .category--img {
+            border-radius:0.75rem;
+            margin-bottom:1.25rem;
+            width: 100%;
+            height: 150px;
+        }
+
+        .category--title {
+            color: var(--text-color);
+            font-size: var(--small-font-size);
+        }
+
+        .swiper {
+            overflow:initial;
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            content : '';
+        }
+
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            top: -1.875rem;
+            background-color: var(--first-color-alt);
+            border: 1px solid var(--border-color);
+            width:30px;
+            height:30px;
+            border-radius: 50%;
+            color: var(--first-color);
+            font-size : var(--tiny-font-size);
+        }
+
+        .swiper-button-prev { 
+            left: initial;
+            right:2.5rem;
+
+        }
+
+        .swiper-button-next {
+            right:0;
+        }
+
+        .tab--btns{
+            display:flex;
+            column-gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab--btn {
+            background-color: var(--container-color);
+            color: var(--title-color);
+            padding: 1rem 1.25rem 0.875rem;
+            border-radius:0.25rem;
+            font-family: var(--second-font);
+            font-size: var(--small-font-size);
+            font-weight: var(--weight-600);
+            cursor: pointer;
+        }
+      
+        .products--container {
+            grid-template-columns: repeat(4,1fr);
+        }
+
+        .product--item { 
+            border: 1px solid var(--border-color);
+            border-radius: 1.5rem;
+            transition: all 0.2s var(--transition);
+        }
+
+        .product--banner {
+            padding: 0.625rem 0.75rem 0.75rem;
+        }
+
+        .product--banner,
+        .product--images{
+            position: relative;
+        }
+
+        .product--images {
+            display:block;
+            overflow:hidden;
+            border-radius:1.25rem;
+        }
+
+        .product--img {
+            vertical-align: middle;
+            transition: all 1.5s var(--transition);
+        }
+
+        .product--item:hover .product--img{
+            transform: scale(1.1);
+        }
+
+        .product--img.hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .product--actions {
+            position:absolute;
+            top: 50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            display : flex;
+            column-gap : 0.5rem;
+            transition : all .2s var(--transition);
+        }
+
+        .action--btn {
+            width: 40px;
+            height : 40px;
+            line-height: 42px;
+            text-align: center;
+            border-radius : 50%;
+            background-color: var(--first-color-alt);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            font-size: var(--small-font-size);
+            position:relative;
+        }
+
+        .action--btn::before,
+        .action--btn::after {
+            position : absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all 0.3s cubic-bezier(0,71,1.7,0.77,1.24);
+            }
+
+        .action--btn::before {
+            content: '';
+            top: -2px;
+            border: .5rem solid transparent;
+            border-top-color: var(--first-color);
+        }
+
+        .action--btn::after {
+            content: attr(aria-label);
+            bottom:100%;
+            background-color: var(--first-color);
+            color: var(--body-color);
+            font-size:var(--tiny-font-size);
+            white-space:nowrap;
+            padding-inline:.625rem;
+            border-radius:0.25rem;
+            line-height:  2.58;
+        }
+
+            .product--badge {
+                position:absolute;
+                left: 1.25rem;
+                top:1.25rem;
+                background-color: var(--first-color);
+                color : var(--body-color);
+                padding: .25rem .625rem;
+                border-radius : 2.5rem;
+                font-size: var(--tiny-font-size);
+            }
+
+
+            .product--badge.light-pink {
+                background-color: hsl(341,100%,73%);
+            }
+
+            .product--badge.light-green {
+                background-color: hsl(155,20%,67%);
+            }
+
+            .product--badge.light-orange {
+                background-color: hsl(24,100%,73%);
+            }
+
+            .product--badge.light-blue {
+                background-color: hsl(202,53%,76%);
+            }
+
+            .product--content {
+            padding: 0 1.25rem 3.5rem;
+                position: relative;
+            }
+
+            .product--category {
+                color: var(--text-color-light);
+                font-size: var(--smaller-font-size);
+            }
+
+            .product--title{
+                font-size: var(--normal-font-size);
+                margin-block: .75rem .5rem;
+            }
+
+            .product--rating {
+                font-size: var(--smaller-font-size);
+                color: hsl(42,100%,50%);
+                margin-bottom: 0.75rem;
+            }
+
+        .product--price .new--price {
+            font-size: var(--large-font-size);
+        }
+
+            .cart--btn{
+                position:absolute;
+            bottom: 5rem;
+                right:1.25rem;
+            }
+
+        .rate--btn {
+            position: absolute;
+            bottom: 1.6rem; /* تعديل الموضع لأسفل */
+            right: 1.25rem;
+        }
+
+        .tab--btn.active-tab {
+            color: var(--first-color);
+            background-color: var(--second-color);
+        }
+
+        .tab--item:not(.active-tab) {
+            display: none;
+        }
+
+        
+            .product--img.hover,
+            .product--actions,
+            .action--btn::before,
+            .action--btn::after,
+            .product--item:hover .product--img.default {
+                opacity: 0;
+;
+            }
+
+            .product--item:hover {
+                box-shadow: 0 0 10px hsla(0,0%,0%,0.1);
+            }
+
+            .product--item:hover .product--img.hover
+            .product--item:hover .product--actions
+            .action--btn:hover::before,
+            .action--btn:hover::after
+            {
+                opacity: 1;
+            }
+
+        .action--btn:hover::before,
+        .action--btn:hover::after {
+            transform: translateX(-50%) translateY(-0.5rem);
+        }
+
+        .action--btn:hover{
+            background-color:var(--first-color);
+            border-color: var(--first-color);
+            color : var(--body-color);
+        }
+
+        .showcase--container {
+            grid-template-columns: repeat(4,1fr);
+        }
+
+        .showcase--wrapper .section--title {
+            font-size: var(--normal-font-size);
+            border-bottom: 1px solid var(--border-color-alt);
+            padding-bottom: .75rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .showcase--wrapper .section--title::before {
+            content: '';
+            position: absolute;
+            left : 0 ;
+            bottom: -1.3px;
+            width:50px;
+            height:2px;
+            background-color: var(--first-color);
+        }
+
+        .showcase--item {
+            display: flex;
+            align-items: center;
+            column-gap: 1.5rem;
+        }
+
+        .showcase--item:not(:last-child) {
+            margin-bottom: 1.5rem;
+        }
+
+        .showcase--img {
+            width:73px;
+            height: 73px;
+        }
+
+        .showcase--content {
+            width: calc(100% - 110px);
+        }
+
+        .showcase--title {
+            font-size: var(--small-font-size);
+            font-weight: var(--weight-500);
+            white-space: nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            margin-bottom:0.5rem;
+        }
+
+        .sidebar {
+            width: 300px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            right: -300px; /* Initial position off-screen */
+            background-color: #fff;
+            box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+            padding: 20px;
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+            .sidebar.open {
+                right: 0;
+            }
+
+        .sidebar-close {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            cursor: pointer;
+        }
+
+        .cart-tems {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 1rem;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .indivdual-cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 5px;
+            border-radius: 5px;
+            border: 1px solid #d6e8db;
+            color: gray;
+        }
+
+        .cart-item-price {
+            color: #99a98f;
+        }
+
+        .sidebar--footer {
+            position: absolute;
+            bottom: 10px;
+            width: 88%;
+        }
+
+        .total--amount {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 5px;
+            padding: 15px 10px;
+        }
+
+        .cart-total {
+            font-size: 16px;
+            color: #99a98f;
+            font-weight: 500;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            margin-top: 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+            background-color: rgb(9, 189, 9);
+            padding: 10px;
+        }
+
+        .remove-btn {
+            border-radius: 5px;
+            padding: 2px 8px;
+            cursor: pointer;
+            margin-left: 5px;
+            background: #99a98f;
+            color: #fff;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="nav_container">
+            <div class="nav--menu" id="nav-menu">
+                <ul class="nav--list">
+                    <li class="nav--item">
+                        <a href="" class="nav--link">Home</a>
+                    </li>
+
+                    <li class="nav--item">
+                        <a href="#Myproduct-categories" class="nav--link">
+                            Product Categories
+                        </a>
+                    </li>
+
+                    <li class="nav--item">
+                        <a href="#Myproduct" class="nav--link">
+                            Products
+                        </a>
+                    </li>
+
+                    <li class="nav--item">
+                        <a href="/Identity/Account/Manage" class="nav--link">MyAccount</a>
+                    </li>
+                </ul>
+                <div class="header--search">
+                    <input type="text" id="searchInput" placeholder="Search for items..." class="form--input" onkeypress="searchProducts()" />
+                    <button class="search--btn" onclick="searchProducts()" >
+                        <img src="~/images/search.png" alt="" />
+                    </button>
+                </div>
+                <div class="header--user-actions">
+                    <a href="" class="MyActionBtn">
+                        <img src="~/images/icon-cart.svg" alt="" style="margin:5px;" />
+                        <span class="count">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-close">
+                <i class="fa fa-close"></i>
+            </div>
+            <div class = "cart-menu">
+                <h3>My Cart</h3>
+                <div class="cart-tems">
+                    @if (Model.CartItems != null && Model.CartItems.Any())
+                    {
+                        foreach (var item in Model.CartItems)
+                        {
+                            <div class="cart-item">
+                                <span>(@item.Quantity)x @item.ProductName</span>
+                                <span class="cart-item-price">$@item.TotalPrice.ToString("0.00")</span>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="cart-empty">Cart is empty</div>
+                    }
+
+                </div>
+            </div>
+
+            <div action="sidebar--footer">
+                <div class="total--amount">
+                    <h5>Total</h5>
+                    <div class="cart-total">$@Model.CartItems.Sum(item => item.TotalPrice).ToString("0.00")</div>
+                </div>
+
+                <form method="post" asp-page-handler="Checkout" class="checkout-form">
+                    <button type="submit" class="checkout-btn">Checkout</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        <h1>Forked Spider Web Company Exists to Help Organizations Succeed in B2B Digital Commerce.</h1>
+                        <br />
+                        <h5>B2B E-Commerce is What We Do.</h5>
+                        <p>Leverage our deep digital commerce experience to grow your business.</p>
+                    </div>
+                    <div class="col-2">
+                        <img src="~/images/iconimage.jpg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="categories">
+            <div class="small-container">
+                <h3 style="text-align:center;">Our Services</h3>
+                <br />
+                <div class="row">
+                    <div class="col-4" style="text-align:center;">
+                        <img src="~/images/strategy.png" />
+                        <h3>Strategy</h3>
+                        <p>With over a decade of business website design and development experience, Forked Spider Web Company brings our clients a robust & winning strategy to take their digital platform to the next level.</p>
+                    </div>
+                    <div class="col-4" style="text-align:center;">
+                        <img src="~/images/Esperience (1).png" />
+                        <h3>User Experience</h3>
+                        <p>Give your clients and customers a flawless user experience that brings them back to your e-commerce website time and time again.</p>
+                    </div>
+                    <div class="col-4" style="text-align:center;">
+                        <img src="~/images/execution (1).png" />
+                        <h3>Execution</h3>
+                        <p>Drive disruptive digital commerce success by creating innovative B2B E-Commerce touchpoints and products with the help of a strong delivery team.</p>
+                    </div>
+                    <div class="col-4" style="text-align:center;">
+                        <img src="~/images/marketing (1).png" />
+                        <h3>Marketing</h3>
+                        <p>
+                            Acquire new customers, retain existing ones, and increase your average transactions with Forked Spider Web digital marketing strategy and automation services.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="categories container section" id="Myproduct-categories">
+            <h3 class="section--title"> <span>Product</span> Categories</h3>
+
+            <div class="categories--container swiper">
+                <div class="swiper-wrapper">
+                    @foreach (var group in Model.ProductGroups)
+                    {
+                        <a class="category--item swiper-slide">
+                             @if (group.ImageData != null)
+                            {
+                                <img src="data:image;base64,@Convert.ToBase64String(group.ImageData)" alt="@group.Name" class="category--img" />
+                            }
+                           
+                            <h3 class="category--title"> @group.Name </h3>
+                        </a>
+                    }
+                </div>
+
+                <div class="swiper-button-next">
+                    <i class="fi fi-sr-angle-right"></i>
+                </div>
+                <div class="swiper-button-prev">
+                    <i class="fi fi-sr-angle-left"></i>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="products section container" id="productsSection" >
+            <div class="tab--btns">
+                <span class="tab--btn active-tab" data-target="#featured">
+                    Products
+                </span>
+            </div>
+
+            <div class="tab--items" id="Myproduct">
+                <div class="tab--item active-tab content id="featured">
+                    <div class="products--container grid">
+                        @foreach (var product in Model.products)
+                        {
+                            <div class="product--item"  data-product-name="@product.Name.ToLower()">
+                                <div class="product--banner">
+                                    <a href="" class="product--images">
+                                        @if (product.ImageData != null)
+                                        {
+                                            <img src="data:image;base64,@Convert.ToBase64String(product.ImageData)" alt="@product.Name" class="product--img default" style="width:90%;height: 250px;" />
+                                        }
+                                    </a>
+                                    <div class="product--actions">
+                                        <a href="#" class="action--btn" aria-label="Quick View">
+                                            <i class="fi fi-rs-eye"></i>
+                                        </a>
+                                        <a href="#" class="action--btn" aria-label="Add To Wishlist">
+                                            <i class="fi fi-rs-heart"></i>
+                                        </a>
+                                    </div>
+                                    <div class="product--badge light-pink">Hot</div>
+                                </div>
+                                <div class="product--content">
+                                    <span class="product--category">@product.ProductGroup.Name</span>
+                                    <br />
+                                    <span class="product--category">@product.MetaKeyWords</span>
+                                    <a href="">
+                                        <h3 class="product--title">@product.Name</h3>
+                                    </a>
+                                    <div class="product--rating">
+
+                                        @for (int i = 0; i < Math.Floor(product.RatingAverage); i++)
+                                        {
+                                            <i class="fa fa-star" data-value="@i"></i>
+                                        }
+                                        <span> (@product.rating ratings, avg: @product.RatingAverage)</span>
+                                                            
+                                    </div>
+                                    <div class="product--price flex">
+                                        <span class="new--price">$@product.UnitPrice</span>
+                                        <span class="old--price">$@product.oldPrice</span>
+                                    </div>
+
+                                    <form id="addToCartForm-@product.Id" asp-page-handler="AddToCart" class="add-to-cart-form">
+                                        <input type="hidden" name="productId" value="@product.Id" />
+                                        <input type="hidden" name="productName" value="@product.Name" />
+                                        <input type="hidden" name="price" value="@product.UnitPrice" />
+                                        <button type="submit" class="action--btn cart--btn add-to-cart" aria-label="Add To Cart">
+                                            <i class="fi fi-rs-shopping-bag"></i>
+                                        </button>
+                                    </form>
+                                    <br />
+
+                                    <form id="rateProductForm-@product.Id" asp-page-handler="RateProduct" class="rate-product-form">
+                                        <input type="hidden" name="productId" value="@product.Id" />
+                                        <label for="rating">Your Rating:</label>
+                                        <select name="rating" id="rating">
+                                            @for (int i = 1; i <= 5; i++)
+                                            {
+                                                <option value="@i">@i</option>
+                                            }
+                                        </select>
+                                        <button type="submit" class="action--btn rate--btn" aria-label="Rate">
+                                            <i class="fa fa-star"></i>
+                                        </button>
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+    </section>
+
+        <section class="showcase section">
+            <div class="showcase--container container grid">
+                <div class="showcase--wrapper">
+                    <h3 class="section--title">Top Selling Order</h3>
+                        @foreach (var item in topSellingProducts)
+                        {
+                        <div class="showcase--item">
+                            <a class="showcase--img-box">
+                                @if (item.Product.ImageData != null)
+                                {
+                                    <img src="data:image;base64,@item.Product.ImageData" alt="@item.Name" class="showcase--img" />
+                                }
+                            </a>
+
+                            <div class="showcase--content">
+                                <a>
+                                    <h4 class="showcase--title">@item.Product.Name</h4>
+                                </a>
+
+                                <div class="showcase--price flex">
+                                    <span class="new--price">$@item.Product.UnitPrice</span>
+                                    <span class="old--price">$@item.Product.oldPrice</span>
+
+                                </div>
+                            </div>
+                        </div>
+                        }
+                </div>
+                    <div class="showcase--wrapper">
+                        <h3 class="section--title">Top Purchasing Products</h3>
+
+                        @foreach (var item in topPurchasedProducts)
+                        {
+                            <div class="showcase--item">
+                            <a class="showcase--img-box">
+                                @if (item.Product.ImageData != null)
+                                {
+                                    <img src="data:image;base64,@item.Product.ImageData" alt="@item.Name" class="showcase--img" />
+                                }
+                                </a>
+
+                                <div class="showcase--content">
+                                <a>
+                                    <h4 class="showcase--title">@item.Product.Name</h4>
+                                    </a>
+
+                                    <div class="showcase--price flex">
+                                        <span class="new--price">$@item.Product.UnitPrice</span>
+                                        <span class="old--price">$@item.Product.oldPrice</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="showcase--wrapper">
+                        <h3 class="section--title">Top Rated Products</h3>
+
+                        @foreach (var item in Model.TopRatedProducts)
+                        {
+                            <div class="showcase--item">
+                                <a class="showcase--img-box">
+                                @if (item.ImageData != null)
+                                {
+                                    <img src="data:image;base64,@Convert.ToBase64String(item.ImageData)" alt="@item.Name" class="showcase--img" />
+                                }
+                            </a>
+
+                                <div class="showcase--content">
+                                <a>
+                                    <h4 class="showcase--title">@item.Name</h4>
+                                    </a>
+
+                                    <div class="showcase--price flex">
+                                        <span class="new--price">$@item.UnitPrice</span>
+                                        <span class="old--price">$@item.oldPrice</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                 
+                    <div class="showcase--wrapper">
+                        <h3 class="section--title">Lowest Priced Products</h3>
+
+                        @foreach (var item in Model.LowestPricedProducts)
+                        {
+                            <div class="showcase--item">
+                            <a class="showcase--img-box">
+                                @if (item.ImageData != null)
+                                {
+                                    <img src="data:image;base64,@Convert.ToBase64String(item.ImageData)" alt="@item.Name" class="showcase--img" />
+                                }
+                            </a>
+
+                                <div class="showcase--content">
+                                    <a>
+                                        <h4 class="showcase--title">@item.Name</h4>
+                                    </a>
+
+                                    <div class="showcase--price flex">
+                                        <span class="new--price">$@item.UnitPrice</span>
+                                        <span class="old--price">$@item.oldPrice</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>       
+        </section>
+
+
+        <div class="offer">
+            <div class="small-container">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="~/images/exclusive.png" class="offer-img" />
+                    </div>
+                    <div class="col-2">
+                        <p> Exclusively Available in the Forked Spider Web </p>
+                        <h1> smart Band 4</h1>
+                        <small>
+                            The Mi Smart Band 4 features a 39.9% larger (than Mi Band 3) AMOLED color full-touch display with adjustable brightness,
+                            so everything is as clear as can be.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial">
+            <div class="small-container">
+                <div class="row">
+                    <div class="col-3">
+                        <i class="fa fa-quote-left"></i>
+                        <p>
+                            Exceptional service and innovative solutions. Truly a pleasure to work with you.
+                        </p>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <img src="~/images/avatar-male.jpg" />
+                        <h3>
+                            Daniel Martinez
+                        </h3>
+                    </div>
+
+                    <div class="col-3">
+                        <i class="fa fa-quote-left"></i>
+                        <p>
+                            Your dedication and professionalism are unmatched. We appreciate your outstanding work and partnership.
+                        </p>
+
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                        </div>
+                        <img src="~/images/avatar-male.jpg" />
+                        <h3>
+                            Thomas Miller
+                        </h3>
+                    </div>
+
+                    <div class="col-3">
+                        <i class="fa fa-quote-left"></i>
+                        <p>
+                            You were flawless. You were excellent. You are great innovators and great partners. Thank you. Thank you. And thank you.
+                        </p>
+
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <img src="~/images/avatar-male.jpg" />
+                        <h3>
+                            David Smith
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </main>
+
+
+    <script>
+        var swiperCategories = new Swiper(".categories--container", {
+            spaceBetween: 24,
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 4,
+                    spaceBetween: 40,
+                },
+                1400: {
+                    slidesPerView: 6,
+                    spaceBetween: 24,
+                },
+            },
+        });
+
+            function searchProducts() {
+            var input = document.getElementById('searchInput').value.toLowerCase();
+            var productItems = document.querySelectorAll('.product--item');
+
+            productItems.forEach(function(item) {
+                var productName = item.getAttribute('data-product-name');
+                if (productName && productName.includes(input)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            const cartItemCount = document.querySelector('.header--user-actions .count');
+            const cartItemsList = document.querySelector('.cart-tems');
+            const cartTotal = document.querySelector('.cart-total');
+            const cartIcons = document.querySelectorAll('.MyActionBtn');
+            const sidebar = document.getElementById('sidebar');
+            const checkoutButton = document.querySelector('.checkout-btn');
+            const rateButtons = document.querySelectorAll('.rate--btn');
+
+            let cartItems = [];
+            let totalAmount = 0;
+
+            addToCartButtons.forEach((button, index) => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+
+                    const productNameElement = document.querySelectorAll('.product--content .product--title')[index];
+                    const productPriceElement = document.querySelectorAll('.new--price')[index];
+                    if (productNameElement && productPriceElement) {
+
+                        const item = {
+                            name: document.querySelectorAll('.product--content .product--title')[index].textContent,
+                            price: parseFloat(document.querySelectorAll('.new--price')[index].textContent.slice(1)),
+                            quantity: 1,
+                        };
+
+                        const existingItem = cartItems.find(cartItem => cartItem.name === item.name);
+                        if (existingItem) {
+                            existingItem.quantity++;
+                        } else {
+                            cartItems.push(item);
+                        }
+
+                        totalAmount += item.price;
+
+                        const form = button.closest('form');
+                        const formData = new FormData(form);
+
+                        fetch(form.action, {
+                            method: 'POST',
+                            body: formData
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    updateCartUI();
+                                } else {
+                                    console.error('Failed to add to cart:', data.message);
+                                }
+                            })
+                            .catch(error => console.error('Error:', error));
+                    } else {
+                        console.error('Product elements not found for index:', index);
+                    }
+                });
+            });
+
+            rateButtons.forEach((button, index) => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+
+                    const form = button.closest('form');
+                    const formData = new FormData(form);
+
+
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('Rating submitted successfully!');
+                            } else {
+                                console.error('Failed to submit rating:', data.message);
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            });
+
+            checkoutButton.addEventListener('click', () => {
+                if (cartItems.length === 0) {
+                    alert("Cart is empty, cannot proceed to checkout");
+                }
+            });
+
+            cartIcons.forEach(icon => {
+                icon.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    sidebar.classList.toggle('open');
+                });
+            });
+
+            const closeButton = document.querySelector('.sidebar-close');
+            closeButton.addEventListener('click', () => {
+                sidebar.classList.remove('open');
+            });
+
+            function updateCartUI() {
+                updateCartItemCount(cartItems.length);
+                updateCartItemList();
+                updateCartTotal();
+            }
+
+            function updateCartItemCount(count) {
+                cartItemCount.textContent = count;
+            }
+
+            function updateCartTotal() {
+                cartTotal.textContent = `$${totalAmount.toFixed(2)}`;
+            }
+
+            function removeItemFromCart(index) {
+                const removedItem = cartItems.splice(index, 1)[0];
+                totalAmount -= removedItem.price * removedItem.quantity;
+                updateCartUI();
+            }
+
+            function addToCart(productId) {
+                fetch(`/Index?handler=AddToCart&productId=${productId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        productId: productId,
+                        productName: document.querySelector(`#addToCartForm-${productId} input[name="productName"]`).value,
+                        price: parseFloat(document.querySelector(`#addToCartForm-${productId} input[name="price"]`).value)
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Successfully add to cart!');
+                            updateCartUI();
+                        } else {
+                            alert('Failed to add to cart');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+
+            function updateCartItemList() {
+                cartItemsList.innerHTML = '';
+                cartItems.forEach((item, index) => {
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item', 'indivdual-cart-item');
+                    cartItem.innerHTML = `
+                                        <span>(${item.quantity}x) ${item.name}</span>
+                                        <span class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}
+                                            <button class="remove-btn" data-index="${index}"><i class="fa fa-times"></i></button>
+                                        </span>
+                                    `;
+                    cartItemsList.append(cartItem);
+                });
+
+                const removeButtons = document.querySelectorAll('.remove-btn');
+                removeButtons.forEach((button) => {
+                    button.addEventListener('click', (event) => {
+                        const index = event.currentTarget.dataset.index;
+                        removeItemFromCart(index);
+                    });
+                });
+            }
+        });
+
+    </script>
+
+
+</body>
+</html>

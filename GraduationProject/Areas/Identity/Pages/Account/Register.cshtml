@@ -1,0 +1,68 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-10" style="margin-bottom:500px;">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Create a new account.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.UserName" class="form-control" maxlength="100" />
+                <label asp-for="Input.UserName"></label>
+                <span asp-validation-for="Input.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="Input.Email">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.Password">Password</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select asp-for="Input.CustomerGroupId" class="form-control" id="CustomerForm_CustomerGroupId">
+                    <option value="">-- Select Customer Group --</option>
+                    @foreach (var group in Model.CustomerGroups)
+                    {
+                        <option value="@group.Id">@group.Name</option>
+                    }
+                </select>
+                <label asp-for="Input.CustomerGroupId">Customer Group</label>
+                <span asp-validation-for="Input.CustomerGroupId" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select asp-for="Input.CustomerCategoryId" class="form-control" id="CustomerForm_CustomerCategoryId">
+                    <option value="">-- Select Customer Category --</option>
+                    @foreach (var category in Model.CustomerCategories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </select>
+                <label asp-for="Input.CustomerCategoryId">Customer Category</label>
+                <span asp-validation-for="Input.CustomerCategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button id="registerSubmit" type="submit" class="bn632-hover bn24">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

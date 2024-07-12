@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        @ViewData["Title"] - Forked Spider web company
+    </title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/GraduationProject.styles.css" asp-append-version="true" />
+    <link rel="icon" type="image/x-icon" href="~/iconimage.ico">
+    <style>
+        :root {
+            --header-height: 4rem;
+            --first-color: hsl(176, 88%, 27%);
+            --first-color-alt: hsl(129, 44%, 94%);
+            --second-color: hsl(34, 94%, 87%);
+            --title-color: hsl(0, 0%, 13%);
+            --text-color: hsl(0, 0%, 13%);
+            --text-color-light: hsl(60, 1%, 56%);
+            --body-color: hsl(0, 0%, 100%);
+            --container-color: hsl(0, 0%, 93%);
+            --border-color: hsl(129, 36%, 85%);
+            --border-color-alt: hsl(113, 15%, 90%);
+            --body-font: 'Lato', sans-serif;
+            --second-font: 'Spartan', sans-serif;
+            --big-font-size: 3.5rem;
+            --h1-font-size: 2.75rem;
+            --h2-font-size: 2rem;
+            --h3-font-size: 1.75rem;
+            --h4-font-size: 1.375rem;
+            --large-font-size: 1.125rem;
+            --normal-font-size: 1rem;
+            --small-font-size: 0.875rem;
+            --smaller-font-size: 0.75rem;
+            --tiny-font-size: 0.6875rem;
+            --weight-400: 400;
+            --weight-500: 500;
+            --weight-600: 600;
+            --weight-700: 700;
+            --transition: cubic-bezier(0, 0, 0.05, 1);
+        }
+
+        .myfooter {
+            background: linear-gradient(to right, #b2b2b2, #a2a2a2);
+            width: 100%;
+            height: 300px;
+            position: absolute;
+            bottom: 0;
+            color: #000;
+            padding: 100px 0 30px;
+            border-top-left-radius: 125px;
+            font-size: 13px;
+            line-height: 20px;
+            z-index: 0;
+        }
+
+        .col {
+            flex-basis: 25%;
+            padding: 20px;
+            color: #000;
+        }
+
+            .col h3 {
+                width: fit-content;
+                margin-bottom: 40px;
+                position: relative;
+                color: #000;
+            }
+
+
+        .footerRow {
+            width: 85%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        .imagefooter {
+            width: 130px;
+        }
+        ul li {
+            list-style:none;
+            margin-bottom:12px;
+        }
+
+        ul li a {
+            text-decoration:none;
+            }
+
+        .nav--link {
+            color: var(--title-color);
+            transition: all 0.2s var(--transition);
+        }
+
+            .nav--link:hover {
+                color: var(--first-color);
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="~/images/background11.jpg" alt="Forked Spider Web Company" style="height: 50px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (User.IsInRole("Admin"))
+                        {
+                         
+                        }
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="myfooter">
+        <div class="footerRow">
+            <div class="col">
+                <p>
+                    Forked Spider Web is a Digital Services firm focused on delivering commerce success in B2B for leading manufacturers, distributors, and wholesalers. The Forked Spider Webteam of B2B commerce experts fuses digital strategy with execution to create relevant buyer and seller interactions to maximize business impact.
+                </p>
+            </div>
+            <div class="col">
+                <p> Chicago</p>
+                <p>456 Oak Avenue</p>
+                <p>60601 </p>
+                <h5>123.456.789</h5>
+            </div>
+            <div class="col">
+                <ul>
+                    <li><a href="~/" class="nav--link">Home</a></li>
+                    <li><a href="~/#Myproduct-categories" class="nav--link">Product Categories</a></li>
+                    <li><a href="~/#Myproduct" class="nav--link">Products</a></li>
+                    <li><a href="/Identity/Account/Manage" class="nav--link">MyAccount</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <img src="~/images/iconimage.jpg" class="imagefooter" />
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,107 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: Serif;
+}
+
+.profile-picture {
+    height: 295px;
+    width: 295px;
+    object-fit: cover;
+}
+
+.avatar {
+    height: 35px;
+    width: 35px;
+    object-fit: cover;
+}
+.bn632-hover {
+    width: 160px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+ .bn632-hover:hover {
+        background-position: 100% 0;
+        moz-transition: all .4s ease-in-out;
+        -o-transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+        transition: all .4s ease-in-out;
+    }
+
+    .bn632-hover:focus {
+        outline: none;
+    }
+
+    .bn632-hover.bn24 {
+        background-image: linear-gradient( to right, #6253e1, #852d91, #a3a1ff, #f24645 );
+        box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+    }
+.bn9 {
+    padding: 2px;
+    outline: 0;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
+    background: -webkit-gradient( linear, left top, right top, from(#fdde5c), color-stop(#f8ab5e), color-stop(#f56a62), color-stop(#a176c8), color-stop(#759beb), color-stop(#65beb3), to(#70db96) );
+    background: linear-gradient( to right, #fdde5c, #f8ab5e, #f56a62, #a176c8, #759beb, #65beb3, #70db96 );
+    border-radius: 30px;
+    border: 0;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+    .bn9 > span {
+        display: block;
+        padding: 10px 40px;
+        font-size: 17px;
+        font-weight: 500;
+        background: #ebebeb;
+        border-radius: 30px;
+    }
+
+/* Fading animation */
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+    .text {
+        font-size: 11px
+    }
+}

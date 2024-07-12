@@ -1,0 +1,63 @@
+﻿@model IEnumerable<GraduationProject.Models.Entities.WarehouseProduct>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/AdminLTE/_Admin.cshtml";
+}
+
+<h1>Add Prodcuts To Warehouse</h1>
+
+<p>
+    <a class="btn btn-outline-secondary" href="/WarehouseProducts/Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr class="bg-secondary text-white" style=" font-family: Arial, Helvetica, sans-serif">
+            <th>
+                @Html.DisplayNameFor(model => model.Warehouse)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RowGuid)
+            </th>
+            <th>
+                Actions
+            </th>            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Warehouse.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RowGuid)
+            </td>
+            <td>
+                <div>
+                    <a class="btn btn-primary" style="margin-top: 10px; width: 125px;" href="/WarehouseProducts/Edit/3">Edit</a>
+                </div>
+                <div>
+                    <a class="btn btn-info" style="margin-top: 10px; width: 125px;" href="/WarehouseProducts/Details/3">Details</a>
+                </div>
+                <div>
+                    <a class="btn btn-danger" style="margin-top: 10px; width: 125px;" href="/WarehouseProducts/Delete/3">Delete</a>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
