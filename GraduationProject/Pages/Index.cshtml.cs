@@ -34,7 +34,7 @@ namespace GraduationProject.Pages
             _emailSender = emailSender;
         }
 
-    public List<ProductGroup> ProductGroups { get; set; }
+        public List<ProductGroup> ProductGroups { get; set; }
         public List<Product> products { get; set; }
         public string TopSellingProductsJson { get; set; }
         public string TopPurchasedProductsJson { get; set; }
@@ -206,13 +206,13 @@ namespace GraduationProject.Pages
                 };
 
                 _context.SalesOrderItem.Add(salesOrderItem);
-                _context.CartItem.Remove(cartItem); 
+                _context.CartItem.Remove(cartItem);
             }
 
             await _context.SaveChangesAsync();
 
             var userEmail = User.Identity.Name;
-            var adminEmail = "habashanas716@gmail.com"; 
+            var adminEmail = "habashanas716@gmail.com";
 
             await _emailSender.SendEmailAsync(userEmail, "Order Confirmation", "Thank you for your order. We will contact you soon for delivery.");
             await _emailSender.SendEmailAsync(adminEmail, "New Order Checkout", "A new order has been placed.");

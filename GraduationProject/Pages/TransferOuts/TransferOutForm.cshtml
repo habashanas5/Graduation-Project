@@ -52,6 +52,18 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label asp-for="@Model.TransferOutForm.ProductId" class="form-label"></label>
+                            <input asp-for="@Model.TransferOutForm.ProductId" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="@Model.TransferOutForm.Quantity" class="form-label"></label>
+                            <input asp-for="@Model.TransferOutForm.Quantity" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <label asp-for="@Model.TransferOutForm.Status" class="form-label"></label>
                             <select asp-for="@Model.TransferOutForm.Status" asp-items="Html.GetEnumSelectList<TransferStatus>()" class="form-control">
                                 <option value="">-- Select Status --</option>

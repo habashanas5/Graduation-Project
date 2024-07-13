@@ -9,10 +9,8 @@ namespace GraduationProject.Models.Entities
 
     public required int WarehouseId { get; set; }
         public Warehouse? Warehouse { get; set; }
-
         public required int ProductId { get; set; }
         public Product? Product { get; set; }
-
         public required int Quantity { get; set; }
     }
 }

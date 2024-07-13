@@ -22,6 +22,5 @@ namespace GraduationProject.Models.Entities
         public string? ImageFileName { get; set; }
         public ICollection<WarehouseProduct>? WarehouseProducts { get; set; }
 
-
     }
 }

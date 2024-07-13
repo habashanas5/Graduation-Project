@@ -14,6 +14,6 @@ namespace GraduationProject.Models.Entities
         public int? WarehouseFromId { get; set; }
         public Warehouse? WarehouseFrom { get; set; }
         public int? WarehouseToId { get; set; }
-        public Warehouse? WarehouseTo { get; set; }
+        public Warehouse? WarehouseTo { get; set; }  
     }
 }

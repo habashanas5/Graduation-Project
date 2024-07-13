@@ -4,6 +4,7 @@ using GraduationProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraduationProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240713044736_deleteTransTable")]
+    partial class deleteTransTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1900,12 +1903,6 @@ namespace GraduationProject.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("RowGuid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
@@ -1933,8 +1930,6 @@ namespace GraduationProject.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.HasIndex("WarehouseFromId");
 
@@ -2767,12 +2762,6 @@ namespace GraduationProject.Data.Migrations
 
             modelBuilder.Entity("GraduationProject.Models.Entities.TransferOut", b =>
                 {
-                    b.HasOne("GraduationProject.Models.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("GraduationProject.Models.Entity.Warehouse", "WarehouseFrom")
                         .WithMany()
                         .HasForeignKey("WarehouseFromId")
@@ -2784,8 +2773,6 @@ namespace GraduationProject.Data.Migrations
                         .HasForeignKey("WarehouseToId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("Product");
 
                     b.Navigation("WarehouseFrom");
 

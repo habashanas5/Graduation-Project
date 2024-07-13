@@ -69,6 +69,12 @@ namespace GraduationProject.Pages.TransferOuts
 
             [DisplayName("Warehouse To")]
             public int WarehouseToId { get; set; }
+
+            [DisplayName("Product")]
+            public int ProductId { get; set; } 
+
+            [DisplayName("Quantity")]
+            public int Quantity { get; set; } 
         }
 
         public class MappingProfile : Profile
@@ -157,6 +163,13 @@ namespace GraduationProject.Pages.TransferOuts
 
                 Number = _numberSequenceService.GenerateNumber(nameof(TransferOut), "", "OUT");
                 newobj.Number = Number;
+
+               /* await _warehouseService.TransferProducts(
+                    newobj.ProductId,
+                    newobj.WarehouseFromId.GetValueOrDefault(),
+                    newobj.WarehouseToId.GetValueOrDefault(),
+                    newobj.Quantity
+                );*/
 
                 await _transferOutService.AddAsync(newobj);
 

@@ -1,6 +1,7 @@
 ﻿using GraduationProject.Data;
 using GraduationProject.Infrastructures.Repositories;
 using GraduationProject.Models.Contracts;
+using GraduationProject.Models.Entities;
 using GraduationProject.Models.Entity;
 using Microsoft.EntityFrameworkCore;
 
@@ -160,5 +161,38 @@ namespace GraduationProject.Applications.Warehouses
             return _context.Set<Warehouse>().Where(x => x.Name == "Scrapping").FirstOrDefault();
         }
 
+        public async Task TransferProducts(int productId, int sourceWarehouseId, int destinationWarehouseId, int quantityToTransfer)
+        {
+            var sourceWarehouseProduct = await _context.WarehouseProduct
+                .FirstOrDefaultAsync(wp => wp.ProductId == productId && wp.WarehouseId == sourceWarehouseId);
+
+            if (sourceWarehouseProduct != null && sourceWarehouseProduct.Quantity >= quantityToTransfer)
+            {
+                var destinationWarehouseProduct = await _context.WarehouseProduct
+                    .FirstOrDefaultAsync(wp => wp.ProductId == productId && wp.WarehouseId == destinationWarehouseId);
+
+                if (destinationWarehouseProduct == null)
+                {
+                    destinationWarehouseProduct = new WarehouseProduct
+                    {
+                        ProductId = productId,
+                        WarehouseId = destinationWarehouseId,
+                        Quantity = 0 // Initialize with zero and update below
+                    };
+                    _context.WarehouseProduct.Add(destinationWarehouseProduct);
+                }
+
+                // Update quantities
+                sourceWarehouseProduct.Quantity -= quantityToTransfer;
+                destinationWarehouseProduct.Quantity += quantityToTransfer;
+
+                // Save changes to the database
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception("Insufficient quantity in source warehouse or invalid transfer operation.");
+            }
+        }
     }
 }

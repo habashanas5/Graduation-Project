@@ -950,7 +950,7 @@
                 </ul>
                 <div class="header--search">
                     <input type="text" id="searchInput" placeholder="Search for items..." class="form--input" onkeypress="searchProducts()" />
-                    <button class="search--btn" onclick="searchProducts()" >
+                    <button class="search--btn" onclick="searchProducts()">
                         <img src="~/images/search.png" alt="" />
                     </button>
                 </div>
@@ -967,7 +967,7 @@
             <div class="sidebar-close">
                 <i class="fa fa-close"></i>
             </div>
-            <div class = "cart-menu">
+            <div class="cart-menu">
                 <h3>My Cart</h3>
                 <div class="cart-tems">
                     @if (Model.CartItems != null && Model.CartItems.Any())
@@ -1057,11 +1057,11 @@
                     @foreach (var group in Model.ProductGroups)
                     {
                         <a class="category--item swiper-slide">
-                             @if (group.ImageData != null)
+                            @if (group.ImageData != null)
                             {
                                 <img src="data:image;base64,@Convert.ToBase64String(group.ImageData)" alt="@group.Name" class="category--img" />
                             }
-                           
+
                             <h3 class="category--title"> @group.Name </h3>
                         </a>
                     }
@@ -1077,7 +1077,7 @@
             </div>
         </section>
 
-        <section class="products section container" id="productsSection" >
+        <section class="products section container" id="productsSection">
             <div class="tab--btns">
                 <span class="tab--btn active-tab" data-target="#featured">
                     Products
@@ -1089,7 +1089,7 @@
                     <div class="products--container grid">
                         @foreach (var product in Model.products)
                         {
-                            <div class="product--item"  data-product-name="@product.Name.ToLower()">
+                            <div class="product--item" data-product-name="@product.Name.ToLower()">
                                 <div class="product--banner">
                                     <a href="" class="product--images">
                                         @if (product.ImageData != null)
@@ -1121,7 +1121,7 @@
                                             <i class="fa fa-star" data-value="@i"></i>
                                         }
                                         <span> (@product.rating ratings, avg: @product.RatingAverage)</span>
-                                                            
+
                                     </div>
                                     <div class="product--price flex">
                                         <span class="new--price">$@product.UnitPrice</span>
@@ -1151,21 +1151,21 @@
                                             <i class="fa fa-star"></i>
                                         </button>
                                     </form>
-                                    
+
                                 </div>
                             </div>
                         }
                     </div>
                 </div>
             </div>
-    </section>
+        </section>
 
         <section class="showcase section">
             <div class="showcase--container container grid">
                 <div class="showcase--wrapper">
                     <h3 class="section--title">Top Selling Order</h3>
-                        @foreach (var item in topSellingProducts)
-                        {
+                    @foreach (var item in topSellingProducts)
+                    {
                         <div class="showcase--item">
                             <a class="showcase--img-box">
                                 @if (item.Product.ImageData != null)
@@ -1186,70 +1186,42 @@
                                 </div>
                             </div>
                         </div>
-                        }
+                    }
                 </div>
-                    <div class="showcase--wrapper">
-                        <h3 class="section--title">Top Purchasing Products</h3>
+                <div class="showcase--wrapper">
+                    <h3 class="section--title">Top Purchasing Products</h3>
 
-                        @foreach (var item in topPurchasedProducts)
-                        {
-                            <div class="showcase--item">
+                    @foreach (var item in topPurchasedProducts)
+                    {
+                        <div class="showcase--item">
                             <a class="showcase--img-box">
                                 @if (item.Product.ImageData != null)
                                 {
                                     <img src="data:image;base64,@item.Product.ImageData" alt="@item.Name" class="showcase--img" />
                                 }
-                                </a>
-
-                                <div class="showcase--content">
-                                <a>
-                                    <h4 class="showcase--title">@item.Product.Name</h4>
-                                    </a>
-
-                                    <div class="showcase--price flex">
-                                        <span class="new--price">$@item.Product.UnitPrice</span>
-                                        <span class="old--price">$@item.Product.oldPrice</span>
-
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-
-                    <div class="showcase--wrapper">
-                        <h3 class="section--title">Top Rated Products</h3>
-
-                        @foreach (var item in Model.TopRatedProducts)
-                        {
-                            <div class="showcase--item">
-                                <a class="showcase--img-box">
-                                @if (item.ImageData != null)
-                                {
-                                    <img src="data:image;base64,@Convert.ToBase64String(item.ImageData)" alt="@item.Name" class="showcase--img" />
-                                }
                             </a>
 
-                                <div class="showcase--content">
+                            <div class="showcase--content">
                                 <a>
-                                    <h4 class="showcase--title">@item.Name</h4>
-                                    </a>
+                                    <h4 class="showcase--title">@item.Product.Name</h4>
+                                </a>
 
-                                    <div class="showcase--price flex">
-                                        <span class="new--price">$@item.UnitPrice</span>
-                                        <span class="old--price">$@item.oldPrice</span>
+                                <div class="showcase--price flex">
+                                    <span class="new--price">$@item.Product.UnitPrice</span>
+                                    <span class="old--price">$@item.Product.oldPrice</span>
 
-                                    </div>
                                 </div>
                             </div>
-                        }
-                    </div>
-                 
-                    <div class="showcase--wrapper">
-                        <h3 class="section--title">Lowest Priced Products</h3>
+                        </div>
+                    }
+                </div>
 
-                        @foreach (var item in Model.LowestPricedProducts)
-                        {
-                            <div class="showcase--item">
+                <div class="showcase--wrapper">
+                    <h3 class="section--title">Top Rated Products</h3>
+
+                    @foreach (var item in Model.TopRatedProducts)
+                    {
+                        <div class="showcase--item">
                             <a class="showcase--img-box">
                                 @if (item.ImageData != null)
                                 {
@@ -1257,22 +1229,50 @@
                                 }
                             </a>
 
-                                <div class="showcase--content">
-                                    <a>
-                                        <h4 class="showcase--title">@item.Name</h4>
-                                    </a>
+                            <div class="showcase--content">
+                                <a>
+                                    <h4 class="showcase--title">@item.Name</h4>
+                                </a>
 
-                                    <div class="showcase--price flex">
-                                        <span class="new--price">$@item.UnitPrice</span>
-                                        <span class="old--price">$@item.oldPrice</span>
+                                <div class="showcase--price flex">
+                                    <span class="new--price">$@item.UnitPrice</span>
+                                    <span class="old--price">$@item.oldPrice</span>
 
-                                    </div>
                                 </div>
                             </div>
-                        }
-                    </div>
+                        </div>
+                    }
                 </div>
-            </div>       
+
+                <div class="showcase--wrapper">
+                    <h3 class="section--title">Lowest Priced Products</h3>
+
+                    @foreach (var item in Model.LowestPricedProducts)
+                    {
+                        <div class="showcase--item">
+                            <a class="showcase--img-box">
+                                @if (item.ImageData != null)
+                                {
+                                    <img src="data:image;base64,@Convert.ToBase64String(item.ImageData)" alt="@item.Name" class="showcase--img" />
+                                }
+                            </a>
+
+                            <div class="showcase--content">
+                                <a>
+                                    <h4 class="showcase--title">@item.Name</h4>
+                                </a>
+
+                                <div class="showcase--price flex">
+                                    <span class="new--price">$@item.UnitPrice</span>
+                                    <span class="old--price">$@item.oldPrice</span>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            </div>
         </section>
 
 
@@ -1354,7 +1354,7 @@
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     </main>
 
 
@@ -1382,11 +1382,11 @@
             },
         });
 
-            function searchProducts() {
+        function searchProducts() {
             var input = document.getElementById('searchInput').value.toLowerCase();
             var productItems = document.querySelectorAll('.product--item');
 
-            productItems.forEach(function(item) {
+            productItems.forEach(function (item) {
                 var productName = item.getAttribute('data-product-name');
                 if (productName && productName.includes(input)) {
                     item.style.display = '';
@@ -1547,11 +1547,11 @@
                     const cartItem = document.createElement('div');
                     cartItem.classList.add('cart-item', 'indivdual-cart-item');
                     cartItem.innerHTML = `
-                                        <span>(${item.quantity}x) ${item.name}</span>
-                                        <span class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}
-                                            <button class="remove-btn" data-index="${index}"><i class="fa fa-times"></i></button>
-                                        </span>
-                                    `;
+                                                <span>(${item.quantity}x) ${item.name}</span>
+                                                <span class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}
+                                                    <button class="remove-btn" data-index="${index}"><i class="fa fa-times"></i></button>
+                                                </span>
+                                            `;
                     cartItemsList.append(cartItem);
                 });
 

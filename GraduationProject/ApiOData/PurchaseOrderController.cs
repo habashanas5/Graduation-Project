@@ -8,11 +8,7 @@ using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.EntityFrameworkCore;
 
 namespace GraduationProject.ApiOData
-<<<<<<< HEAD
-{
-=======
-{
->>>>>>> c44e5491702d5f390efd342c62b729fc7935292e
+{ 
     [Route("api/[controller]")]
 
     public class PurchaseOrderController : ODataController
