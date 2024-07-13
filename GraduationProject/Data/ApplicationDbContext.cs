@@ -55,6 +55,7 @@ namespace GraduationProject.Data
          public DbSet<Warehouse> Warehouse { get; set; } = default!;
         public DbSet<WarehouseProduct> WarehouseProduct { get; set; } = default!;
         public DbSet<CartItem> CartItem { get; set; } = default!;
+        public DbSet<DeliveryCompany> DeliveryCompany { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -107,6 +108,7 @@ namespace GraduationProject.Data
             builder.ApplyConfiguration(new AdjustmentMinusConfiguration());
             builder.ApplyConfiguration(new AdjustmentPlusConfiguration());
             builder.ApplyConfiguration(new ScrappingConfiguration());
+            builder.ApplyConfiguration(new DeliveryCompanyConfiguration());
 
         }
     }

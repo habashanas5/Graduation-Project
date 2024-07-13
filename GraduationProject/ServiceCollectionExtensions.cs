@@ -90,6 +90,7 @@ namespace GraduationProject
             services.AddScoped<AdjustmentMinusService>();
             services.AddScoped<AdjustmentPlusService>();
             services.AddScoped<ScrappingService>();
+            services.AddScoped<DeliveryOrderService>();
 
 
             return services;

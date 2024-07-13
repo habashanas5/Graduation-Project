@@ -12,5 +12,7 @@ namespace GraduationProject.Models.Entities
         public string? Description { get; set; }
         public required int SalesOrderId { get; set; }
         public SalesOrder? SalesOrder { get; set; }
+        public required int DeliveryCompanyId { get; set; }
+        public DeliveryCompany? DeliveryCompany { get; set; }
     }
 }

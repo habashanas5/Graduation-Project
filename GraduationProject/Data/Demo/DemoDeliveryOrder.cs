@@ -34,14 +34,21 @@ namespace GraduationProject.Data.Demo
                 .Select(x => x.Id)
                 .ToArray();
 
+            var deliveryCompanies = services.GetRequiredService<DbContext>()
+               .Set<DeliveryCompany>()
+               .ToList();
+
             foreach (var salesOrder in salesOrders)
             {
+                int deliveryCompanyId = deliveryCompanies[random.Next(deliveryCompanies.Count)].Id;
+
                 var deliveryOrder = new DeliveryOrder
                 {
                     Number = numberSequenceService.GenerateNumber(nameof(DeliveryOrder), "", "DO"),
                     DeliveryDate = salesOrder.OrderDate?.AddDays(random.Next(1, 5)),
                     Status = (DeliveryOrderStatus)random.Next(0, deliveryOrderStatusLength),
                     SalesOrderId = salesOrder.Id,
+                    DeliveryCompanyId = deliveryCompanyId
                 };
                 await deliveryOrderService.AddAsync(deliveryOrder);
 
