@@ -5,10 +5,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GraduationProject.Applications.DeliveryCompanys
 {
-    public class DeliveryCompanyService  : IDeliveryCompanyService
+    public class DeliveryCompanyService  : Repository<DeliveryCompany> ,IDeliveryCompanyService 
     {
         private readonly ApplicationDbContext _context;
-        public DeliveryCompanyService(ApplicationDbContext context)
+        public DeliveryCompanyService(
+            ApplicationDbContext context,
+             IHttpContextAccessor httpContextAccessor,
+             IAuditColumnTransformer auditColumnTransformer):base(context,
+                    httpContextAccessor,
+                    auditColumnTransformer)
         {
             _context = context;
         }
@@ -23,7 +28,7 @@ namespace GraduationProject.Applications.DeliveryCompanys
             return await _context.DeliveryCompany.FindAsync(id);
         }
 
-        public async Task<DeliveryCompany> AddDeliveryCompanyAsync(DeliveryCompany deliveryCompany)
+        public async Task<DeliveryCompany> AddDeliveryCompanyAsync(DeliveryCompany deliveryCompany) 
         {
             _context.DeliveryCompany.Add(deliveryCompany);
             await _context.SaveChangesAsync();
@@ -37,9 +42,9 @@ namespace GraduationProject.Applications.DeliveryCompanys
             return deliveryCompany;
         }
 
-        public async Task<bool> DeleteDeliveryCompanyAsync(int id)
+        public async Task<bool> DeleteDeliveryCompanyByRowGuidAsync(Guid? rowGuid)
         {
-            var deliveryCompany = await _context.DeliveryCompany.FindAsync(id);
+            var deliveryCompany = await _context.DeliveryCompany.FirstOrDefaultAsync(dc => dc.RowGuid == rowGuid);
             if (deliveryCompany == null)
             {
                 return false;
@@ -49,10 +54,14 @@ namespace GraduationProject.Applications.DeliveryCompanys
             await _context.SaveChangesAsync();
             return true;
         }
-
         public IQueryable<DeliveryCompany> GetAllDeliveryCompanies()
         {
             return _context.DeliveryCompany.AsQueryable();
+        }
+
+        public Task<bool> DeleteDeliveryCompanyAsync(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

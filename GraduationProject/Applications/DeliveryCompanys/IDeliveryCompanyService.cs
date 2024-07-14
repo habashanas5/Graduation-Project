@@ -10,5 +10,7 @@ namespace GraduationProject.Applications.DeliveryCompanys
         Task<DeliveryCompany> UpdateDeliveryCompanyAsync(DeliveryCompany deliveryCompany);
         Task<bool> DeleteDeliveryCompanyAsync(int id);
         IQueryable<DeliveryCompany> GetAllDeliveryCompanies();
+        Task<DeliveryCompany> GetByRowGuidAsync(Guid? rowGuid);
+        Task<bool> DeleteDeliveryCompanyByRowGuidAsync(Guid? rowGuid);
     }
 }

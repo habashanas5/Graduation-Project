@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using GraduationProject.Applications.DeliveryCompanys;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GraduationProject.Pages.DeliveryCompanies
 {
+    [Authorize(Roles = "Admin")]
     public class DeliveryCompaniesListModel : PageModel
     {
         private readonly IDeliveryCompanyService _deliveryCompanyService;
@@ -33,6 +35,7 @@ namespace GraduationProject.Pages.DeliveryCompanies
                 RowGuid = dc.RowGuid,
                 CreatedAtUtc = dc.CreatedAtUtc
             }).ToList();
+            StatusMessage = "Data loaded successfully!";
         }
     }
 }

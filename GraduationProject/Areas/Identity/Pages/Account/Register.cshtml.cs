@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using GraduationProject.Applications.Companies;
 using GraduationProject.AppSettings;
 using GraduationProject.Data;
+using GraduationProject.Infrastructures.Countries;
 using GraduationProject.Models.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -21,6 +22,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -39,7 +41,7 @@ namespace GraduationProject.Areas.Identity.Pages.Account
         private readonly IEmailSender _emailSender;
        // private readonly RegistrationConfiguration _registrationConfiguration;
         private readonly CompanyService _companyService;
-
+        private readonly ICountryService _countrySevice;
 
         public RegisterModel(
             ApplicationDbContext context,
@@ -47,9 +49,10 @@ namespace GraduationProject.Areas.Identity.Pages.Account
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
             ILogger<RegisterModel> logger,
-             IEmailSender emailSender,
+            IEmailSender emailSender,
           //  IOptions<RegistrationConfiguration> registrationConfiguration,
-            CompanyService companyService)
+            CompanyService companyService,
+            ICountryService countrySevice)
         {
             _context = context;
             _userManager = userManager;
@@ -60,6 +63,8 @@ namespace GraduationProject.Areas.Identity.Pages.Account
             _emailSender = emailSender;
            // _registrationConfiguration = registrationConfiguration.Value;
             _companyService = companyService;
+            _countrySevice = countrySevice;
+
         }
 
         /// <summary>
@@ -130,15 +135,33 @@ namespace GraduationProject.Areas.Identity.Pages.Account
 
             [Display(Name = "Customer Category")]
             public int CustomerCategoryId { get; set; }
-    
+
+            [Phone]
+            [Display(Name = "Phone number")]
+            public string PhoneNumber { get; set; }
+
+            [Display(Name = "Address")]
+            public string Address { get; set; }
+            [Display(Name = "City")]
+            public string City { get; set; }
+            [Display(Name = "State")]
+            public string State { get; set; }
+            [Display(Name = "Country")]
+            public string Country { get; set; }
+            [Display(Name = "ZipCode")]
+            public string ZipCode { get; set; }
+
         }
 
         public List<CustomerGroup> CustomerGroups { get; set; }
         public List<CustomerCategory> CustomerCategories { get; set; }
+        public ICollection<SelectListItem> Countries { get; set; }
+
         public async Task OnGetAsync(string returnUrl = null)
         {
             CustomerGroups = await _context.CustomerGroup.ToListAsync();
             CustomerCategories = await _context.CustomerCategory.ToListAsync();
+            Countries = _countrySevice.GetCountries();
 
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -158,6 +181,12 @@ namespace GraduationProject.Areas.Identity.Pages.Account
                 user.FullName = Input.UserName;
                 user.CustomerGroupIdUser = Input.CustomerGroupId;
                 user.CustomerCategoryIdUser = Input.CustomerCategoryId;
+                user.Address = Input.Address;
+                user.City = Input.City;
+                user.State = Input.State;
+                user.Country = Input.Country;
+                user.ZipCode = Input.ZipCode;
+                user.PhoneNumber = Input.PhoneNumber;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

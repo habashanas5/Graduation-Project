@@ -7,10 +7,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using GraduationProject.Data;
+using GraduationProject.Infrastructures.Countries;
 using GraduationProject.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace GraduationProject.Areas.Identity.Pages.Account.Manage
@@ -20,15 +22,18 @@ namespace GraduationProject.Areas.Identity.Pages.Account.Manage
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ICountryService _countrySevice;
 
         public IndexModel(
             ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            ICountryService countrySevice)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+            _countrySevice = countrySevice;
         }
 
         /// <summary>
@@ -80,10 +85,22 @@ namespace GraduationProject.Areas.Identity.Pages.Account.Manage
 
             [Display(Name = "Customer Category")]
             public int CustomerCategoryId { get; set; }
+
+            [Display(Name = "Address")]
+            public string Address { get; set; }
+            [Display(Name = "City")]
+            public string City { get; set; }
+            [Display(Name = "State")]
+            public string State { get; set; }
+            [Display(Name = "Country")]
+            public string Country { get; set; }
+            [Display(Name = "ZipCode")]
+            public string ZipCode { get; set; }
         }
 
         public List<CustomerGroup> CustomerGroups { get; set; }
         public List<CustomerCategory> CustomerCategories { get; set; }
+        public ICollection<SelectListItem> Countries { get; set; }
 
         private async Task LoadAsync(ApplicationUser user)
         {
@@ -100,6 +117,11 @@ namespace GraduationProject.Areas.Identity.Pages.Account.Manage
                 ProfilePicture = user.ProfilePicture,
                 CustomerCategoryId = user.CustomerCategoryIdUser,
                 CustomerGroupId = user.CustomerGroupIdUser,
+                Address = user.Address,
+                City = user.City,
+                State = user.State,
+                Country = user.Country,
+                ZipCode = user.ZipCode
             };
         }
 
@@ -113,6 +135,7 @@ namespace GraduationProject.Areas.Identity.Pages.Account.Manage
 
             CustomerGroups = await _context.CustomerGroup.ToListAsync();
             CustomerCategories = await _context.CustomerCategory.ToListAsync();
+            Countries = _countrySevice.GetCountries();
 
             await LoadAsync(user);
             return Page();
@@ -173,6 +196,35 @@ namespace GraduationProject.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            if (Input.Address != user.Address)
+            {
+                user.Address = Input.Address;
+                await _userManager.UpdateAsync(user);
+            }
+
+            if (Input.City != user.City)
+            {
+                user.City = Input.City;
+                await _userManager.UpdateAsync(user);
+            }
+
+            if (Input.State != user.State)
+            {
+                user.State = Input.State;
+                await _userManager.UpdateAsync(user);
+            }
+
+            if (Input.Country != user.Country)
+            {
+                user.Country = Input.Country;
+                await _userManager.UpdateAsync(user);
+            }
+
+            if (Input.ZipCode != user.ZipCode)
+            {
+                user.ZipCode = Input.ZipCode;
+                await _userManager.UpdateAsync(user);
+            }
             if (Request.Form.Files.Count > 0)
             {
                 var file = Request.Form.Files.FirstOrDefault();

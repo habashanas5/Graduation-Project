@@ -46,6 +46,43 @@
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
 
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Address" class="form-control" placeholder="Enter your Address" />
+                <label asp-for="Input.Address" class="form-label">Address</label>
+                <span asp-validation-for="Input.Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.City" class="form-control" placeholder="Enter your City" />
+                <label asp-for="Input.City" class="form-label">City</label>
+                <span asp-validation-for="Input.City" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select asp-for="Input.Country" class="form-control">
+                    <option value="">-- Select Country --</option>
+                    @foreach (var country in Model.Countries)
+                    {
+                        <option value="@country.Value">@country.Text</option>
+                    }
+                </select>
+                <label asp-for="Input.Country">Country</label>
+                <span asp-validation-for="Input.Country" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.State" class="form-control" placeholder="Enter your State" />
+                <label asp-for="Input.State" class="form-label">State</label>
+                <span asp-validation-for="Input.State" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ZipCode" class="form-control" placeholder="Enter your ZipCode" />
+                <label asp-for="Input.ZipCode" class="form-label">ZipCode</label>
+                <span asp-validation-for="Input.ZipCode" class="text-danger"></span>
+            </div>
+
             <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
         </div>
         <div class="col-md-6">

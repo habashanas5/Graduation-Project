@@ -1,0 +1,80 @@
+﻿@page
+@model GraduationProject.Pages.DeliveryCompanies.DeliveryCompaniesFormModel
+@{
+    Layout = "~/Pages/Shared/AdminLTE/_Admin.cshtml";
+    var statusMessage = Model.StatusMessage;
+    Model.StatusMessage = string.Empty;
+}
+
+<div class="form-card">
+    <form id="formMain" method="post" novalidate="">
+        <input type="hidden" asp-for="@Model.DeliveryCompanyForm.RowGuid" />
+        <div class="form-card-body">
+            <p class="small-italic-left">General Information</p>
+            <fieldset>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="@Model.DeliveryCompanyForm.Name" class="form-label"></label>
+                            <input asp-for="@Model.DeliveryCompanyForm.Name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="@Model.DeliveryCompanyForm.ContactNumber" class="form-label"></label>
+                            <input asp-for="@Model.DeliveryCompanyForm.ContactNumber" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="@Model.DeliveryCompanyForm.Email" class="form-label"></label>
+                            <input asp-for="@Model.DeliveryCompanyForm.Email" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="@Model.DeliveryCompanyForm.Address" class="form-label"></label>
+                            <input asp-for="@Model.DeliveryCompanyForm.Address" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="form-card-footer">
+            <button type="submit" id="btnSubmit" class="e-btn e-control @(Model.Action == "delete" ? "e-danger" : "")">@(Model.Action == "delete" ? "Delete" : "Submit")</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            showStatusMessage('@statusMessage');
+
+            new ej.inputs.TextBox({}, '#DeliveryCompanyForm_Name');
+            new ej.inputs.TextBox({}, '#DeliveryCompanyForm_ContactNumber');
+            new ej.inputs.TextBox({}, '#DeliveryCompanyForm_Email');
+            new ej.inputs.TextBox({}, '#DeliveryCompanyForm_Address');
+            new ej.buttons.Button({ isPrimary: true }, '#btnSubmit');
+
+            var validationOptions = {
+                rules: {
+                    'DeliveryCompanyForm.Name': { required: true },
+                    'DeliveryCompanyForm.ContactNumber': { required: true },
+                    'DeliveryCompanyForm.Email': { required: true },
+                }
+            }
+
+            var formValidator = new ej.inputs.FormValidator('#formMain', validationOptions);
+            var formElement = document.getElementById('formMain');
+            formElement.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (formValidator.validate()) {
+                    formElement.submit();
+                }
+            })
+        });
+    </script>
+}
