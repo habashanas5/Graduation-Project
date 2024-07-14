@@ -1,21 +1,38 @@
-using GraduationProject.Infrastructures.Extensions;
-using Microsoft.AspNetCore.Mvc;
+using GraduationProject;
+using GraduationProject.DTOS;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
+using GraduationProject.Applications.DeliveryCompanys;
 
 namespace GraduationProject.Pages.DeliveryCompanies
 {
     public class DeliveryCompaniesListModel : PageModel
     {
-        public DeliveryCompaniesListModel() { }
+        private readonly IDeliveryCompanyService _deliveryCompanyService;
 
-        [TempData]
-        public string StatusMessage { get; set; } = string.Empty;
-
-        public void OnGet()
+        public DeliveryCompaniesListModel(IDeliveryCompanyService deliveryCompanyService)
         {
-            this.SetupViewDataTitleFromUrl();
-            this.SetupStatusMessage();
-            StatusMessage = this.ReadStatusMessage();
+            _deliveryCompanyService = deliveryCompanyService;
+        }
+
+        public List<DeliveryCompanyDto> DeliveryCompanies { get; set; }
+        public string StatusMessage { get; set; }
+
+        public async Task OnGetAsync()
+        {
+            var companies = await _deliveryCompanyService.GetAllDeliveryCompaniesAsync();
+            DeliveryCompanies = companies.Select(dc => new DeliveryCompanyDto
+            {
+                Id = dc.Id,
+                Name = dc.Name,
+                ContactNumber = dc.ContactNumber,
+                Email = dc.Email,
+                Address = dc.Address,
+                RowGuid = dc.RowGuid,
+                CreatedAtUtc = dc.CreatedAtUtc
+            }).ToList();
         }
     }
 }

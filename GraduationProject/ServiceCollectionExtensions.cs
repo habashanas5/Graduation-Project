@@ -6,6 +6,7 @@ using GraduationProject.Applications.CustomerCategories;
 using GraduationProject.Applications.CustomerContacts;
 using GraduationProject.Applications.CustomerGroups;
 using GraduationProject.Applications.Customers;
+using GraduationProject.Applications.DeliveryCompanys;
 using GraduationProject.Applications.DeliveryOrders;
 using GraduationProject.Applications.GoodsReceives;
 using GraduationProject.Applications.InventoryTransactions;
@@ -64,6 +65,7 @@ namespace GraduationProject
             services.AddScoped<LogAnalyticService>();
             services.AddScoped<CustomerGroupService>();
             services.AddScoped<CustomerCategoryService>();
+            services.AddScoped<IDeliveryCompanyService, DeliveryCompanyService>();
             services.AddScoped<VendorGroupService>();
             services.AddScoped<VendorCategoryService>();
             services.AddScoped<WarehouseService>();

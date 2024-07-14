@@ -8,9 +8,9 @@ namespace GraduationProject.ApiOData
 {
     public class DeliveryCompanyController : ODataController
     {
-        private readonly DeliveryCompanyService _deliveryCompanyService;
+        private readonly IDeliveryCompanyService _deliveryCompanyService;
 
-        public DeliveryCompanyController(DeliveryCompanyService deliveryCompanyService)
+        public DeliveryCompanyController(IDeliveryCompanyService deliveryCompanyService)
         {
             _deliveryCompanyService = deliveryCompanyService;
         }
@@ -19,7 +19,7 @@ namespace GraduationProject.ApiOData
         public IQueryable<DeliveryCompanyDto> Get()
         {
             return _deliveryCompanyService
-                .GetAll()
+                .GetAllDeliveryCompanies()
                 .Select(dc => new DeliveryCompanyDto
                 {
                     Id = dc.Id,

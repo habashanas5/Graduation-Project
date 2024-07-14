@@ -1,4 +1,5 @@
 using AutoMapper;
+using GraduationProject.Applications.DeliveryCompanys;
 using GraduationProject.Applications.DeliveryOrders;
 using GraduationProject.Applications.InventoryTransactions;
 using GraduationProject.Applications.NumberSequences;
@@ -13,6 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using System.ComponentModel;
 
 namespace GraduationProject.Pages.DeliveryOrders
@@ -27,6 +30,9 @@ namespace GraduationProject.Pages.DeliveryOrders
         private readonly ProductService _productService;
         private readonly WarehouseService _warehouseService;
         private readonly InventoryTransactionService _inventoryTransactionService;
+        private readonly DeliveryCompanyService _deliveryCompanyService;
+        private readonly IEmailSender _emailSender;
+
         public DeliveryOrderFormModel(
             IMapper mapper,
             DeliveryOrderService deliveryOrderService,
@@ -34,7 +40,9 @@ namespace GraduationProject.Pages.DeliveryOrders
             SalesOrderService salesOrderService,
             ProductService productService,
             WarehouseService warehouseService,
-            InventoryTransactionService inventoryTransactionService
+            InventoryTransactionService inventoryTransactionService,
+            DeliveryCompanyService deliveryCompanyService,
+            IEmailSender emailSender
             )
         {
             _mapper = mapper;
@@ -44,6 +52,9 @@ namespace GraduationProject.Pages.DeliveryOrders
             _productService = productService;
             _warehouseService = warehouseService;
             _inventoryTransactionService = inventoryTransactionService;
+            _deliveryCompanyService = deliveryCompanyService;
+            _emailSender = emailSender;
+
         }
 
         [TempData]
@@ -68,8 +79,11 @@ namespace GraduationProject.Pages.DeliveryOrders
             [DisplayName("Description")]
             public string? Description { get; set; }
 
-            [DisplayName("Delivery Orders")]
+            [DisplayName("Sales Order")]
             public int SalesOrderId { get; set; }
+
+            [DisplayName("Delivery Company")]
+            public int DeliveryCompanyId { get; set; } 
         }
 
         public class MappingProfile : Profile
@@ -84,6 +98,8 @@ namespace GraduationProject.Pages.DeliveryOrders
         public ICollection<SelectListItem> SalesOrderLookup { get; set; } = default!;
         public ICollection<object> ProductLookup { get; set; } = default!;
         public ICollection<object> WarehouseLookup { get; set; } = default!;
+        public ICollection<SelectListItem> DeliveryCompanyLookup { get; set; } = default!;
+
         private void BindLookup()
         {
 
@@ -105,6 +121,12 @@ namespace GraduationProject.Pages.DeliveryOrders
                 .Select(x => new { WarehouseId = x.Id, WarehouseName = x.Name } as object)
                 .ToList();
 
+            DeliveryCompanyLookup = _deliveryCompanyService.GetAllDeliveryCompanies()
+       .Select(dc => new SelectListItem
+       {
+           Value = dc.Id.ToString(),
+           Text = dc.Name
+       }).ToList();
 
         }
 
@@ -164,7 +186,18 @@ namespace GraduationProject.Pages.DeliveryOrders
                 Number = _numberSequenceService.GenerateNumber(nameof(DeliveryOrder), "", "DO");
                 newobj.Number = Number;
 
+                var selectedCompany = await _deliveryCompanyService.GetDeliveryCompanyByIdAsync(input.DeliveryCompanyId);
+                newobj.DeliveryCompany = selectedCompany;
+
                 await _deliveryOrderService.AddAsync(newobj);
+
+                var salesOrder = await _salesOrderService.GetByIdAsync(input.SalesOrderId);
+                var emailMessage = $"New Order \n\n" +
+                    $"Sales Order Number: {salesOrder.Number} \n\n" +
+                    $"Delivery Date: {input.DeliveryDate.ToShortDateString()} \n\n" +
+                    $"Description: {input.Description}";
+
+                await _emailSender.SendEmailAsync(selectedCompany.Email, "New Order", emailMessage);
 
                 this.WriteStatusMessage($"Success create new data.");
                 return Redirect($"./DeliveryOrderForm?rowGuid={newobj.RowGuid}&action=edit");

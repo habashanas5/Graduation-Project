@@ -49,7 +49,12 @@ namespace GraduationProject.Applications.SalesOrders
             }
         }
 
-
+        public async Task<List<SalesOrderItem>> GetSalesOrderItemsBySalesOrderIdAsync(int salesOrderId)
+        {
+            return await _context.Set<SalesOrderItem>()
+                .Where(x => x.SalesOrderId == salesOrderId && x.IsNotDeleted)
+                .ToListAsync();
+        }
 
         public override async Task UpdateAsync(SalesOrder? entity)
         {

@@ -7,8 +7,6 @@
     ViewData["Module"] = "Inventory";
 }
 
-
-
 <div class="row">
     <div class="col-12">
         <div id="Grid"></div>
@@ -65,7 +63,7 @@
                     { text: 'Add', tooltipText: 'Add', prefixIcon: 'e-add', id: 'AddCustom' },
                     { text: 'Edit', tooltipText: 'Edit', prefixIcon: 'e-edit', id: 'EditCustom' },
                     { text: 'Delete', tooltipText: 'Delete', prefixIcon: 'e-delete', id: 'DeleteCustom' },
-                    { text: 'Add products', tooltipText: 'Add products', id: 'Addproducts' },
+                    { text: 'AddProducts', tooltipText: 'AddProducts', prefixIcon: 'e-products', id: 'AddProducts' },
 
                 ],
                 beforeDataBound: () => {
@@ -105,6 +103,11 @@
                         window.location.href = formUrl;
                     }
 
+                    if (args.item.id === 'AddProducts') {
+                        var formUrl = 'http://localhost:5244/warehouseProducts/index';
+                        window.location.href = formUrl;
+                    }
+
                     if (args.item.id === 'EditCustom') {
                         if (grid.getSelectedRecords().length) {
                             var selectedRowGuid = grid.getSelectedRecords()[0].RowGuid;
@@ -132,12 +135,7 @@
                                 closeOnEscape: true
                             });
 
-                        }
-
-                        if (args.item.id === 'Addproducts') {
-                            var formUrl = 'http://localhost:5244/warehouseProducts';
-                            window.location.href = formUrl;
-                        }
+                        }              
                     }
 
                 }

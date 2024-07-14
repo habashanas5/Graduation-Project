@@ -2,6 +2,7 @@ using DeviceDetectorNET.Parser.Device;
 using GraduationProject;
 using GraduationProject.Applications.ApplicationUsers;
 using GraduationProject.Applications.Companies;
+using GraduationProject.Applications.DeliveryCompanys;
 using GraduationProject.AppSettings;
 using GraduationProject.Data;
 using GraduationProject.Infrastructures.Emails;
@@ -15,6 +16,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder;
 using WkHtmlToPdfDotNet;
 using WkHtmlToPdfDotNet.Contracts;
 
@@ -60,6 +63,10 @@ builder.Services.AddScoped<IFileImageService, FileImageService>();
 builder.Services.AddScoped<IAuditColumnTransformer, AuditColumnTransformer>();
 
 builder.Services.AddScoped<CompanyService>();
+
+builder.Services.AddScoped<IDeliveryCompanyService, DeliveryCompanyService>();
+
+builder.Services.AddScoped<DeliveryCompanyService>();
 
 builder.Services.AddScoped<ApplicationUserService>();
 
@@ -131,3 +138,4 @@ app.MapControllerRoute(
 app.MapControllers();
 
 app.Run();
+

@@ -51,6 +51,15 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="DeliveryOrderForm.DeliveryCompanyId" class="form-label"></label>
+                            <select asp-for="DeliveryOrderForm.DeliveryCompanyId" class="form-control" asp-items="@(new SelectList(Model.DeliveryCompanyLookup, "Value", "Text"))">
+                                <option value="">-- Select Company --</option>
+                            </select>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="row">
                     <div class="col-md-12">
