@@ -39,6 +39,8 @@ namespace GraduationProject.Models.Entities
         public CustomerGroup? CustomerGroup { get; set; }
         public required int CustomerCategoryIdUser { get; set; }
         public CustomerCategory? CustomerCategory { get; set; }
+        public List<SalesReturn> SalesReturns { get; set; } = new List<SalesReturn>();
+
         //IHasAudit
         public string? CreatedByUserId { get; set; }
         public DateTime? CreatedAtUtc { get; set; }

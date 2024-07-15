@@ -1,0 +1,75 @@
+﻿@page
+@model GraduationProject.Pages.Products_ReturnModel
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Products Return Form";
+}
+
+<h1>Products Return Form</h1>
+
+<form method="post" style="border-radius:5px; border:1px solid #eee;">
+    <div class="form-group" style="padding:5px; margin:5px;">
+        <label for="returnDate">Return Date</label>
+        <input type="date" class="form-control" id="returnDate" name="SalesReturn.ReturnDate" required />
+    </div>
+    <div id="products-container" style="padding:5px; margin:5px;">
+        <div class="product-item">
+            <h4>Product 1</h4>
+            <div class="form-group">
+                <label for="product1">Product Name</label>
+                <select class="form-control" id="product1" name="SalesReturn.Products[0].ProductId" required>
+                    <option value="">Select a product</option>
+                    @foreach (var product in Model.Products)
+                    {
+                        <option value="@product.Id">@product.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantity1">Quantity</label>
+                <input type="number" class="form-control" id="quantity1" name="SalesReturn.Products[0].Quantity" required />
+            </div>
+            <div class="form-group">
+                <label for="reason1">Reason for Return</label>
+                <input type="text" class="form-control" id="reason1" name="SalesReturn.Products[0].Reason" required />
+            </div>
+        </div>
+    </div>
+    <div style="padding:5px; margin-bottom:300px;">
+        <button type="button" id="add-product" class="btn btn-secondary">Add Another Product</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        let productCount = 1;
+        const productsOptions = `@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Products.Select(p => new { p.Id, p.Name })))`;
+
+        document.getElementById('add-product').addEventListener('click', function () {
+            productCount++;
+            const container = document.getElementById('products-container');
+            const newProduct = document.createElement('div');
+            newProduct.className = 'product-item';
+            newProduct.innerHTML = `
+                                <h4>Product ${productCount}</h4>
+                                <div class="form-group">
+                                    <label for="product${productCount}">Product Name</label>
+                                    <select class="form-control" id="product${productCount}" name="SalesReturn.Products[${productCount - 1}].ProductId" required>
+                                        <option value="">Select a product</option>
+                                        ${JSON.parse(productsOptions).map(p => `<option value="${p.Id}">${p.Name}</option>`).join('')}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quantity${productCount}">Quantity</label>
+                                    <input type="number" class="form-control" id="quantity${productCount}" name="SalesReturn.Products[${productCount - 1}].Quantity" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="reason${productCount}">Reason for Return</label>
+                                    <input type="text" class="form-control" id="reason${productCount}" name="SalesReturn.Products[${productCount - 1}].Reason" required />
+                                </div>
+                            `;
+            container.appendChild(newProduct);
+        });
+    </script>
+}

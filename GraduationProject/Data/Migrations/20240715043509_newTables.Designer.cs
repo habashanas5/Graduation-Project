@@ -4,6 +4,7 @@ using GraduationProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraduationProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240715043509_newTables")]
+    partial class newTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1707,14 +1710,9 @@ namespace GraduationProject.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("DeliveryOrderId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("SalesReturn");
                 });
@@ -1736,8 +1734,8 @@ namespace GraduationProject.Data.Migrations
                     b.Property<bool>("IsNotDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -1758,8 +1756,6 @@ namespace GraduationProject.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
 
                     b.HasIndex("SalesReturnId");
 
@@ -2840,30 +2836,16 @@ namespace GraduationProject.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GraduationProject.Models.Entities.ApplicationUser", "User")
-                        .WithMany("SalesReturns")
-                        .HasForeignKey("UserId");
-
                     b.Navigation("DeliveryOrder");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.SalesReturnProduct", b =>
                 {
-                    b.HasOne("GraduationProject.Models.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("GraduationProject.Models.Entities.SalesReturn", "SalesReturn")
                         .WithMany("Products")
                         .HasForeignKey("SalesReturnId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Product");
 
                     b.Navigation("SalesReturn");
                 });
@@ -3018,11 +3000,6 @@ namespace GraduationProject.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("GraduationProject.Models.Entities.ApplicationUser", b =>
-                {
-                    b.Navigation("SalesReturns");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.DeliveryCompany", b =>

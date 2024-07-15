@@ -64,6 +64,8 @@
                     { text: 'Delete', tooltipText: 'Delete', prefixIcon: 'e-delete', id: 'DeleteCustom' },
                     { type: 'Separator' },
                     { text: 'Download Pdf', tooltipText: 'Download Pdf', prefixIcon: 'e-export-pdf', id: 'PdfCustom' },
+                    { text: 'ProductsReturn', tooltipText: 'ProductsReturn', prefixIcon: 'e-ProductsReturn', id: 'ProductsReturn' },
+
                 ],
                 beforeDataBound: () => {
                 },
@@ -99,6 +101,11 @@
 
                     if (args.item.id === 'AddCustom') {
                         var formUrl = '/SalesReturns/SalesReturnForm' + '?action=create';
+                        window.location.href = formUrl;
+                    }
+
+                    if (args.item.id === 'ProductsReturn') {
+                        var formUrl = 'http://localhost:5244/SalesReturnProducts/index';
                         window.location.href = formUrl;
                     }
 

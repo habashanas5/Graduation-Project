@@ -56,6 +56,7 @@ namespace GraduationProject.Data
         public DbSet<WarehouseProduct> WarehouseProduct { get; set; } = default!;
         public DbSet<CartItem> CartItem { get; set; } = default!;
         public DbSet<DeliveryCompany> DeliveryCompany { get; set; } = default!;
+        public DbSet<SalesReturnProduct> SalesReturnProduct { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

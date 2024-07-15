@@ -12,5 +12,8 @@ namespace GraduationProject.Models.Entities
         public string? Description { get; set; }
         public required int DeliveryOrderId { get; set; }
         public DeliveryOrder? DeliveryOrder { get; set; }
+        public List<SalesReturnProduct> Products { get; set; }
+        public string? UserId { get; set; }
+        public ApplicationUser? User { get; set; }
     }
 }
