@@ -16,7 +16,6 @@ using Microsoft.EntityFrameworkCore;
 namespace GraduationProject.ApiOData
 {
     [Route("api/[controller]")]
-
     public class GoodsReceiveItemChildController : ODataController
     {
 

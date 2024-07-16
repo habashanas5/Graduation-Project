@@ -35,9 +35,5 @@ namespace GraduationProject.ApiOData
                     CreatedAtUtc = rec.CreatedAtUtc,
                 });
         }
-
-
-
-
     }
 }

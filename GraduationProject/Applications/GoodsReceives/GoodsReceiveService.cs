@@ -1,6 +1,7 @@
 ﻿using GraduationProject.Data;
 using GraduationProject.Infrastructures.Repositories;
 using GraduationProject.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace GraduationProject.Applications.GoodsReceives
 {
@@ -16,7 +17,5 @@ namespace GraduationProject.Applications.GoodsReceives
                     auditColumnTransformer)
         {
         }
-
-
     }
 }

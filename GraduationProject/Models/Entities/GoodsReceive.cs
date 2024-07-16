@@ -12,5 +12,7 @@ namespace GraduationProject.Models.Entities
         public string? Description { get; set; }
         public required int PurchaseOrderId { get; set; }
         public PurchaseOrder? PurchaseOrder { get; set; }
+        public ICollection<GoodsReceiveDetail>? GoodsReceiveDetails { get; set; }
+
     }
 }
