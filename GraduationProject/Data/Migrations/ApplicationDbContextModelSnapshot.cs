@@ -39,7 +39,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FileDocument");
+                    b.ToTable("FileDocument", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Infrastructures.Images.FileImage", b =>
@@ -57,7 +57,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FileImages");
+                    b.ToTable("FileImages", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.AdjustmentMinus", b =>
@@ -108,7 +108,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdjustmentMinus");
+                    b.ToTable("AdjustmentMinus", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.AdjustmentPlus", b =>
@@ -159,7 +159,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdjustmentPlus");
+                    b.ToTable("AdjustmentPlus", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.ApplicationUser", b =>
@@ -358,7 +358,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("CartItem");
+                    b.ToTable("CartItem", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.Company", b =>
@@ -450,7 +450,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Company");
+                    b.ToTable("Company", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.Customer", b =>
@@ -546,7 +546,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("CustomerGroupId");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customer", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.CustomerCategory", b =>
@@ -592,7 +592,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CustomerCategory");
+                    b.ToTable("CustomerCategory", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.CustomerContact", b =>
@@ -658,7 +658,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("CustomerContact");
+                    b.ToTable("CustomerContact", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.CustomerGroup", b =>
@@ -704,7 +704,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CustomerGroup");
+                    b.ToTable("CustomerGroup", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.DeliveryCompany", b =>
@@ -758,7 +758,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("DeliveryCompany");
+                    b.ToTable("DeliveryCompany", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.DeliveryOrder", b =>
@@ -819,7 +819,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("SalesOrderId");
 
-                    b.ToTable("DeliveryOrder");
+                    b.ToTable("DeliveryOrder", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.GoodsReceive", b =>
@@ -875,7 +875,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("PurchaseOrderId");
 
-                    b.ToTable("GoodsReceive");
+                    b.ToTable("GoodsReceive", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.InventoryTransaction", b =>
@@ -978,7 +978,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("WarehouseToId");
 
-                    b.ToTable("InventoryTransaction");
+                    b.ToTable("InventoryTransaction", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.LogAnalytic", b =>
@@ -1043,7 +1043,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LogAnalytic");
+                    b.ToTable("LogAnalytic", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.LogError", b =>
@@ -1092,7 +1092,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LogError");
+                    b.ToTable("LogError", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.LogSession", b =>
@@ -1145,7 +1145,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LogSession");
+                    b.ToTable("LogSession", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.NumberSequence", b =>
@@ -1198,7 +1198,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("NumberSequence");
+                    b.ToTable("NumberSequence", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.Product", b =>
@@ -1282,7 +1282,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("UnitMeasureId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Product", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.ProductGroup", b =>
@@ -1334,7 +1334,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductGroup");
+                    b.ToTable("ProductGroup", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.PurchaseOrder", b =>
@@ -1404,7 +1404,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("VendorId");
 
-                    b.ToTable("PurchaseOrder");
+                    b.ToTable("PurchaseOrder", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.PurchaseOrderItem", b =>
@@ -1464,7 +1464,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("PurchaseOrderId");
 
-                    b.ToTable("PurchaseOrderItem");
+                    b.ToTable("PurchaseOrderItem", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.PurchaseReturn", b =>
@@ -1520,7 +1520,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("GoodsReceiveId");
 
-                    b.ToTable("PurchaseReturn");
+                    b.ToTable("PurchaseReturn", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.SalesOrder", b =>
@@ -1595,7 +1595,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("SalesOrder");
+                    b.ToTable("SalesOrder", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.SalesOrderItem", b =>
@@ -1655,7 +1655,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("SalesOrderId");
 
-                    b.ToTable("SalesOrderItem");
+                    b.ToTable("SalesOrderItem", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.SalesReturn", b =>
@@ -1716,7 +1716,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("SalesReturn");
+                    b.ToTable("SalesReturn", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.SalesReturnProduct", b =>
@@ -1763,7 +1763,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("SalesReturnId");
 
-                    b.ToTable("SalesReturnProduct");
+                    b.ToTable("SalesReturnProduct", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.Scrapping", b =>
@@ -1819,7 +1819,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("WarehouseId");
 
-                    b.ToTable("Scrapping");
+                    b.ToTable("Scrapping", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.StockCount", b =>
@@ -1875,7 +1875,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("WarehouseId");
 
-                    b.ToTable("StockCount");
+                    b.ToTable("StockCount", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.Tax", b =>
@@ -1924,7 +1924,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tax");
+                    b.ToTable("Tax", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.TransferIn", b =>
@@ -1980,7 +1980,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("TransferOutId");
 
-                    b.ToTable("TransferIn");
+                    b.ToTable("TransferIn", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.TransferOut", b =>
@@ -2043,7 +2043,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("WarehouseToId");
 
-                    b.ToTable("TransferOut");
+                    b.ToTable("TransferOut", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.UnitMeasure", b =>
@@ -2089,7 +2089,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UnitMeasure");
+                    b.ToTable("UnitMeasure", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.Vendor", b =>
@@ -2188,7 +2188,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("VendorGroupId");
 
-                    b.ToTable("Vendor");
+                    b.ToTable("Vendor", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.VendorCategory", b =>
@@ -2234,7 +2234,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("VendorCategory");
+                    b.ToTable("VendorCategory", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.VendorContact", b =>
@@ -2300,7 +2300,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("VendorId");
 
-                    b.ToTable("VendorContact");
+                    b.ToTable("VendorContact", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.VendorGroup", b =>
@@ -2346,7 +2346,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("VendorGroup");
+                    b.ToTable("VendorGroup", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.WarehouseProduct", b =>
@@ -2390,7 +2390,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("WarehouseId");
 
-                    b.ToTable("WarehouseProduct");
+                    b.ToTable("WarehouseProduct", (string)null);
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entity.Warehouse", b =>
@@ -2455,7 +2455,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Warehouse");
+                    b.ToTable("Warehouse", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

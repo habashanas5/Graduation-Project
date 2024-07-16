@@ -18,7 +18,7 @@ namespace GraduationProject.Data.Demo
             var numberSequenceService = services.GetRequiredService<NumberSequenceService>();
             var inventoryTransactionService = services.GetRequiredService<InventoryTransactionService>();
             Random random = new Random();
-            int purchaseReturnStatusLength = Enum.GetNames(typeof(PurchaseReturnStatus)).Length;
+            int purchaseReturnStatusLength = Enum.GetNames(typeof(ManufacturingReturnStatus)).Length;
 
             var goodsReceives = goodsReceiveService
                 .GetAll()
@@ -44,7 +44,7 @@ namespace GraduationProject.Data.Demo
                 {
                     Number = numberSequenceService.GenerateNumber(nameof(PurchaseReturn), "", "PRN"),
                     ReturnDate = goodsReceive.ReceiveDate?.AddDays(random.Next(1, 5)),
-                    Status = (PurchaseReturnStatus)random.Next(0, purchaseReturnStatusLength),
+                    Status = (ManufacturingReturnStatus)random.Next(0, purchaseReturnStatusLength),
                     GoodsReceiveId = goodsReceive.Id,
                 };
                 await purchaseReturnService.AddAsync(purchaseReturn);

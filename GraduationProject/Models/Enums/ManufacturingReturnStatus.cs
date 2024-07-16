@@ -2,7 +2,7 @@
 
 namespace GraduationProject.Models.Enums
 {
-    public enum PurchaseReturnStatus
+    public enum ManufacturingReturnStatus
     {
         [Description("Pending")]
         Pending = 0,

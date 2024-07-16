@@ -58,12 +58,12 @@ namespace GraduationProject.Pages.PurchaseOrders
             public DateTime OrderDate { get; set; } = DateTime.Now;
 
             [DisplayName("Order Status")]
-            public PurchaseOrderStatus OrderStatus { get; set; }
+            public ManufacturingOrderStatus OrderStatus { get; set; }
 
             [DisplayName("Description")]
             public string? Description { get; set; }
 
-            [DisplayName("Vendor")]
+            [DisplayName("Factory")]
             public int VendorId { get; set; }
 
             [DisplayName("Tax")]

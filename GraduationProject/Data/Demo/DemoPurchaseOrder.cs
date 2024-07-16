@@ -21,7 +21,7 @@ namespace GraduationProject.Data.Demo
             var numberSequenceService = services.GetRequiredService<NumberSequenceService>();
 
             Random random = new Random();
-            int orderStatusLength = Enum.GetNames(typeof(PurchaseOrderStatus)).Length;
+            int orderStatusLength = Enum.GetNames(typeof(ManufacturingOrderStatus)).Length;
             var vendors = vendorService.GetAll().Select(x => x.Id).ToArray();
             var taxes = taxSerice.GetAll().Select(x => x.Id).ToArray();
             var products = productService.GetAll().ToList();
@@ -39,7 +39,7 @@ namespace GraduationProject.Data.Demo
                     {
                         Number = numberSequenceService.GenerateNumber(nameof(PurchaseOrder), "", "PO"),
                         OrderDate = transDate,
-                        OrderStatus = (PurchaseOrderStatus)random.Next(0, orderStatusLength),
+                        OrderStatus = (ManufacturingOrderStatus)random.Next(0, orderStatusLength),
                         VendorId = DbInitializer.GetRandomValue(vendors, random),
                         TaxId = DbInitializer.GetRandomValue(taxes, random),
                     };

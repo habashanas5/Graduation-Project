@@ -220,9 +220,9 @@ namespace GraduationProject.Pages.Users
                 {
                     await _userManager.AddToRoleAsync(newobj, _appConfig.RoleCustomerName ?? string.Empty);
                 }
-                if (newobj.UserType == UserType.Vendor)
+                if (newobj.UserType == UserType.Factories)
                 {
-                    await _userManager.AddToRoleAsync(newobj, _appConfig.RoleVendorName ?? string.Empty);
+                    await _userManager.AddToRoleAsync(newobj, _appConfig.RoleFactoriesName ?? string.Empty);
                 }    
                 if (newobj.UserType == UserType.Admin)
                 {
@@ -302,9 +302,9 @@ namespace GraduationProject.Pages.Users
                     {
                         await _userManager.AddToRoleAsync(existing, _appConfig.RoleCustomerName ?? string.Empty);
                     }
-                    if (newUserType == UserType.Vendor)
+                    if (newUserType == UserType.Factories)
                     {
-                        await _userManager.AddToRoleAsync(existing, _appConfig.RoleVendorName ?? string.Empty);
+                        await _userManager.AddToRoleAsync(existing, _appConfig.RoleFactoriesName ?? string.Empty);
                     }
                 }
 

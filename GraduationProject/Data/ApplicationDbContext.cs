@@ -48,10 +48,10 @@ namespace GraduationProject.Data
          public DbSet<TransferOut> TransferOut { get; set; } = default!;
          public DbSet<Tax> Tax { get; set; } = default!;
          public DbSet<UnitMeasure> UnitMeasure { get; set; } = default!;
-         public DbSet<VendorGroup> VendorGroup { get; set; } = default!;
-         public DbSet<VendorCategory> VendorCategory { get; set; } = default!;
-         public DbSet<Vendor> Vendor { get; set; } = default!;
-         public DbSet<VendorContact> VendorContact { get; set; } = default!;
+         public DbSet<FactoriesType> VendorGroup { get; set; } = default!;
+         public DbSet<FactoriesClassification> VendorCategory { get; set; } = default!;
+         public DbSet<Factories> Vendor { get; set; } = default!;
+         public DbSet<FactoriesContacts> VendorContact { get; set; } = default!;
          public DbSet<Warehouse> Warehouse { get; set; } = default!;
         public DbSet<WarehouseProduct> WarehouseProduct { get; set; } = default!;
         public DbSet<CartItem> CartItem { get; set; } = default!;

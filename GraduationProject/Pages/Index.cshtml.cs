@@ -69,7 +69,7 @@ namespace GraduationProject.Pages
                             await _context.PurchaseOrderItem
                                 .Include(x => x.Product)
                                 .Include(x => x.PurchaseOrder)
-                                .Where(x => x.PurchaseOrder.OrderStatus >= PurchaseOrderStatus.Confirmed)
+                                .Where(x => x.PurchaseOrder.OrderStatus >= ManufacturingOrderStatus.Confirmed)
                                 .GroupBy(x => x.Product)
                                 .Select(g => new
                                 {

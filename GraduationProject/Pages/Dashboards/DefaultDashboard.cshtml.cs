@@ -133,7 +133,7 @@ namespace GraduationProject.Pages.Dashboards
                 .GetAll()
                 .Include(x => x.PurchaseOrder)
                 .Include(x => x.Product)
-                .Where(x => x.Product!.Physical == true && x.PurchaseOrder!.OrderStatus >= Models.Enums.PurchaseOrderStatus.Confirmed)
+                .Where(x => x.Product!.Physical == true && x.PurchaseOrder!.OrderStatus >= Models.Enums.ManufacturingOrderStatus.Confirmed)
                 .Sum(x => x.Quantity)!.Value
                 .ToString("N2") + " Qty.";
 
@@ -185,7 +185,7 @@ namespace GraduationProject.Pages.Dashboards
                 .GetAll()
                 .Include(x => x.PurchaseOrder)
                 .Include(x => x.Product)
-                .Where(x => x.PurchaseOrder!.OrderStatus >= PurchaseOrderStatus.Confirmed)
+                .Where(x => x.PurchaseOrder!.OrderStatus >= ManufacturingOrderStatus.Confirmed)
                 .OrderByDescending(x => x.PurchaseOrder!.OrderDate)
                 .Take(30)
                 .Select(x => new
@@ -365,15 +365,15 @@ namespace GraduationProject.Pages.Dashboards
                 .ToList();
 
             PurchaseVendorCategoryChartJson = JsonConvert.SerializeObject(
-                    Enum.GetValues(typeof(PurchaseOrderStatus))
-                    .Cast<PurchaseOrderStatus>()
+                    Enum.GetValues(typeof(ManufacturingOrderStatus))
+                    .Cast<ManufacturingOrderStatus>()
                     .Select(status => new BarSeries
                     {
                         type = "Column",
                         xName = "x",
                         width = 2,
                         yName = "y",
-                        name = Enum.GetName(typeof(PurchaseOrderStatus), status)!,
+                        name = Enum.GetName(typeof(ManufacturingOrderStatus), status)!,
                         columnSpacing = 0.1,
                         tooltipMappingName = "tooltipMappingName",
                         dataSource = data
@@ -462,15 +462,15 @@ namespace GraduationProject.Pages.Dashboards
                 .ToList();
 
             PurchaseVendorGroupChartJson = JsonConvert.SerializeObject(
-                    Enum.GetValues(typeof(PurchaseOrderStatus))
-                    .Cast<PurchaseOrderStatus>()
+                    Enum.GetValues(typeof(ManufacturingOrderStatus))
+                    .Cast<ManufacturingOrderStatus>()
                     .Select(status => new BarSeries
                     {
                         type = "Bar",
                         xName = "x",
                         width = 2,
                         yName = "y",
-                        name = Enum.GetName(typeof(PurchaseOrderStatus), status)!,
+                        name = Enum.GetName(typeof(ManufacturingOrderStatus), status)!,
                         columnSpacing = 0.1,
                         tooltipMappingName = "tooltipMappingName",
                         dataSource = data

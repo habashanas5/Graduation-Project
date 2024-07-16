@@ -4,7 +4,7 @@ using GraduationProject.Models.Entities;
 
 namespace GraduationProject.Applications.VendorGroups
 {
-    public class VendorGroupService : Repository<VendorGroup>
+    public class VendorGroupService : Repository<FactoriesType>
     {
         public VendorGroupService(
             ApplicationDbContext context,

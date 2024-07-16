@@ -106,9 +106,9 @@
                 </li>
                 <li class="nav-item @(ViewData["Module"]?.ToString() == "Purchase" ? "menu-open" : "")">
                     <a href="#" class="nav-link @(ViewData["Module"]?.ToString() == "Purchase" ? "active" : "")">
-                        <i class="nav-icon fas fa-truck"></i>
+                        <i class="nav-icon fas fa-industry"></i>
                         <p>
-                            Purchase
+                            Manufacturing
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -116,37 +116,37 @@
                         <li class="nav-item">
                             <a asp-page="/VendorGroups/VendorGroupList" class="nav-link @(currentPageFolderName.Equals("VendorGroups") ? "active" : "")">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Vendor Groups</p>
+                                <p>Factories Type</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a asp-page="/VendorCategories/VendorCategoryList" class="nav-link @(currentPageFolderName.Equals("VendorCategories") ? "active" : "")">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Vendor Categories</p>
+                                <p>Factories Classification</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a asp-page="/Vendors/VendorList" class="nav-link @(currentPageFolderName.Equals("Vendors") ? "active" : "")">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Vendors</p>
+                                <p>Factories</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a asp-page="/VendorContacts/VendorContactList" class="nav-link @(currentPageFolderName.Equals("VendorContacts") ? "active" : "")">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Vendor Contacts</p>
+                                <p>Factories Contacts</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a asp-page="/PurchaseOrders/PurchaseOrderList" class="nav-link @(currentPageFolderName.Equals("PurchaseOrders") ? "active" : "")">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Purchase Orders</p>
+                                <p>Manufacturing Orders</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a asp-page="/PurchaseOrderItems/PurchaseOrderItemList" class="nav-link @(currentPageFolderName.Equals("PurchaseOrderItems") ? "active" : "")">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Purchase Order Items</p>
+                                <p>Manufacturing Items</p>
                             </a>
                         </li>
                     </ul>

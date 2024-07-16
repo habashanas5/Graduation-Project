@@ -1,10 +1,11 @@
 ﻿using GraduationProject.Models.Contracts;
+using GraduationProject.Models.Entities;
 
 namespace GraduationProject.Models.Entities
 {
-    public class Vendor : _Base
+    public class Factories : _Base
     {
-        public Vendor() { }
+        public Factories() { }
         public required string Name { get; set; }
         public string? Number { get; set; }
         public string? Description { get; set; }
@@ -19,8 +20,8 @@ namespace GraduationProject.Models.Entities
         public int? Ranking { get; set; }
         public string? Website { get; set; }
         public required int VendorGroupId { get; set; }
-        public VendorGroup? VendorGroup { get; set; }
+        public FactoriesType? VendorGroup { get; set; }
         public required int VendorCategoryId { get; set; }
-        public VendorCategory? VendorCategory { get; set; }
+        public FactoriesClassification? VendorCategory { get; set; }
     }
 }

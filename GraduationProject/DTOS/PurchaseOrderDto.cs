@@ -7,7 +7,7 @@ namespace GraduationProject.DTOS
         public int? Id { get; set; }
         public string? Number { get; set; }
         public DateTime? OrderDate { get; set; }
-        public PurchaseOrderStatus? Status { get; set; }
+        public ManufacturingOrderStatus? Status { get; set; }
         public string? Description { get; set; }
         public string? Vendor { get; set; }
         public string? Tax { get; set; }

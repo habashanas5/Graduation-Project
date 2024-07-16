@@ -63,7 +63,7 @@ namespace GraduationProject.Pages.PurchaseReturns
             public DateTime ReturnDate { get; set; } = DateTime.Now;
 
             [DisplayName("Return Status")]
-            public PurchaseReturnStatus Status { get; set; }
+            public ManufacturingReturnStatus Status { get; set; }
 
             [DisplayName("Description")]
             public string? Description { get; set; }

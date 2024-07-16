@@ -50,7 +50,7 @@ namespace GraduationProject.Pages.VendorContacts
             [DisplayName("Description")]
             public string? Description { get; set; }
 
-            [DisplayName("Vendor")]
+            [DisplayName("Factory")]
             public int VendorId { get; set; }
 
             [DisplayName("Phone Number")]
@@ -67,8 +67,8 @@ namespace GraduationProject.Pages.VendorContacts
         {
             public MappingProfile()
             {
-                CreateMap<VendorContact, VendorContactModel>();
-                CreateMap<VendorContactModel, VendorContact>();
+                CreateMap<FactoriesContacts, VendorContactModel>();
+                CreateMap<VendorContactModel, FactoriesContacts>();
             }
         }
 
@@ -133,9 +133,9 @@ namespace GraduationProject.Pages.VendorContacts
 
             if (action == "create")
             {
-                var newobj = _mapper.Map<VendorContact>(input);
+                var newobj = _mapper.Map<FactoriesContacts>(input);
 
-                Number = _numberSequenceService.GenerateNumber(nameof(VendorContact), "", "VC");
+                Number = _numberSequenceService.GenerateNumber(nameof(FactoriesContacts), "", "VC");
                 newobj.Number = Number;
 
                 await _vendorContactService.AddAsync(newobj);

@@ -25,7 +25,7 @@ namespace GraduationProject.Data.Demo
 
             var purchaseOrders = purchaseOrderService
                 .GetAll()
-                .Where(x => x.OrderStatus >= PurchaseOrderStatus.Confirmed)
+                .Where(x => x.OrderStatus >= ManufacturingOrderStatus.Confirmed)
                 .ToList();
 
             var warehouses = warehouseService

@@ -2,7 +2,7 @@
 
 namespace GraduationProject.Models.Enums
 {
-    public enum PurchaseOrderStatus
+    public enum ManufacturingOrderStatus
     {
         [Description("Draft")]
         Draft = 0,

@@ -45,8 +45,8 @@ namespace GraduationProject.Pages.VendorGroups
         {
             public MappingProfile()
             {
-                CreateMap<VendorGroup, VendorGroupModel>();
-                CreateMap<VendorGroupModel, VendorGroup>();
+                CreateMap<FactoriesType, VendorGroupModel>();
+                CreateMap<VendorGroupModel, FactoriesType>();
             }
         }
 
@@ -104,7 +104,7 @@ namespace GraduationProject.Pages.VendorGroups
 
             if (action == "create")
             {
-                var newobj = _mapper.Map<VendorGroup>(input);
+                var newobj = _mapper.Map<FactoriesType>(input);
                 await _vendorGroupService.AddAsync(newobj);
 
                 this.WriteStatusMessage($"Success create new data.");

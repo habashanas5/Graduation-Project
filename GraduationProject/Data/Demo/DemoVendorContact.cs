@@ -96,10 +96,10 @@ namespace GraduationProject.Data.Demo
                     var first = DbInitializer.GetRandomString(firsts, random);
                     var last = DbInitializer.GetRandomString(lasts, random);
 
-                    await vendorContactService.AddAsync(new VendorContact
+                    await vendorContactService.AddAsync(new FactoriesContacts
                     {
                         Name = $"{first} {last}",
-                        Number = numberSequenceService.GenerateNumber(nameof(VendorContact), "", "VC"),
+                        Number = numberSequenceService.GenerateNumber(nameof(FactoriesContacts), "", "VC"),
                         VendorId = item,
                         JobTitle = DbInitializer.GetRandomString(jobTitles, random),
                         EmailAddress = $"{first.ToLower()}.{last.ToLower()}@gmail.com"

@@ -2,9 +2,9 @@
 
 namespace GraduationProject.Models.Entities
 {
-    public class VendorContact : _Base
+    public class FactoriesContacts : _Base
     {
-        public VendorContact() { }
+        public FactoriesContacts() { }
         public required string Name { get; set; }
         public string? Number { get; set; }
         public string? JobTitle { get; set; }
@@ -12,6 +12,6 @@ namespace GraduationProject.Models.Entities
         public string? EmailAddress { get; set; }
         public string? Description { get; set; }
         public required int VendorId { get; set; }
-        public Vendor? Vendor { get; set; }
+        public Factories? Vendor { get; set; }
     }
 }

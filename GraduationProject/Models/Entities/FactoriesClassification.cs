@@ -2,9 +2,9 @@
 
 namespace GraduationProject.Models.Entities
 {
-    public class VendorCategory : _Base
+    public class FactoriesClassification : _Base
     {
-        public VendorCategory() { }
+        public FactoriesClassification() { }
         public required string Name { get; set; }
         public string? Description { get; set; }
     }

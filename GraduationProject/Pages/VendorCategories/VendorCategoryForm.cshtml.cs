@@ -45,8 +45,8 @@ namespace GraduationProject.Pages.VendorCategories
         {
             public MappingProfile()
             {
-                CreateMap<VendorCategory, VendorCategoryModel>();
-                CreateMap<VendorCategoryModel, VendorCategory>();
+                CreateMap<FactoriesClassification, VendorCategoryModel>();
+                CreateMap<VendorCategoryModel, FactoriesClassification>();
             }
         }
 
@@ -104,7 +104,7 @@ namespace GraduationProject.Pages.VendorCategories
 
             if (action == "create")
             {
-                var newobj = _mapper.Map<VendorCategory>(input);
+                var newobj = _mapper.Map<FactoriesClassification>(input);
                 await _vendorCategoryService.AddAsync(newobj);
 
                 this.WriteStatusMessage($"Success create new data.");

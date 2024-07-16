@@ -59,10 +59,10 @@ namespace GraduationProject.Pages.Vendors
             [DisplayName("Description")]
             public string? Description { get; set; }
 
-            [DisplayName("Group")]
+            [DisplayName("Type")]
             public int VendorGroupId { get; set; }
 
-            [DisplayName("Category")]
+            [DisplayName("Classification")]
             public int VendorCategoryId { get; set; }
 
             [DisplayName("Street")]
@@ -99,8 +99,8 @@ namespace GraduationProject.Pages.Vendors
         {
             public MappingProfile()
             {
-                CreateMap<Vendor, VendorModel>();
-                CreateMap<VendorModel, Vendor>();
+                CreateMap<Factories, VendorModel>();
+                CreateMap<VendorModel, Factories>();
             }
         }
 
@@ -177,9 +177,9 @@ namespace GraduationProject.Pages.Vendors
 
             if (action == "create")
             {
-                var newobj = _mapper.Map<Vendor>(input);
+                var newobj = _mapper.Map<Factories>(input);
 
-                Number = _numberSequenceService.GenerateNumber(nameof(Vendor), "", "VND");
+                Number = _numberSequenceService.GenerateNumber(nameof(Factories), "", "VND");
                 newobj.Number = Number;
 
                 await _vendorService.AddAsync(newobj);

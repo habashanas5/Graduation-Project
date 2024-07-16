@@ -4,7 +4,7 @@ using GraduationProject.Models.Entities;
 
 namespace GraduationProject.Applications.VendorCategories
 {
-    public class VendorCategoryService : Repository<VendorCategory>
+    public class VendorCategoryService : Repository<FactoriesClassification>
     {
         public VendorCategoryService(
             ApplicationDbContext context,

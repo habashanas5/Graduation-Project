@@ -20,8 +20,8 @@ namespace GraduationProject.ApiOData
         {
             public MappingProfile()
             {
-                CreateMap<VendorContact, VendorContactChildDto>();
-                CreateMap<VendorContactChildDto, VendorContact>();
+                CreateMap<FactoriesContacts, FactoriesContactChildDto>();
+                CreateMap<FactoriesContactChildDto, FactoriesContacts>();
             }
         }
 
@@ -41,7 +41,7 @@ namespace GraduationProject.ApiOData
         }
 
         [EnableQuery]
-        public IQueryable<VendorContactChildDto> Get()
+        public IQueryable<FactoriesContactChildDto> Get()
         {
             const string HeaderKeyName = "ParentId";
             Request.Headers.TryGetValue(HeaderKeyName, out var headerValue);
@@ -50,24 +50,24 @@ namespace GraduationProject.ApiOData
             return _vendorContactService
                 .GetAll()
                 .Where(x => x.VendorId == parentId)
-                .Select(x => _mapper.Map<VendorContactChildDto>(x));
+                .Select(x => _mapper.Map<FactoriesContactChildDto>(x));
         }
 
 
         [EnableQuery]
         [HttpGet("{key}")]
-        public SingleResult<VendorContactChildDto> Get([FromODataUri] int key)
+        public SingleResult<FactoriesContactChildDto> Get([FromODataUri] int key)
         {
             return SingleResult.Create(_vendorContactService
                 .GetAll()
                 .Where(x => x.Id == key)
-                .Select(x => _mapper.Map<VendorContactChildDto>(x)));
+                .Select(x => _mapper.Map<FactoriesContactChildDto>(x)));
         }
 
 
 
         [HttpPatch]
-        public async Task<IActionResult> Patch([FromODataUri] int key, [FromBody] Delta<VendorContactChildDto> delta)
+        public async Task<IActionResult> Patch([FromODataUri] int key, [FromBody] Delta<FactoriesContactChildDto> delta)
         {
             try
             {
@@ -77,12 +77,12 @@ namespace GraduationProject.ApiOData
                     return NotFound();
                 }
 
-                var dto = _mapper.Map<VendorContactChildDto>(vendorContact);
+                var dto = _mapper.Map<FactoriesContactChildDto>(vendorContact);
                 delta.Patch(dto);
                 var entity = _mapper.Map(dto, vendorContact);
                 await _vendorContactService.UpdateAsync(entity);
 
-                return Ok(_mapper.Map<VendorContactChildDto>(entity));
+                return Ok(_mapper.Map<FactoriesContactChildDto>(entity));
 
             }
             catch (Exception ex)
@@ -93,7 +93,7 @@ namespace GraduationProject.ApiOData
 
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] VendorContactChildDto vendorContact)
+        public async Task<IActionResult> Post([FromBody] FactoriesContactChildDto vendorContact)
         {
             try
             {
@@ -103,10 +103,10 @@ namespace GraduationProject.ApiOData
                 var parentId = int.Parse(headerValue.ToString());
 
                 vendorContact.VendorId = parentId;
-                vendorContact.Number = _numberSequenceService.GenerateNumber(nameof(VendorContact), "", "CC");
-                var entity = _mapper.Map<VendorContact>(vendorContact);
+                vendorContact.Number = _numberSequenceService.GenerateNumber(nameof(FactoriesContacts), "", "CC");
+                var entity = _mapper.Map<FactoriesContacts>(vendorContact);
                 await _vendorContactService.AddAsync(entity);
-                var dto = _mapper.Map<VendorContact>(entity);
+                var dto = _mapper.Map<FactoriesContacts>(entity);
 
                 return Created("VendorContactChild", dto);
 

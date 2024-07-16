@@ -15,7 +15,9 @@ namespace GraduationProject.Data.System
             {
                 await roleManager.CreateAsync(new IdentityRole(appConfig?.Value.RoleAdmin ?? string.Empty));
                 await roleManager.CreateAsync(new IdentityRole(appConfig?.Value.RoleCustomerName ?? string.Empty));
-                await roleManager.CreateAsync(new IdentityRole(appConfig?.Value.RoleVendorName ?? string.Empty));
+                await roleManager.CreateAsync(new IdentityRole(appConfig?.Value.RoleFactoriesName ?? string.Empty));
+                await roleManager.CreateAsync(new IdentityRole(appConfig?.Value.RoleWarehouseManager ?? string.Empty));
+
 
             }
         }

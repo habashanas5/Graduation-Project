@@ -65,7 +65,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label asp-for="@Model.PurchaseOrderForm.OrderStatus" class="form-label"></label>
-                            <select asp-for="@Model.PurchaseOrderForm.OrderStatus" asp-items="Html.GetEnumSelectList<PurchaseOrderStatus>()" class="form-control">
+                            <select asp-for="@Model.PurchaseOrderForm.OrderStatus" asp-items="Html.GetEnumSelectList<ManufacturingOrderStatus>()" class="form-control">
                                 <option value="">-- Select Status --</option>
                             </select>
                         </div>

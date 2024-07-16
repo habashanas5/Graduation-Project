@@ -1,6 +1,6 @@
 ﻿namespace GraduationProject.DTOS
 {
-    public class VendorDto
+    public class FactoriesDto
     {
         public int? Id { get; set; }
         public string? Name { get; set; }

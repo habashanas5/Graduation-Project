@@ -6,9 +6,11 @@ namespace GraduationProject.Models.Enums
     {
         [Description("Customer")]
         Customer = 0,
-        [Description("Vendor")]
-        Vendor = 1,
+        [Description("factories")]
+        Factories = 1,
         [Description("Admin")]
-        Admin = 2
+        Admin = 2,
+        [Description("WarehouseManager")]
+        WarehouseManager = 2,
     }
 }

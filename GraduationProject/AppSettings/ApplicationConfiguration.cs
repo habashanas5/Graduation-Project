@@ -18,7 +18,8 @@
         public bool ExternalLoginEnabled { get; set; } = false;
         public string RoleInternalName { get; set; } = string.Empty;
         public string RoleCustomerName { get; set; } = string.Empty;
-        public string RoleVendorName { get; set; } = string.Empty;
+        public string RoleFactoriesName { get; set; } = string.Empty;
+        public string RoleWarehouseManager { get; set; } = string.Empty;
         public string RoleUser { get; set; } = string.Empty;
         public string RoleAdmin { get; set; } = string.Empty;
     }

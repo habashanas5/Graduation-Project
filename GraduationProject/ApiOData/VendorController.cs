@@ -16,13 +16,13 @@ namespace GraduationProject.ApiOData
         }
 
         [EnableQuery]
-        public IQueryable<VendorDto> Get()
+        public IQueryable<FactoriesDto> Get()
         {
             return _vendorService
                 .GetAll()
                 .Include(x => x.VendorGroup)
                 .Include(x => x.VendorCategory)
-                .Select(rec => new VendorDto
+                .Select(rec => new FactoriesDto
                 {
                     Id = rec.Id,
                     Name = rec.Name,
