@@ -49,7 +49,7 @@ namespace GraduationProject.ApiOData
 
             return _vendorContactService
                 .GetAll()
-                .Where(x => x.VendorId == parentId)
+                .Where(x => x.FactorysId == parentId)
                 .Select(x => _mapper.Map<FactoriesContactChildDto>(x));
         }
 
@@ -102,7 +102,7 @@ namespace GraduationProject.ApiOData
                 Request.Headers.TryGetValue(HeaderKeyName, out var headerValue);
                 var parentId = int.Parse(headerValue.ToString());
 
-                vendorContact.VendorId = parentId;
+                vendorContact.FactoryId = parentId;
                 vendorContact.Number = _numberSequenceService.GenerateNumber(nameof(FactoriesContacts), "", "CC");
                 var entity = _mapper.Map<FactoriesContacts>(vendorContact);
                 await _vendorContactService.AddAsync(entity);

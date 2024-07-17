@@ -22,10 +22,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RowGuid)
-            </th>
+            </th>        
             <th>
                 Actions
             </th>            
@@ -44,17 +41,14 @@
                 @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RowGuid)
-            </td>
-            <td>
                 <div>
-                    <a class="btn btn-primary" style="margin-top: 10px; width: 125px;" href="/WarehouseProducts/Edit/3">Edit</a>
+                        <a class="btn btn-primary" style="margin-top: 10px; width: 125px;" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                 </div>
                 <div>
-                    <a class="btn btn-info" style="margin-top: 10px; width: 125px;" href="/WarehouseProducts/Details/3">Details</a>
+                    <a class="btn btn-info" style="margin-top: 10px; width: 125px;"asp-action="Details" asp-route-id="@item.Id">Details</a>
                 </div>
                 <div>
-                    <a class="btn btn-danger" style="margin-top: 10px; width: 125px;" href="/WarehouseProducts/Delete/3">Delete</a>
+                        <a class="btn btn-danger" style="margin-top: 10px; width: 125px;" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </div>
             </td>
         </tr>

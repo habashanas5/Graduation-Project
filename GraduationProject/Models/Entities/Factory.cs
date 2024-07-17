@@ -1,11 +1,10 @@
 ﻿using GraduationProject.Models.Contracts;
-using GraduationProject.Models.Entities;
 
 namespace GraduationProject.Models.Entities
 {
-    public class Factories : _Base
+    public class Factory : _Base
     {
-        public Factories() { }
+        public Factory() { }
         public required string Name { get; set; }
         public string? Number { get; set; }
         public string? Description { get; set; }

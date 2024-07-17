@@ -1,6 +1,6 @@
 ﻿namespace GraduationProject.DTOS
 {
-    public class PurchaseOrderItemDto
+    public class ManufacturingOrderItemDto
     {
         public int? Id { get; set; }
         public Guid? RowGuid { get; set; }

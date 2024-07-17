@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GraduationProject.Models.Configurations
 {
-    public class PurchaseOrderConfiguration : _BaseConfiguration<PurchaseOrder>
+    public class PurchaseOrderConfiguration : _BaseConfiguration<ManufacturingOrdersTable>
     {
-        public override void Configure(EntityTypeBuilder<PurchaseOrder> builder)
+        public override void Configure(EntityTypeBuilder<ManufacturingOrdersTable> builder)
         {
             base.Configure(builder);
 

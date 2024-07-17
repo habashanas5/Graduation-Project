@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GraduationProject.Applications.PurchaseOrders
 {
-    public class PurchaseOrderService : Repository<PurchaseOrder>
+    public class PurchaseOrderService : Repository<ManufacturingOrdersTable>
     {
         public PurchaseOrderService(
             ApplicationDbContext context,
@@ -23,12 +23,12 @@ namespace GraduationProject.Applications.PurchaseOrders
         public async Task RecalculateParentAsync(int? masterId)
         {
 
-            var master = await _context.Set<PurchaseOrder>()
+            var master = await _context.Set<ManufacturingOrdersTable>()
                 .Include(x => x.Tax)
                 .Where(x => x.Id == masterId && x.IsNotDeleted == true)
                 .FirstOrDefaultAsync();
 
-            var childs = await _context.Set<PurchaseOrderItem>()
+            var childs = await _context.Set<ManufacturingOrdersItems>()
                 .Where(x => x.PurchaseOrderId == masterId && x.IsNotDeleted == true)
                 .ToListAsync();
 
@@ -44,14 +44,14 @@ namespace GraduationProject.Applications.PurchaseOrders
                     master.TaxAmount = (master.Tax.Percentage / 100.0) * master.BeforeTaxAmount;
                 }
                 master.AfterTaxAmount = master.BeforeTaxAmount + master.TaxAmount;
-                _context.Set<PurchaseOrder>().Update(master);
+                _context.Set<ManufacturingOrdersTable>().Update(master);
                 await _context.SaveChangesAsync();
             }
         }
 
 
 
-        public override async Task UpdateAsync(PurchaseOrder? entity)
+        public override async Task UpdateAsync(ManufacturingOrdersTable? entity)
         {
             if (entity != null)
             {
@@ -64,7 +64,7 @@ namespace GraduationProject.Applications.PurchaseOrders
                     auditedEntity.UpdatedAtUtc = DateTime.Now;
                 }
 
-                _context.Set<PurchaseOrder>().Update(entity);
+                _context.Set<ManufacturingOrdersTable>().Update(entity);
                 await _context.SaveChangesAsync();
 
                 await RecalculateParentAsync(entity.Id);

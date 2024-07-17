@@ -2,7 +2,7 @@
 
 namespace GraduationProject.DTOS
 {
-    public class PurchaseOrderDto
+    public class ManufacturingOrderDto
     {
         public int? Id { get; set; }
         public string? Number { get; set; }

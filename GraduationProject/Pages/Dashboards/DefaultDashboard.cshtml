@@ -44,7 +44,7 @@
                     <div class="bg-white rounded d-flex align-items-center justify-content-between p-4">
                         <i class="fas fa-undo fa-3x" style="color: #C4C24A;"></i>
                         <div class="ms-3">
-                            <p class="mb-2">Purchase Rtrn.</p>
+                            <p class="mb-2">Manufacturing Rtrn.</p>
                             <h6 class="mb-0 text-end">@Model.CardPurchaseReturnQty</h6>
                         </div>
                     </div>
@@ -105,8 +105,8 @@
                 <div class="col-sm-12 col-xl-6">
                     <div class="bg-light text-center rounded p-4">
                         <div class="d-flex align-items-center justify-content-between mb-4">
-                            <h6 class="mb-0">Vendor Group</h6>
-                            <a asp-area="" asp-page="/PurchaseOrderItems/PurchaseOrderItemList">Manufacturing</a>
+                            <h6 class="mb-0">Factories Type</h6>
+                            <a asp-area="" asp-page="/ManufacturingOrderItems/ManufacturingOrderItemList">Manufacturing</a>
                         </div>
                         <div id="vendorGroupChart" align="center"></div>
                     </div>
@@ -127,8 +127,8 @@
                 <div class="col-sm-12 col-xl-6">
                     <div class="bg-light text-center rounded p-4">
                         <div class="d-flex align-items-center justify-content-between mb-4">
-                            <h6 class="mb-0">Vendor Category</h6>
-                            <a asp-area="" asp-page="/PurchaseOrderItems/PurchaseOrderItemList">Manufacturing</a>
+                            <h6 class="mb-0">Factories Classification</h6>
+                            <a asp-area="" asp-page="/ManufacturingOrderItems/ManufacturingOrderItemList">Manufacturing</a>
                         </div>
                         <div id="vendorCategoryChart" align="center"></div>
                     </div>
@@ -163,7 +163,7 @@
                     <div class="bg-light text-center rounded p-4">
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <h6 class="mb-0">Latest Manufacturing</h6>
-                            <a asp-area="" asp-page="/PurchaseOrderItems/PurchaseOrderItemList">Manufacturing</a>
+                            <a asp-area="" asp-page="/ManufacturingOrderItems/ManufacturingOrderItemList">Manufacturing</a>
                         </div>
                         <div id="purchaseOrderGrid" align="center"></div>
                     </div>
@@ -297,7 +297,7 @@
                         majorTickLines: { width: 0 }, lineStyle: { width: 0 },
                     },
                     series: @Html.Raw(Model.SalesPurchaseProductGroupChartJson),
-                    title: 'Sales & Purchases by Product Group',
+                    title: 'Sales & Manufacturing by Product Group',
                     tooltip: { enable: true, header: "<b>${point.tooltip}</b>", shared: true },
                     legendSettings: { visible: true },
                     palettes: ["#E94649", "#009CFF", "#F6B53F", "#C4C24A"],

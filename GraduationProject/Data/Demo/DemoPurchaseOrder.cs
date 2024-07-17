@@ -35,9 +35,9 @@ namespace GraduationProject.Data.Demo
 
                 foreach (DateTime transDate in transactionDates)
                 {
-                    var purchaseOrder = new PurchaseOrder
+                    var purchaseOrder = new ManufacturingOrdersTable
                     {
-                        Number = numberSequenceService.GenerateNumber(nameof(PurchaseOrder), "", "PO"),
+                        Number = numberSequenceService.GenerateNumber(nameof(ManufacturingOrdersTable), "", "PO"),
                         OrderDate = transDate,
                         OrderStatus = (ManufacturingOrderStatus)random.Next(0, orderStatusLength),
                         VendorId = DbInitializer.GetRandomValue(vendors, random),
@@ -49,7 +49,7 @@ namespace GraduationProject.Data.Demo
                     for (int i = 0; i < numberOfProducts; i++)
                     {
                         var product = products[random.Next(0, products.Count())];
-                        var purchaseOrderItem = new PurchaseOrderItem
+                        var purchaseOrderItem = new ManufacturingOrdersItems
                         {
                             PurchaseOrderId = purchaseOrder.Id,
                             ProductId = product.Id,

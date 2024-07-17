@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GraduationProject.Applications.PurchaseOrderItems
 {
-    public class PurchaseOrderItemService : Repository<PurchaseOrderItem>
+    public class PurchaseOrderItemService : Repository<ManufacturingOrdersItems>
     {
         private readonly PurchaseOrderService _purchaseOrderService;
 
@@ -24,7 +24,7 @@ namespace GraduationProject.Applications.PurchaseOrderItems
             _purchaseOrderService = purchaseOrderService;
         }
 
-        public override async Task AddAsync(PurchaseOrderItem? entity)
+        public override async Task AddAsync(ManufacturingOrdersItems? entity)
         {
             if (entity != null)
             {
@@ -34,7 +34,7 @@ namespace GraduationProject.Applications.PurchaseOrderItems
                     auditEntity.CreatedByUserId = _userId;
                 }
                 entity.RecalculateTotal();
-                _context.Set<PurchaseOrderItem>().Add(entity);
+                _context.Set<ManufacturingOrdersItems>().Add(entity);
                 await _context.SaveChangesAsync();
 
                 await _purchaseOrderService.RecalculateParentAsync(entity.PurchaseOrderId);
@@ -45,7 +45,7 @@ namespace GraduationProject.Applications.PurchaseOrderItems
             }
         }
 
-        public override async Task UpdateAsync(PurchaseOrderItem? entity)
+        public override async Task UpdateAsync(ManufacturingOrdersItems? entity)
         {
             if (entity != null)
             {
@@ -58,7 +58,7 @@ namespace GraduationProject.Applications.PurchaseOrderItems
                     auditedEntity.UpdatedAtUtc = DateTime.Now;
                 }
                 entity.RecalculateTotal();
-                _context.Set<PurchaseOrderItem>().Update(entity);
+                _context.Set<ManufacturingOrdersItems>().Update(entity);
                 await _context.SaveChangesAsync();
 
 
@@ -78,7 +78,7 @@ namespace GraduationProject.Applications.PurchaseOrderItems
                 throw new Exception("Unable to process, id is null");
             }
 
-            var entity = await _context.Set<PurchaseOrderItem>()
+            var entity = await _context.Set<ManufacturingOrdersItems>()
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (entity != null)
@@ -100,7 +100,7 @@ namespace GraduationProject.Applications.PurchaseOrderItems
                 }
                 else
                 {
-                    _context.Set<PurchaseOrderItem>().Remove(entity);
+                    _context.Set<ManufacturingOrdersItems>().Remove(entity);
                 }
 
                 await _context.SaveChangesAsync();
@@ -117,7 +117,7 @@ namespace GraduationProject.Applications.PurchaseOrderItems
                 throw new Exception("Unable to process, row guid is null");
             }
 
-            var entity = await _context.Set<PurchaseOrderItem>()
+            var entity = await _context.Set<ManufacturingOrdersItems>()
                 .FirstOrDefaultAsync(x => x.RowGuid == rowGuid);
 
             if (entity != null)
@@ -139,7 +139,7 @@ namespace GraduationProject.Applications.PurchaseOrderItems
                 }
                 else
                 {
-                    _context.Set<PurchaseOrderItem>().Remove(entity);
+                    _context.Set<ManufacturingOrdersItems>().Remove(entity);
                 }
 
                 await _context.SaveChangesAsync();

@@ -21,13 +21,13 @@ namespace GraduationProject.ApiOData
         }
 
         [EnableQuery]
-        public IQueryable<PurchaseOrderDto> Get()
+        public IQueryable<ManufacturingOrderDto> Get()
         {
             return _purchaseOrderService
                 .GetAll()
                 .Include(x => x.Vendor)
                 .Include(x => x.Tax)
-                .Select(rec => new PurchaseOrderDto
+                .Select(rec => new ManufacturingOrderDto
                 {
                     Id = rec.Id,
                     Number = rec.Number,
@@ -48,12 +48,12 @@ namespace GraduationProject.ApiOData
 
         [EnableQuery]
         [HttpGet("{key}")]
-        public SingleResult<PurchaseOrderDto> Get([FromODataUri] int key)
+        public SingleResult<ManufacturingOrderDto> Get([FromODataUri] int key)
         {
             return SingleResult.Create(_purchaseOrderService
                 .GetAll()
                 .Where(x => x.Id == key)
-                .Select(rec => new PurchaseOrderDto
+                .Select(rec => new ManufacturingOrderDto
                 {
                     Id = rec.Id,
                     Number = rec.Number,

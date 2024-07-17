@@ -106,7 +106,7 @@ namespace GraduationProject.Pages.FactoryType
                 await _vendorGroupService.AddAsync(newobj);
 
                 this.WriteStatusMessage($"Success create new data.");
-                return Redirect("./FactoryClassificationList");
+                return Redirect("./FactoryTypeList");
 
             }
             else if (action == "edit")
@@ -122,7 +122,7 @@ namespace GraduationProject.Pages.FactoryType
                 await _vendorGroupService.UpdateAsync(existing);
 
                 this.WriteStatusMessage($"Success update existing data.");
-                return Redirect("./FactoryClassificationList");
+                return Redirect("./FactoryTypeList");
 
             }
             else if (action == "delete")
@@ -137,7 +137,7 @@ namespace GraduationProject.Pages.FactoryType
                 await _vendorGroupService.DeleteByRowGuidAsync(input.RowGuid);
 
                 this.WriteStatusMessage($"Success delete existing data.");
-                return Redirect("./FactoryClassificationList");
+                return Redirect("./FactoryTypeList");
             }
             return Page();
         }

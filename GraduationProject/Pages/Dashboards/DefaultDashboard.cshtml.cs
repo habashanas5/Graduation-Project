@@ -293,7 +293,7 @@ namespace GraduationProject.Pages.Dashboards
                 .Where(x => x.Product!.Physical == true)
                 .Select(x => new
                 {
-                    Transaction = "Purchase",
+                    Transaction = "Manufacturing",
                     Group = x.Product!.ProductGroup!.Name,
                     Quantity = x.Quantity
                 });
@@ -313,7 +313,7 @@ namespace GraduationProject.Pages.Dashboards
             var transactions = new List<string>()
             {
                 "Sales",
-                "Purchase"
+                "Manufacturing"
             };
 
             SalesPurchaseProductGroupChartJson = JsonConvert.SerializeObject(

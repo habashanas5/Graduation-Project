@@ -15,8 +15,8 @@
         public string? FaxNumber { get; set; }
         public string? EmailAddress { get; set; }
         public string? Website { get; set; }
-        public string? VendorGroup { get; set; }
-        public string? VendorCategory { get; set; }
+        public string? FactoryType { get; set; }
+        public string? FactoryClassification { get; set; }
         public Guid? RowGuid { get; set; }
         public DateTime? CreatedAtUtc { get; set; }
         public int? Ranking { get; set; }

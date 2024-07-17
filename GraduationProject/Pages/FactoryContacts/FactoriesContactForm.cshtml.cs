@@ -116,8 +116,6 @@ namespace GraduationProject.Pages.VendorContactForm
 
         public async Task<IActionResult> OnPostAsync([Bind(Prefix = nameof(VendorContactForm))] VendorContactModel input)
         {
-
-
             if (!ModelState.IsValid)
             {
                 var message = string.Join(" ", ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage)));

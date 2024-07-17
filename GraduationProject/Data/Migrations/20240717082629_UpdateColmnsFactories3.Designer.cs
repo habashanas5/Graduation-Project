@@ -4,6 +4,7 @@ using GraduationProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraduationProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240717082629_UpdateColmnsFactories3")]
+    partial class UpdateColmnsFactories3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -822,6 +825,111 @@ namespace GraduationProject.Data.Migrations
                     b.ToTable("DeliveryOrder");
                 });
 
+            modelBuilder.Entity("GraduationProject.Models.Entities.Factories", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("City")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Country")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("CreatedAtUtc")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("EmailAddress")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("FactoryClassificationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FactoryClassificationsId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FactoryTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FactorysTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FaxNumber")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool>("IsNotDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Number")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int?>("Ranking")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("RowGuid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<string>("State")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Street")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdatedAtUtc")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Website")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("ZipCode")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FactoryClassificationId");
+
+                    b.HasIndex("FactoryTypeId");
+
+                    b.ToTable("Factory");
+                });
+
             modelBuilder.Entity("GraduationProject.Models.Entities.FactoriesClassification", b =>
                 {
                     b.Property<int>("Id")
@@ -891,6 +999,9 @@ namespace GraduationProject.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int?>("FactoryId")
+                        .HasColumnType("int");
+
                     b.Property<int>("FactorysId")
                         .HasColumnType("int");
 
@@ -929,7 +1040,7 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FactorysId");
+                    b.HasIndex("FactoryId");
 
                     b.ToTable("FactoryContacts");
                 });
@@ -978,105 +1089,6 @@ namespace GraduationProject.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("FactoryType");
-                });
-
-            modelBuilder.Entity("GraduationProject.Models.Entities.Factorys", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("City")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Country")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("CreatedAtUtc")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreatedByUserId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("EmailAddress")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("FaxNumber")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<bool>("IsNotDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Number")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<int?>("Ranking")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("RowGuid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<string>("State")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Street")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("UpdatedAtUtc")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("UpdatedByUserId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("VendorCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VendorGroupId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Website")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("ZipCode")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("VendorCategoryId");
-
-                    b.HasIndex("VendorGroupId");
-
-                    b.ToTable("Factorys");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.GoodsReceive", b =>
@@ -1454,136 +1466,6 @@ namespace GraduationProject.Data.Migrations
                     b.ToTable("LogSession");
                 });
 
-            modelBuilder.Entity("GraduationProject.Models.Entities.ManufacturingOrdersItems", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("CreatedAtUtc")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreatedByUserId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<bool>("IsNotDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PurchaseOrderId")
-                        .HasColumnType("int");
-
-                    b.Property<double?>("Quantity")
-                        .HasColumnType("float");
-
-                    b.Property<Guid>("RowGuid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<string>("Summary")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<double?>("Total")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("UnitPrice")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime?>("UpdatedAtUtc")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("UpdatedByUserId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("PurchaseOrderId");
-
-                    b.ToTable("PurchaseOrderItem");
-                });
-
-            modelBuilder.Entity("GraduationProject.Models.Entities.ManufacturingOrdersTable", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double?>("AfterTaxAmount")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("BeforeTaxAmount")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime?>("CreatedAtUtc")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("CreatedByUserId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<bool>("IsNotDeleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<string>("Number")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("OrderDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("OrderStatus")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("RowGuid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
-
-                    b.Property<double?>("TaxAmount")
-                        .HasColumnType("float");
-
-                    b.Property<int>("TaxId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAtUtc")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("UpdatedByUserId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("VendorId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TaxId");
-
-                    b.HasIndex("VendorId");
-
-                    b.ToTable("PurchaseOrder");
-                });
-
             modelBuilder.Entity("GraduationProject.Models.Entities.NumberSequence", b =>
                 {
                     b.Property<int>("Id")
@@ -1771,6 +1653,136 @@ namespace GraduationProject.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductGroup");
+                });
+
+            modelBuilder.Entity("GraduationProject.Models.Entities.PurchaseOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double?>("AfterTaxAmount")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("BeforeTaxAmount")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("CreatedAtUtc")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool>("IsNotDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Number")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("OrderStatus")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("RowGuid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<double?>("TaxAmount")
+                        .HasColumnType("float");
+
+                    b.Property<int>("TaxId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAtUtc")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("VendorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TaxId");
+
+                    b.HasIndex("VendorId");
+
+                    b.ToTable("PurchaseOrder");
+                });
+
+            modelBuilder.Entity("GraduationProject.Models.Entities.PurchaseOrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedAtUtc")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsNotDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PurchaseOrderId")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("Quantity")
+                        .HasColumnType("float");
+
+                    b.Property<Guid>("RowGuid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
+
+                    b.Property<string>("Summary")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<double?>("Total")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("UnitPrice")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("UpdatedAtUtc")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("UpdatedByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("PurchaseOrderId");
+
+                    b.ToTable("PurchaseOrderItem");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.PurchaseReturn", b =>
@@ -2723,39 +2735,33 @@ namespace GraduationProject.Data.Migrations
                     b.Navigation("SalesOrder");
                 });
 
+            modelBuilder.Entity("GraduationProject.Models.Entities.Factories", b =>
+                {
+                    b.HasOne("GraduationProject.Models.Entities.FactoriesClassification", "FactoryClassification")
+                        .WithMany()
+                        .HasForeignKey("FactoryClassificationId");
+
+                    b.HasOne("GraduationProject.Models.Entities.FactoriesType", "FactoryType")
+                        .WithMany()
+                        .HasForeignKey("FactoryTypeId");
+
+                    b.Navigation("FactoryClassification");
+
+                    b.Navigation("FactoryType");
+                });
+
             modelBuilder.Entity("GraduationProject.Models.Entities.FactoriesContacts", b =>
                 {
-                    b.HasOne("GraduationProject.Models.Entities.Factorys", "Factory")
+                    b.HasOne("GraduationProject.Models.Entities.Factories", "Factory")
                         .WithMany()
-                        .HasForeignKey("FactorysId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FactoryId");
 
                     b.Navigation("Factory");
                 });
 
-            modelBuilder.Entity("GraduationProject.Models.Entities.Factorys", b =>
-                {
-                    b.HasOne("GraduationProject.Models.Entities.FactoriesClassification", "VendorCategory")
-                        .WithMany()
-                        .HasForeignKey("VendorCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GraduationProject.Models.Entities.FactoriesType", "VendorGroup")
-                        .WithMany()
-                        .HasForeignKey("VendorGroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("VendorCategory");
-
-                    b.Navigation("VendorGroup");
-                });
-
             modelBuilder.Entity("GraduationProject.Models.Entities.GoodsReceive", b =>
                 {
-                    b.HasOne("GraduationProject.Models.Entities.ManufacturingOrdersTable", "PurchaseOrder")
+                    b.HasOne("GraduationProject.Models.Entities.PurchaseOrder", "PurchaseOrder")
                         .WithMany()
                         .HasForeignKey("PurchaseOrderId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2826,44 +2832,6 @@ namespace GraduationProject.Data.Migrations
                     b.Navigation("WarehouseTo");
                 });
 
-            modelBuilder.Entity("GraduationProject.Models.Entities.ManufacturingOrdersItems", b =>
-                {
-                    b.HasOne("GraduationProject.Models.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GraduationProject.Models.Entities.ManufacturingOrdersTable", "PurchaseOrder")
-                        .WithMany()
-                        .HasForeignKey("PurchaseOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("PurchaseOrder");
-                });
-
-            modelBuilder.Entity("GraduationProject.Models.Entities.ManufacturingOrdersTable", b =>
-                {
-                    b.HasOne("GraduationProject.Models.Entities.Tax", "Tax")
-                        .WithMany()
-                        .HasForeignKey("TaxId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GraduationProject.Models.Entities.Factorys", "Vendor")
-                        .WithMany()
-                        .HasForeignKey("VendorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Tax");
-
-                    b.Navigation("Vendor");
-                });
-
             modelBuilder.Entity("GraduationProject.Models.Entities.Product", b =>
                 {
                     b.HasOne("GraduationProject.Models.Entities.ProductGroup", "ProductGroup")
@@ -2881,6 +2849,44 @@ namespace GraduationProject.Data.Migrations
                     b.Navigation("ProductGroup");
 
                     b.Navigation("UnitMeasure");
+                });
+
+            modelBuilder.Entity("GraduationProject.Models.Entities.PurchaseOrder", b =>
+                {
+                    b.HasOne("GraduationProject.Models.Entities.Tax", "Tax")
+                        .WithMany()
+                        .HasForeignKey("TaxId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GraduationProject.Models.Entities.Factories", "Vendor")
+                        .WithMany()
+                        .HasForeignKey("VendorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tax");
+
+                    b.Navigation("Vendor");
+                });
+
+            modelBuilder.Entity("GraduationProject.Models.Entities.PurchaseOrderItem", b =>
+                {
+                    b.HasOne("GraduationProject.Models.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GraduationProject.Models.Entities.PurchaseOrder", "PurchaseOrder")
+                        .WithMany()
+                        .HasForeignKey("PurchaseOrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("PurchaseOrder");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.PurchaseReturn", b =>

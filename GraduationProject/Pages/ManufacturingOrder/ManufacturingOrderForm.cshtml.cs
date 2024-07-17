@@ -83,8 +83,8 @@ namespace GraduationProject.Pages.ManufacturingOrder
         {
             public MappingProfile()
             {
-                CreateMap<PurchaseOrder, PurchaseOrderModel>();
-                CreateMap<PurchaseOrderModel, PurchaseOrder>();
+                CreateMap<ManufacturingOrdersTable, PurchaseOrderModel>();
+                CreateMap<PurchaseOrderModel, ManufacturingOrdersTable>();
             }
         }
 
@@ -173,9 +173,9 @@ namespace GraduationProject.Pages.ManufacturingOrder
 
             if (action == "create")
             {
-                var newobj = _mapper.Map<PurchaseOrder>(input);
+                var newobj = _mapper.Map<Models.Entities.ManufacturingOrdersTable>(input);
 
-                Number = _numberSequenceService.GenerateNumber(nameof(PurchaseOrder), "", "PO");
+                Number = _numberSequenceService.GenerateNumber(nameof(Models.Entities.ManufacturingOrdersTable), "", "PO");
                 newobj.Number = Number;
 
                 await _purchaseOrderService.AddAsync(newobj);

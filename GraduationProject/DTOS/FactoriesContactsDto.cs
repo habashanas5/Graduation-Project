@@ -9,7 +9,7 @@
         public string? Description { get; set; }
         public string? PhoneNumber { get; set; }
         public string? EmailAddress { get; set; }
-        public string? Vendor { get; set; }
+        public string? Factory { get; set; }
         public Guid? RowGuid { get; set; }
         public DateTime? CreatedAtUtc { get; set; }
     }

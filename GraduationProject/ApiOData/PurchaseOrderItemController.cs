@@ -16,14 +16,14 @@ namespace GraduationProject.ApiOData
         }
 
         [EnableQuery]
-        public IQueryable<PurchaseOrderItemDto> Get()
+        public IQueryable<ManufacturingOrderItemDto> Get()
         {
             return _purchaseOrderItemService
                 .GetAll()
                 .Include(x => x.PurchaseOrder)
                     .ThenInclude(x => x!.Vendor)
                 .Include(x => x.Product)
-                .Select(rec => new PurchaseOrderItemDto
+                .Select(rec => new ManufacturingOrderItemDto
                 {
                     Id = rec.Id,
                     RowGuid = rec.RowGuid,

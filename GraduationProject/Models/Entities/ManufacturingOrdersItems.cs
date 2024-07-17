@@ -2,11 +2,11 @@
 
 namespace GraduationProject.Models.Entities
 {
-    public class PurchaseOrderItem : _Base 
+    public class ManufacturingOrdersItems : _Base 
     {
-        public PurchaseOrderItem() { }
+        public ManufacturingOrdersItems() { }
         public required int PurchaseOrderId { get; set; }
-        public PurchaseOrder? PurchaseOrder { get; set; }
+        public ManufacturingOrdersTable? PurchaseOrder { get; set; }
         public required int ProductId { get; set; }
         public Product? Product { get; set; }
         public string? Summary { get; set; }

@@ -20,7 +20,7 @@ namespace GraduationProject.ApiOData
         {
             return _vendorContactService
                 .GetAll()
-                .Include(x => x.Vendor)
+                .Include(x => x.Factory)
                 .Select(rec => new FactoriesContactsDto
                 {
                     Id = rec.Id,
@@ -32,7 +32,7 @@ namespace GraduationProject.ApiOData
                     EmailAddress = rec.EmailAddress,
                     RowGuid = rec.RowGuid,
                     CreatedAtUtc = rec.CreatedAtUtc,
-                    Vendor = rec.Vendor!.Name,
+                    Factory = rec.Factory!.Name,
                 });
         }
 

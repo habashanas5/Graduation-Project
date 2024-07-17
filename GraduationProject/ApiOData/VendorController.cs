@@ -39,8 +39,8 @@ namespace GraduationProject.ApiOData
                     Website = rec.Website,
                     RowGuid = rec.RowGuid,
                     CreatedAtUtc = rec.CreatedAtUtc,
-                    VendorGroup = rec.VendorGroup!.Name,
-                    VendorCategory = rec.VendorCategory!.Name,
+                    FactoryType = rec.VendorGroup!.Name,
+                    FactoryClassification = rec.VendorCategory!.Name,
                     Ranking = rec.Ranking,
                 });
         }

@@ -21,162 +21,162 @@ namespace GraduationProject.Data.Demo
 
             Random random = new Random();
 
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Quantum Industries",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Apex Ventures",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Horizon Enterprises",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Nova Innovations",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Phoenix Holdings",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Titan Group",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Zenith Corporation",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Prime Solutions",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Cascade Enterprises",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Aurora Holdings",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Vanguard Industries",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Empyrean Ventures",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Genesis Corporation",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Equinox Enterprises",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Summit Holdings",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Sovereign Solutions",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Spectrum Corporation",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Elysium Enterprises",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Infinity Holdings",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)
             });
-            await vendorService.AddAsync(new Factories
+            await vendorService.AddAsync(new Factory
             {
                 Name = "Momentum Ventures",
-                Number = numberSequenceService.GenerateNumber(nameof(Factories), "", "VND"),
+                Number = numberSequenceService.GenerateNumber(nameof(Factory), "", "VND"),
                 VendorGroupId = DbInitializer.GetRandomValue(groups, random),
                 VendorCategoryId = DbInitializer.GetRandomValue(categories, random),
                 City = DbInitializer.GetRandomString(cities, random)

@@ -98,8 +98,8 @@ namespace GraduationProject.Pages.Factory
         {
             public MappingProfile()
             {
-                CreateMap<Factories, FactoryModel>();
-                CreateMap<FactoryModel, Factories>();
+                CreateMap<Factory, FactoryModel>();
+                CreateMap<FactoryModel, Factory>();
             }
         }
 
@@ -159,8 +159,6 @@ namespace GraduationProject.Pages.Factory
 
         public async Task<IActionResult> OnPostAsync([Bind(Prefix = nameof(VendorForm))] FactoryModel input)
         {
-
-
             if (!ModelState.IsValid)
             {
                 var message = string.Join(" ", ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage)));
@@ -176,9 +174,9 @@ namespace GraduationProject.Pages.Factory
 
             if (action == "create")
             {
-                var newobj = _mapper.Map<Factories>(input);
+                var newobj = _mapper.Map<Models.Entities.Factory>(input);
 
-                Number = _numberSequenceService.GenerateNumber(nameof(Factories), "", "VND");
+                Number = _numberSequenceService.GenerateNumber(nameof(Models.Entities.Factory), "", "VND");
                 newobj.Number = Number;
 
                 await _vendorService.AddAsync(newobj);

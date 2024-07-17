@@ -36,9 +36,9 @@ namespace GraduationProject.Infrastructures.ODatas
             builder.EntitySet<SalesOrderDto>("SalesOrder");
             builder.EntitySet<SalesOrderItemChildDto>("SalesOrderItemChild");
             builder.EntitySet<SalesOrderItemDto>("SalesOrderItem");
-            builder.EntitySet<PurchaseOrderDto>("PurchaseOrder");
-            builder.EntitySet<PurchaseOrderItemChildDto>("PurchaseOrderItemChild");
-            builder.EntitySet<PurchaseOrderItemDto>("PurchaseOrderItem");
+            builder.EntitySet<ManufacturingOrderDto>("PurchaseOrder");
+            builder.EntitySet<ManufacturingOrderItemChildDto>("PurchaseOrderItemChild");
+            builder.EntitySet<ManufacturingOrderItemDto>("PurchaseOrderItem");
             builder.EntitySet<InvenTransDto>("InvenTrans");
             builder.EntitySet<InvenStockDto>("InvenStock");
             builder.EntitySet<DeliveryOrderDto>("DeliveryOrder");

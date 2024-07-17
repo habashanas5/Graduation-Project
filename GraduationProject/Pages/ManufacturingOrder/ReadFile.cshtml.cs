@@ -29,7 +29,7 @@ namespace GraduationProject.Pages.ManufacturingOrder
                 return Page();
             }
 
-            var purchaseOrderItems = new List<PurchaseOrderItem>();
+            var purchaseOrderItems = new List<ManufacturingOrdersItems>();
 
             try
             {
@@ -40,7 +40,7 @@ namespace GraduationProject.Pages.ManufacturingOrder
                         var line = await stream.ReadLineAsync();
                         var values = line.Split(',');
 
-                        var purchaseOrderItem = new PurchaseOrderItem
+                        var purchaseOrderItem = new ManufacturingOrdersItems
                         {
                             PurchaseOrderId = int.Parse(values[0]),
                             ProductId = int.Parse(values[1]),

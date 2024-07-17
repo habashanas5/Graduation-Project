@@ -36,8 +36,8 @@ namespace GraduationProject.Data
          public DbSet<NumberSequence> NumberSequence { get; set; } = default!;
          public DbSet<Product> Product { get; set; } = default!;
          public DbSet<ProductGroup> ProductGroup { get; set; } = default!;
-         public DbSet<PurchaseOrder> PurchaseOrder { get; set; } = default!;
-         public DbSet<PurchaseOrderItem> PurchaseOrderItem { get; set; } = default!;
+         public DbSet<ManufacturingOrdersTable> PurchaseOrder { get; set; } = default!;
+         public DbSet<ManufacturingOrdersItems> PurchaseOrderItem { get; set; } = default!;
          public DbSet<PurchaseReturn> PurchaseReturn { get; set; } = default!;
          public DbSet<SalesOrder> SalesOrder { get; set; } = default!;
          public DbSet<SalesOrderItem> SalesOrderItem { get; set; } = default!;
@@ -48,10 +48,10 @@ namespace GraduationProject.Data
          public DbSet<TransferOut> TransferOut { get; set; } = default!;
          public DbSet<Tax> Tax { get; set; } = default!;
          public DbSet<UnitMeasure> UnitMeasure { get; set; } = default!;
-         public DbSet<FactoriesType> VendorGroup { get; set; } = default!;
-         public DbSet<FactoriesClassification> VendorCategory { get; set; } = default!;
-         public DbSet<Factories> Vendor { get; set; } = default!;
-         public DbSet<FactoriesContacts> VendorContact { get; set; } = default!;
+         public DbSet<FactoriesType> FactoryType { get; set; } = default!;
+         public DbSet<FactoriesClassification> FactoryClassification { get; set; } = default!;
+         public DbSet<Factory> Factory { get; set; } = default!;
+         public DbSet<FactoriesContacts> FactoryContacts { get; set; } = default!;
          public DbSet<Warehouse> Warehouse { get; set; } = default!;
         public DbSet<WarehouseProduct> WarehouseProduct { get; set; } = default!;
         public DbSet<CartItem> CartItem { get; set; } = default!;

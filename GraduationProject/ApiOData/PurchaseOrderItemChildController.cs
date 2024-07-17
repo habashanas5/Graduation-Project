@@ -21,8 +21,8 @@ namespace GraduationProject.ApiOData
         {
             public MappingProfile()
             {
-                CreateMap<PurchaseOrderItem, PurchaseOrderItemChildDto>();
-                CreateMap<PurchaseOrderItemChildDto, PurchaseOrderItem>();
+                CreateMap<ManufacturingOrdersItems, ManufacturingOrderItemChildDto>();
+                CreateMap<ManufacturingOrderItemChildDto, ManufacturingOrdersItems>();
             }
         }
 
@@ -41,7 +41,7 @@ namespace GraduationProject.ApiOData
         }
 
         [EnableQuery]
-        public IQueryable<PurchaseOrderItemChildDto> Get()
+        public IQueryable<ManufacturingOrderItemChildDto> Get()
         {
             const string HeaderKeyName = "ParentId";
             Request.Headers.TryGetValue(HeaderKeyName, out var headerValue);
@@ -50,24 +50,24 @@ namespace GraduationProject.ApiOData
             return _purchaseOrderItemService
                 .GetAll()
                 .Where(x => x.PurchaseOrderId == parentId)
-                .Select(x => _mapper.Map<PurchaseOrderItemChildDto>(x));
+                .Select(x => _mapper.Map<ManufacturingOrderItemChildDto>(x));
         }
 
 
         [EnableQuery]
         [HttpGet("{key}")]
-        public SingleResult<PurchaseOrderItemChildDto> Get([FromODataUri] int key)
+        public SingleResult<ManufacturingOrderItemChildDto> Get([FromODataUri] int key)
         {
             return SingleResult.Create(_purchaseOrderItemService
                 .GetAll()
                 .Where(x => x.Id == key)
-            .Select(x => _mapper.Map<PurchaseOrderItemChildDto>(x)));
+            .Select(x => _mapper.Map<ManufacturingOrderItemChildDto>(x)));
         }
 
 
 
         [HttpPatch]
-        public async Task<IActionResult> Patch([FromODataUri] int key, [FromBody] Delta<PurchaseOrderItemChildDto> delta)
+        public async Task<IActionResult> Patch([FromODataUri] int key, [FromBody] Delta<ManufacturingOrderItemChildDto> delta)
         {
             try
             {
@@ -81,12 +81,12 @@ namespace GraduationProject.ApiOData
                     return NotFound();
                 }
 
-                var dto = _mapper.Map<PurchaseOrderItemChildDto>(purchaseOrderItem);
+                var dto = _mapper.Map<ManufacturingOrderItemChildDto>(purchaseOrderItem);
                 delta.Patch(dto);
                 var entity = _mapper.Map(dto, purchaseOrderItem);
                 await _purchaseOrderItemService.UpdateAsync(entity);
 
-                return Ok(_mapper.Map<PurchaseOrderItemChildDto>(entity));
+                return Ok(_mapper.Map<ManufacturingOrderItemChildDto>(entity));
 
             }
             catch (Exception ex)
@@ -97,7 +97,7 @@ namespace GraduationProject.ApiOData
 
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] PurchaseOrderItemChildDto purchaseOrderItem)
+        public async Task<IActionResult> Post([FromBody] ManufacturingOrderItemChildDto purchaseOrderItem)
         {
             try
             {
@@ -107,10 +107,10 @@ namespace GraduationProject.ApiOData
                 var parentId = int.Parse(headerValue.ToString());
 
                 purchaseOrderItem.PurchaseOrderId = parentId;
-                var entity = _mapper.Map<PurchaseOrderItem>(purchaseOrderItem);
+                var entity = _mapper.Map<ManufacturingOrdersItems>(purchaseOrderItem);
                 await _purchaseOrderItemService.AddAsync(entity);
 
-                var dto = _mapper.Map<PurchaseOrderItem>(entity);
+                var dto = _mapper.Map<ManufacturingOrdersItems>(entity);
                 return Created("PurchaseOrderItemChild", dto);
 
             }

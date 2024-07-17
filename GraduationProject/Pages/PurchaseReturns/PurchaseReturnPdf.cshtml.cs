@@ -25,7 +25,7 @@ namespace GraduationProject.Pages.PurchaseReturns
         public PurchaseReturn? PurchaseReturn { get; set; }
         public List<InventoryTransaction>? InventoryTransactions { get; set; }
         public Company? Company { get; set; }
-        public Factories? Vendor { get; set; }
+        public Models.Entities.Factory? Vendor { get; set; }
         public string? CompanyAddress { get; set; }
         public string? VendorAddress { get; set; }
 

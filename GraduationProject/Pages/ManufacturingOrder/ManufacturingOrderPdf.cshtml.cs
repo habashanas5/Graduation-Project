@@ -22,10 +22,10 @@ namespace GraduationProject.Pages.ManufacturingOrder
             _companyService = companyService;
         }
 
-        public PurchaseOrder? PurchaseOrder { get; set; }
-        public List<PurchaseOrderItem>? PurchaseOrderItems { get; set; }
+        public Models.Entities.ManufacturingOrdersTable? PurchaseOrder { get; set; }
+        public List<ManufacturingOrdersItems>? PurchaseOrderItems { get; set; }
         public Company? Company { get; set; }
-        public Factories? Vendor { get; set; }
+        public Models.Entities.Factory? Vendor { get; set; }
         public string? CompanyAddress { get; set; }
         public string? VendorAddress { get; set; }
 
