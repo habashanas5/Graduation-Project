@@ -52,7 +52,12 @@ namespace GraduationProject.Controllers
         // GET: GoodsReceiveDetails/Create
         public IActionResult Create()
         {
-            ViewData["GoodsReceiveId"] = new SelectList(_context.GoodsReceive, "Id", "Id");
+            //ViewData["GoodsReceiveId"] = new SelectList(_context.GoodsReceive, "Id", "Id");
+            ViewData["GoodsReceiveId"] = new SelectList(_context.GoodsReceive.Select(x => new
+            {
+                x.Id,
+                DisplayText = $"{x.PurchaseOrder.Number} / {x.PurchaseOrder.Vendor.Name}"
+            }), "Id", "DisplayText");
             ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Name");
             ViewData["WarehouseId"] = new SelectList(_context.Warehouse, "Id", "Name");
             return View();
@@ -90,7 +95,12 @@ namespace GraduationProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["GoodsReceiveId"] = new SelectList(_context.GoodsReceive, "Id", "Id", goodsReceiveDetail.GoodsReceiveId);
+            //ViewData["GoodsReceiveId"] = new SelectList(_context.GoodsReceive, "Id", "Id", goodsReceiveDetail.GoodsReceiveId);
+            ViewData["GoodsReceiveId"] = new SelectList(_context.GoodsReceive.Select(x => new
+            {
+                x.Id,
+                DisplayText = $"{x.PurchaseOrder.Number} / {x.PurchaseOrder.Vendor.Name}"
+            }), "Id", "DisplayText");
             ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Name", goodsReceiveDetail.ProductId);
             ViewData["WarehouseId"] = new SelectList(_context.Warehouse, "Id", "Name", goodsReceiveDetail.WarehouseId);
             return View(goodsReceiveDetail);

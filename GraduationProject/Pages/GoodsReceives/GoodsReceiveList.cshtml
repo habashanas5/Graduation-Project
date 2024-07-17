@@ -64,6 +64,8 @@
                     { text: 'Delete', tooltipText: 'Delete', prefixIcon: 'e-delete', id: 'DeleteCustom' },
                     { type: 'Separator' },
                     { text: 'Download Pdf', tooltipText: 'Download Pdf', prefixIcon: 'e-export-pdf', id: 'PdfCustom' },
+                    { text: 'AddProducts', tooltipText: 'AddProducts', prefixIcon: 'e-products', id: 'AddProducts' },
+
                 ],
                 beforeDataBound: () => {
                 },
@@ -99,6 +101,11 @@
 
                     if (args.item.id === 'AddCustom') {
                         var formUrl = '/GoodsReceives/GoodsReceiveForm' + '?action=create';
+                        window.location.href = formUrl;
+                    }
+
+                    if (args.item.id === 'AddProducts') {
+                        var formUrl = 'http://localhost:5244/GoodsReceiveDetails/index';
                         window.location.href = formUrl;
                     }
 

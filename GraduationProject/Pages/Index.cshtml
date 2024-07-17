@@ -737,7 +737,7 @@
 
         .rate--btn {
             position: absolute;
-            bottom: 1.6rem; /* تعديل الموضع لأسفل */
+            bottom: 1.6rem; 
             right: 1.25rem;
         }
 
@@ -1062,7 +1062,7 @@
                 <div class="swiper-wrapper">
                     @foreach (var group in Model.ProductGroups)
                     {
-                        <a class="category--item swiper-slide">
+                        <a class="category--item swiper-slide" data-category="@group.Name">
                             @if (group.ImageData != null)
                             {
                                 <img src="data:image;base64,@Convert.ToBase64String(group.ImageData)" alt="@group.Name" class="category--img" />
@@ -1091,11 +1091,11 @@
             </div>
 
             <div class="tab--items" id="Myproduct">
-                <div class="tab--item active-tab content id="featured">
+                <div class="tab--item active-tab content" id="featured">
                     <div class="products--container grid">
                         @foreach (var product in Model.products)
                         {
-                            <div class="product--item" data-product-name="@product.Name.ToLower()">
+                            <div class="product--item" data-product-category="@product.ProductGroup.Name" data-product-name="@product.Name.ToLower()">
                                 <div class="product--banner">
                                     <a href="" class="product--images">
                                         @if (product.ImageData != null)
@@ -1121,13 +1121,11 @@
                                         <h3 class="product--title">@product.Name</h3>
                                     </a>
                                     <div class="product--rating">
-
                                         @for (int i = 0; i < Math.Floor(product.RatingAverage); i++)
                                         {
                                             <i class="fa fa-star" data-value="@i"></i>
                                         }
                                         <span> (@product.rating ratings, avg: @product.RatingAverage)</span>
-
                                     </div>
                                     <div class="product--price flex">
                                         <span class="new--price">$@product.UnitPrice</span>
@@ -1157,7 +1155,6 @@
                                             <i class="fa fa-star"></i>
                                         </button>
                                     </form>
-
                                 </div>
                             </div>
                         }
@@ -1574,8 +1571,27 @@
             }
         });
 
-    </script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const categoryItems = document.querySelectorAll(".category--item");
+            const productItems = document.querySelectorAll(".product--item");
 
+            categoryItems.forEach(category => {
+                category.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    const selectedCategory = category.getAttribute("data-category");
+
+                    productItems.forEach(product => {
+                        if (product.getAttribute("data-product-category") === selectedCategory || selectedCategory === "All") {
+                            product.style.display = "block";
+                        } else {
+                            product.style.display = "none";
+                        }
+                    });
+                });
+            });
+        });
+
+    </script>
 
 </body>
 </html>
