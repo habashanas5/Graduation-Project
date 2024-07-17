@@ -11,7 +11,7 @@ namespace GraduationProject.Models.Entities
         public ManufacturingOrderStatus? OrderStatus { get; set; }
         public string? Description { get; set; }
         public required int VendorId { get; set; }
-        public Factory? Vendor { get; set; }
+        public Factorys? Vendor { get; set; }
         public required int TaxId { get; set; }
         public Tax? Tax { get; set; }
         public double? BeforeTaxAmount { get; set; }

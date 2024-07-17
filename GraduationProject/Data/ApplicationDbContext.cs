@@ -50,7 +50,7 @@ namespace GraduationProject.Data
          public DbSet<UnitMeasure> UnitMeasure { get; set; } = default!;
          public DbSet<FactoriesType> FactoryType { get; set; } = default!;
          public DbSet<FactoriesClassification> FactoryClassification { get; set; } = default!;
-         public DbSet<Factory> Factory { get; set; } = default!;
+         public DbSet<Factorys> Factory { get; set; } = default!;
          public DbSet<FactoriesContacts> FactoryContacts { get; set; } = default!;
          public DbSet<Warehouse> Warehouse { get; set; } = default!;
         public DbSet<WarehouseProduct> WarehouseProduct { get; set; } = default!;

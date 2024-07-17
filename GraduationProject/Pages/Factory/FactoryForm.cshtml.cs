@@ -98,8 +98,8 @@ namespace GraduationProject.Pages.Factory
         {
             public MappingProfile()
             {
-                CreateMap<Factory, FactoryModel>();
-                CreateMap<FactoryModel, Factory>();
+                CreateMap<Factorys, FactoryModel>();
+                CreateMap<FactoryModel, Factorys>();
             }
         }
 
@@ -174,9 +174,9 @@ namespace GraduationProject.Pages.Factory
 
             if (action == "create")
             {
-                var newobj = _mapper.Map<Models.Entities.Factory>(input);
+                var newobj = _mapper.Map<Models.Entities.Factorys>(input);
 
-                Number = _numberSequenceService.GenerateNumber(nameof(Models.Entities.Factory), "", "VND");
+                Number = _numberSequenceService.GenerateNumber(nameof(Models.Entities.Factorys), "", "VND");
                 newobj.Number = Number;
 
                 await _vendorService.AddAsync(newobj);

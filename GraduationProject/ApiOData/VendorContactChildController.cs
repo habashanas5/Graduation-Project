@@ -49,7 +49,7 @@ namespace GraduationProject.ApiOData
 
             return _vendorContactService
                 .GetAll()
-                .Where(x => x.FactorysId == parentId)
+                .Where(x => x.VendorId == parentId)
                 .Select(x => _mapper.Map<FactoriesContactChildDto>(x));
         }
 

@@ -57,8 +57,8 @@
                     { field: 'PhoneNumber', width: 100 },
                     { field: 'FaxNumber', width: 100, visible: false },
                     { field: 'EmailAddress', width: 100 },
-                    { field: 'VendorGroup', width: 100 },
-                    { field: 'VendorCategory', width: 100 },
+                    { field: 'FactoryType', width: 100 },
+                    { field: 'FactoryClassification', width: 100 },
                 ],
                 toolbar: [
                     'ExcelExport', 'Search',
@@ -71,7 +71,7 @@
                 },
                 dataBound: function () {
                     grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom'], false);
-                    grid.autoFitColumns(['CreatedAtUtc', 'Name', 'Ranking', 'Number', 'Street', 'City', 'State', 'ZipCode', 'PhoneNumber', 'FaxNumber', 'EmailAddress', 'VendorGroup', 'VendorCategory']);
+                    grid.autoFitColumns(['CreatedAtUtc', 'Name', 'Ranking', 'Number', 'Street', 'City', 'State', 'ZipCode', 'PhoneNumber', 'FaxNumber', 'EmailAddress', 'FactoryType', 'FactoryClassification']);
                 },
                 excelExportComplete: () => {
                 },

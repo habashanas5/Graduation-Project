@@ -29,7 +29,7 @@ namespace GraduationProject.ApiOData
                     RowGuid = rec.RowGuid,
                     CreatedAtUtc = rec.CreatedAtUtc,
                     PurchaseOrder = rec.PurchaseOrder!.Number,
-                    Vendor = rec.PurchaseOrder.Vendor!.Name,
+                    Factory = rec.PurchaseOrder.Vendor!.Name,
                     Product = rec.Product!.Name,
                     Summary = rec.Summary,
                     UnitPrice = rec.UnitPrice,

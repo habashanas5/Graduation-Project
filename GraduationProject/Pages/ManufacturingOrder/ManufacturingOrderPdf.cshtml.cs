@@ -25,7 +25,7 @@ namespace GraduationProject.Pages.ManufacturingOrder
         public Models.Entities.ManufacturingOrdersTable? PurchaseOrder { get; set; }
         public List<ManufacturingOrdersItems>? PurchaseOrderItems { get; set; }
         public Company? Company { get; set; }
-        public Models.Entities.Factory? Vendor { get; set; }
+        public Models.Entities.Factorys? Vendor { get; set; }
         public string? CompanyAddress { get; set; }
         public string? VendorAddress { get; set; }
 

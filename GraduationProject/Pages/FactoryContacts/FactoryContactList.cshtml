@@ -52,7 +52,7 @@
                     { field: 'JobTitle', width: 100 },
                     { field: 'PhoneNumber', width: 100 },
                     { field: 'EmailAddress', width: 100 },
-                    { field: 'Vendor', width: 100 },
+                    { field: 'Factory', width: 100 },
                 ],
                 toolbar: [
                     'ExcelExport', 'Search',
@@ -65,7 +65,7 @@
                 },
                 dataBound: function () {
                     grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom'], false);
-                    grid.autoFitColumns(['CreatedAtUtc', 'Name', 'Number', 'JobTitle', 'PhoneNumber', 'EmailAddress', 'Vendor']);
+                    grid.autoFitColumns(['CreatedAtUtc', 'Name', 'Number', 'JobTitle', 'PhoneNumber', 'EmailAddress', 'Factory']);
                 },
                 excelExportComplete: () => {
                 },

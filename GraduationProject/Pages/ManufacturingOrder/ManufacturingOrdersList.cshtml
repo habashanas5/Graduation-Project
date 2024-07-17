@@ -52,7 +52,7 @@
                     { field: 'Number', width: 100 },
                     { field: 'OrderDate', width: 100, format: 'yyyy-MM-dd', textAlign: 'Left', type: 'dateTime' },
                     { field: 'Status', width: 100, allowFiltering: false },
-                    { field: 'Vendor', width: 100 },
+                    { field: 'Factory', width: 100 },
                     { field: 'Tax', width: 100 },
                     { field: 'BeforeTaxAmount', width: 100, type: 'number', format: 'N2', textAlign: 'Right' },
                     { field: 'TaxAmount', width: 100, type: 'number', format: 'N2', textAlign: 'Right' },
@@ -73,7 +73,7 @@
                 },
                 dataBound: function () {
                     grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom', 'PdfCustom'], false);
-                    grid.autoFitColumns(['CreatedAtUtc', 'Number', 'OrderDate', 'OrderStatus', 'Vendor', 'Tax', 'BeforeTaxAmount', 'TaxAmount', 'AfterTaxAmount']);
+                    grid.autoFitColumns(['CreatedAtUtc', 'Number', 'OrderDate', 'OrderStatus', 'Factory', 'Tax', 'BeforeTaxAmount', 'TaxAmount', 'AfterTaxAmount']);
                 },
                 excelExportComplete: () => {
                 },

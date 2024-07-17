@@ -25,7 +25,7 @@ namespace GraduationProject.Pages.GoodsReceives
         public GoodsReceive? GoodsReceive { get; set; }
         public List<InventoryTransaction>? InventoryTransactions { get; set; }
         public Company? Company { get; set; }
-        public Models.Entities.Factory? Vendor { get; set; }
+        public Models.Entities.Factorys? Vendor { get; set; }
         public string? CompanyAddress { get; set; }
         public string? VendorAddress { get; set; }
 

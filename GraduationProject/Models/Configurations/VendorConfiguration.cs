@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GraduationProject.Models.Configurations
 {
-    public class VendorConfiguration : _BaseConfiguration<Factory>
+    public class VendorConfiguration : _BaseConfiguration<Factorys>
     {
-        public override void Configure(EntityTypeBuilder<Factory> builder)
+        public override void Configure(EntityTypeBuilder<Factorys> builder)
         {
             base.Configure(builder);
 

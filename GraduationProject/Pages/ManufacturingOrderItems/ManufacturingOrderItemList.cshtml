@@ -49,7 +49,7 @@
                     { field: 'CreatedAtUtc', width: 100, type: 'dateTime', format: 'yyyy-MM-dd HH:ss', textAlign: 'Left' },
                     { field: 'OrderDate', width: 100, type: 'dateTime', format: 'yyyy-MM-dd', textAlign: 'Left' },
                     { field: 'PurchaseOrder', width: 100 },
-                    { field: 'Vendor', width: 100 },
+                    { field: 'Factory', width: 100 },
                     { field: 'Product', width: 100 },
                     { field: 'Summary', width: 100 },
                     { field: 'UnitPrice', width: 100, type: 'number', format: 'N2', textAlign: 'Right' },
@@ -62,7 +62,7 @@
                 beforeDataBound: () => {
                 },
                 dataBound: function () {
-                    grid.autoFitColumns(['CreatedAtUtc', 'OrderDate', 'PurchaseOrder', 'Vendor', 'Product', 'Summary', 'UnitPrice', 'Quantity', 'Total']);
+                    grid.autoFitColumns(['CreatedAtUtc', 'OrderDate', 'PurchaseOrder', 'Factory', 'Product', 'Summary', 'UnitPrice', 'Quantity', 'Total']);
                 },
                 excelExportComplete: () => {
                 },

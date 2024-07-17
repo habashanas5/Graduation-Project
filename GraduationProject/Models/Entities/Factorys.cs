@@ -2,9 +2,9 @@
 
 namespace GraduationProject.Models.Entities
 {
-    public class Factory : _Base
+    public class Factorys : _Base
     {
-        public Factory() { }
+        public Factorys() { }
         public required string Name { get; set; }
         public string? Number { get; set; }
         public string? Description { get; set; }

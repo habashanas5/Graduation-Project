@@ -6,7 +6,7 @@
         public Guid? RowGuid { get; set; }
         public DateTime? CreatedAtUtc { get; set; }
         public string? PurchaseOrder { get; set; }
-        public string? Vendor { get; set; }
+        public string? Factory { get; set; }
         public DateTime? OrderDate { get; set; }
         public string? Product { get; set; }
         public string? Summary { get; set; }
