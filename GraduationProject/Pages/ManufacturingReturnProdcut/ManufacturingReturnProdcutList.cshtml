@@ -1,5 +1,5 @@
 ﻿@page
-@model GraduationProject.Pages.PurchaseReturns.PurchaseReturnListModel
+@model GraduationProject.Pages.ManufacturingReturnProdcut.ManufacturingReturnProdcutListModel
 @{
     Layout = "~/Pages/Shared/AdminLTE/_Admin.cshtml";
     var statusMessage = Model.StatusMessage;
@@ -17,7 +17,6 @@
 
 @section Scripts {
     <script>
-
 
         document.addEventListener('DOMContentLoaded', function () {
 
@@ -54,7 +53,7 @@
                     { field: 'Status', width: 100, allowFiltering: false },
                     { field: 'GoodsReceive', width: 100 },
                     { field: 'ReceiveDate', width: 100, format: 'yyyy-MM-dd', textAlign: 'Left', type: 'dateTime' },
-                    { field: 'Vendor', width: 100 },
+                    { field: 'Factory', width: 100 },
                 ],
                 toolbar: [
                     'ExcelExport', 'Search',
@@ -69,7 +68,7 @@
                 },
                 dataBound: function () {
                     grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom', 'PdfCustom'], false);
-                    grid.autoFitColumns(['CreatedAtUtc', 'Number', 'ReturnDate', 'Status', 'GoodsReceive', 'ReceiveDate', 'Vendor']);
+                    grid.autoFitColumns(['CreatedAtUtc', 'Number', 'ReturnDate', 'Status', 'GoodsReceive', 'ReceiveDate', 'Factory']);
                 },
                 excelExportComplete: () => {
                 },
@@ -98,14 +97,14 @@
                     }
 
                     if (args.item.id === 'AddCustom') {
-                        var formUrl = '/PurchaseReturns/PurchaseReturnForm' + '?action=create';
+                        var formUrl = '/ManufacturingReturnProdcut/ManufacturingReturnProdcutForm' + '?action=create';
                         window.location.href = formUrl;
                     }
 
                     if (args.item.id === 'EditCustom') {
                         if (grid.getSelectedRecords().length) {
                             var selectedRowGuid = grid.getSelectedRecords()[0].RowGuid;
-                            var formUrl = '/PurchaseReturns/PurchaseReturnForm?rowGuid=' + selectedRowGuid + '&action=edit';
+                            var formUrl = '/ManufacturingReturnProdcut/ManufacturingReturnProdcutForm?rowGuid=' + selectedRowGuid + '&action=edit';
                             window.location.href = formUrl;
                         }
                     }
@@ -120,7 +119,7 @@
                                     click: () => {
                                         dialogObj.hide();
                                         var selectedRowGuid = grid.getSelectedRecords()[0].RowGuid;
-                                        var formUrl = '/PurchaseReturns/PurchaseReturnForm?rowGuid=' + selectedRowGuid + '&action=delete';
+                                        var formUrl = '/ManufacturingReturnProdcut/ManufacturingReturnProdcutForm?rowGuid=' + selectedRowGuid + '&action=delete';
                                         window.location.href = formUrl;
                                     }
                                 },
@@ -135,7 +134,7 @@
                     if (args.item.id === 'PdfCustom') {
                         if (grid.getSelectedRecords().length) {
                             var selectedId = grid.getSelectedRecords()[0].Id;
-                            var formUrl = '/PurchaseReturns/PurchaseReturnDownload?id=' + selectedId;
+                            var formUrl = '/ManufacturingReturnProdcut/ManufacturingReturnProdcutDownload?id=' + selectedId;
                             window.location.href = formUrl;
                         }
                     }

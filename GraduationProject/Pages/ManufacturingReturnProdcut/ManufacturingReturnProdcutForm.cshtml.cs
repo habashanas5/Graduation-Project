@@ -15,10 +15,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 
-namespace GraduationProject.Pages.PurchaseReturns
+namespace GraduationProject.Pages.ManufacturingReturnProdcut
 {
     [Authorize(Roles = "Admin")]
-    public class PurchaseReturnFormModel : PageModel
+    public class ManufacturingReturnProdcutFormModel : PageModel
     {
         private readonly IMapper _mapper;
         private readonly PurchaseReturnService _purchaseReturnService;
@@ -27,7 +27,7 @@ namespace GraduationProject.Pages.PurchaseReturns
         private readonly ProductService _productService;
         private readonly WarehouseService _warehouseService;
         private readonly InventoryTransactionService _inventoryTransactionService;
-        public PurchaseReturnFormModel(
+        public ManufacturingReturnProdcutFormModel(
             IMapper mapper,
             PurchaseReturnService purchaseReturnService,
             NumberSequenceService numberSequenceService,
@@ -68,7 +68,7 @@ namespace GraduationProject.Pages.PurchaseReturns
             [DisplayName("Description")]
             public string? Description { get; set; }
 
-            [DisplayName("PurchaseReturn")]
+            [DisplayName("ManufacturingReturn")]
             public int GoodsReceiveId { get; set; }
         }
 
@@ -168,7 +168,7 @@ namespace GraduationProject.Pages.PurchaseReturns
                 await _purchaseReturnService.AddAsync(newobj);
 
                 this.WriteStatusMessage($"Success create new data.");
-                return Redirect($"./PurchaseReturnForm?rowGuid={newobj.RowGuid}&action=edit");
+                return Redirect($"./ManufacturingReturnProdcutForm?rowGuid={newobj.RowGuid}&action=edit");
             }
             else if (action == "edit")
             {
@@ -197,7 +197,7 @@ namespace GraduationProject.Pages.PurchaseReturns
                 }
 
                 this.WriteStatusMessage($"Success update existing data.");
-                return Redirect($"./PurchaseReturnForm?rowGuid={existing.RowGuid}&action=edit");
+                return Redirect($"./ManufacturingReturnProdcutForm?rowGuid={existing.RowGuid}&action=edit");
             }
             else if (action == "delete")
             {
@@ -211,7 +211,7 @@ namespace GraduationProject.Pages.PurchaseReturns
                 await _purchaseReturnService.DeleteByRowGuidAsync(input.RowGuid);
 
                 this.WriteStatusMessage($"Success delete existing data.");
-                return Redirect("./PurchaseReturnList");
+                return Redirect("./ManufacturingReturnProdcutList");
             }
             return Page();
         }

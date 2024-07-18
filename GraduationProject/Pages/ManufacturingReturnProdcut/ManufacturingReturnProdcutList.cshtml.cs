@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace GraduationProject.Pages.PurchaseReturns
+namespace GraduationProject.Pages.ManufacturingReturnProdcut
 {
     [Authorize(Roles = "Admin")]
-    public class PurchaseReturnListModel : PageModel
+    public class ManufacturingReturnProdcutListModel : PageModel
     {
-        public PurchaseReturnListModel() { }
+        public ManufacturingReturnProdcutListModel() { }
 
         [TempData]
         public string StatusMessage { get; set; } = string.Empty;

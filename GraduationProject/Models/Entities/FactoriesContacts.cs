@@ -11,7 +11,7 @@ namespace GraduationProject.Models.Entities
         public string? PhoneNumber { get; set; }
         public string? EmailAddress { get; set; }
         public string? Description { get; set; }
-        public required int VendorId { get; set; }
-        public Factorys? Vendor { get; set; }
+        public required int FactorysId { get; set; }
+        public Factorys? Factory { get; set; }
     }
 }

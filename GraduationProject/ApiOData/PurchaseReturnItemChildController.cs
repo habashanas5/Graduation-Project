@@ -24,8 +24,8 @@ namespace GraduationProject.ApiOData
         {
             public MappingProfile()
             {
-                CreateMap<InventoryTransaction, PurchaseReturnItemChildDto>();
-                CreateMap<PurchaseReturnItemChildDto, InventoryTransaction>();
+                CreateMap<InventoryTransaction, ManufacturingReturnItemChildDto>();
+                CreateMap<ManufacturingReturnItemChildDto, InventoryTransaction>();
             }
         }
 
@@ -47,7 +47,7 @@ namespace GraduationProject.ApiOData
         }
 
         [EnableQuery]
-        public IQueryable<PurchaseReturnItemChildDto> Get()
+        public IQueryable<ManufacturingReturnItemChildDto> Get()
         {
             const string HeaderKeyName = "ParentId";
             Request.Headers.TryGetValue(HeaderKeyName, out var headerValue);
@@ -58,24 +58,24 @@ namespace GraduationProject.ApiOData
             return _inventoryTransactionService
                 .GetAll()
                 .Where(x => x.ModuleId == parentId && x.ModuleName == moduleName)
-                .Select(x => _mapper.Map<PurchaseReturnItemChildDto>(x));
+                .Select(x => _mapper.Map<ManufacturingReturnItemChildDto>(x));
         }
 
 
         [EnableQuery]
         [HttpGet("{key}")]
-        public SingleResult<PurchaseReturnItemChildDto> Get([FromODataUri] int key)
+        public SingleResult<ManufacturingReturnItemChildDto> Get([FromODataUri] int key)
         {
             return SingleResult.Create(_inventoryTransactionService
                 .GetAll()
                 .Where(x => x.Id == key)
-            .Select(x => _mapper.Map<PurchaseReturnItemChildDto>(x)));
+            .Select(x => _mapper.Map<ManufacturingReturnItemChildDto>(x)));
         }
 
 
 
         [HttpPatch]
-        public async Task<IActionResult> Patch([FromODataUri] int key, [FromBody] Delta<PurchaseReturnItemChildDto> delta)
+        public async Task<IActionResult> Patch([FromODataUri] int key, [FromBody] Delta<ManufacturingReturnItemChildDto> delta)
         {
             try
             {
@@ -90,12 +90,12 @@ namespace GraduationProject.ApiOData
                     return NotFound();
                 }
 
-                var dto = _mapper.Map<PurchaseReturnItemChildDto>(child);
+                var dto = _mapper.Map<ManufacturingReturnItemChildDto>(child);
                 delta.Patch(dto);
                 var entity = _mapper.Map(dto, child);
                 await _inventoryTransactionService.UpdateAsync(entity);
 
-                return Ok(_mapper.Map<PurchaseReturnItemChildDto>(entity));
+                return Ok(_mapper.Map<ManufacturingReturnItemChildDto>(entity));
 
             }
             catch (Exception ex)
@@ -106,7 +106,7 @@ namespace GraduationProject.ApiOData
 
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] PurchaseReturnItemChildDto postInput)
+        public async Task<IActionResult> Post([FromBody] ManufacturingReturnItemChildDto postInput)
         {
             try
             {

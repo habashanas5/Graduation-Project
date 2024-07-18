@@ -5,14 +5,14 @@ using GraduationProject.Models.Entities;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 
-namespace GraduationProject.Pages.PurchaseReturns
+namespace GraduationProject.Pages.ManufacturingReturnProdcut
 {
-    public class PurchaseReturnPdfModel : PageModel
+    public class ManufacturingReturnProdcutPdfModel : PageModel
     {
         private readonly PurchaseReturnService _purchaseReturnService;
         private readonly InventoryTransactionService _inventoryTransactionService;
         private readonly CompanyService _companyService;
-        public PurchaseReturnPdfModel(
+        public ManufacturingReturnProdcutPdfModel(
             PurchaseReturnService purchaseReturnService,
             InventoryTransactionService inventoryTransactionService,
             CompanyService companyService)

@@ -100,7 +100,7 @@ namespace GraduationProject.Data.Demo
                     {
                         Name = $"{first} {last}",
                         Number = numberSequenceService.GenerateNumber(nameof(FactoriesContacts), "", "VC"),
-                        VendorId = item,
+                        FactorysId = item,
                         JobTitle = DbInitializer.GetRandomString(jobTitles, random),
                         EmailAddress = $"{first.ToLower()}.{last.ToLower()}@gmail.com"
                     });

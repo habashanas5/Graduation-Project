@@ -2,7 +2,7 @@
 
 namespace GraduationProject.DTOS
 {
-    public class PurchaseReturnDto
+    public class ManufacturingReturnDto
     {
         public int? Id { get; set; }
         public string? Number { get; set; }
@@ -10,7 +10,7 @@ namespace GraduationProject.DTOS
         public ManufacturingReturnStatus? Status { get; set; }
         public string? GoodsReceive { get; set; }
         public DateTime? ReceiveDate { get; set; }
-        public string? Vendor { get; set; }
+        public string? Factory { get; set; }
         public Guid? RowGuid { get; set; }
         public DateTime? CreatedAtUtc { get; set; }
     }

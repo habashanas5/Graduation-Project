@@ -44,7 +44,7 @@ namespace GraduationProject.Infrastructures.ODatas
             builder.EntitySet<DeliveryOrderDto>("DeliveryOrder");
             builder.EntitySet<SalesReturnDto>("SalesReturn");
             builder.EntitySet<GoodsReceiveDto>("GoodsReceive");
-            builder.EntitySet<PurchaseReturnDto>("PurchaseReturn");
+            builder.EntitySet<ManufacturingReturnDto>("PurchaseReturn");
             builder.EntitySet<TransferOutDto>("TransferOut");
             builder.EntitySet<TransferInDto>("TransferIn");
             builder.EntitySet<PositiveAdjustmentDto>("PositiveAdjustment");
@@ -54,7 +54,7 @@ namespace GraduationProject.Infrastructures.ODatas
             builder.EntitySet<DeliveryOrderItemChildDto>("DeliveryOrderItemChild");
             builder.EntitySet<GoodsReceiveItemChildDto>("GoodsReceiveItemChild");
             builder.EntitySet<SalesReturnItemChildDto>("SalesReturnItemChild");
-            builder.EntitySet<PurchaseReturnItemChildDto>("PurchaseReturnItemChild");
+            builder.EntitySet<ManufacturingReturnItemChildDto>("PurchaseReturnItemChild");
             builder.EntitySet<TransferOutItemChildDto>("TransferOutItemChild");
             builder.EntitySet<TransferInItemChildDto>("TransferInItemChild");
             builder.EntitySet<AdjustmentPlusItemChildDto>("AdjustmentPlusItemChild");

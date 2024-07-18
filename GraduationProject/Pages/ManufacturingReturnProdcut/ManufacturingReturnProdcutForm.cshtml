@@ -2,7 +2,7 @@
 @using GraduationProject.Models.Enums
 @using System.Text.Json
 @using System.Text.Json.Serialization
-@model GraduationProject.Pages.PurchaseReturns.PurchaseReturnFormModel
+@model GraduationProject.Pages.ManufacturingReturnProdcut.ManufacturingReturnProdcutFormModel
 @{
     Layout = "~/Pages/Shared/AdminLTE/_Admin.cshtml";
     var statusMessage = Model.StatusMessage;
@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label asp-for="@Model.PurchaseReturnForm.GoodsReceiveId" class="form-label"></label>
                             <select asp-for="@Model.PurchaseReturnForm.GoodsReceiveId" asp-items="@Model.GoodsReceiveLookup" class="form-control">
-                                <option value="">-- Select Purchase --</option>
+                                <option value="">-- Select Factory --</option>
                             </select>
                         </div>
                     </div>

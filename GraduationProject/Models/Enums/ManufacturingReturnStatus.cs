@@ -4,19 +4,13 @@ namespace GraduationProject.Models.Enums
 {
     public enum ManufacturingReturnStatus
     {
-        [Description("Pending")]
-        Pending = 0,
-        [Description("Approved")]
-        Approved = 1,
-        [Description("Rejected")]
-        Rejected = 2,
-        [Description("Shipped")]
-        Shipped = 3,
-        [Description("Partially Shipped")]
-        PartiallyShipped = 4,
+        [Description("Draft")]
+        Draft = 0,
+        [Description("Cancelled")]
+        Cancelled = 1,
         [Description("Completed")]
-        Completed = 5,
+        Completed = 2,
         [Description("Archived")]
-        Archived = 6
+        Archived = 3
     }
 }
