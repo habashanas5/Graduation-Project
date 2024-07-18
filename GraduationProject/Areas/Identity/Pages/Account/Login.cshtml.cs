@@ -131,6 +131,10 @@ namespace GraduationProject.Areas.Identity.Pages.Account
                     {
                         returnUrl = Url.Content("~/Dashboards/DefaultDashboard");
                     }
+                    else if (await _userManager.IsInRoleAsync(user, "WarehouseManager"))
+                    {
+                        returnUrl = Url.Content("~/Dashboards/DefaultDashboard");
+                    }
                     else
                     {
                         returnUrl = Url.Content("~/");

@@ -15,7 +15,7 @@ using System.ComponentModel;
 
 namespace GraduationProject.Pages.NegativeAdjustments
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class NegativeAdjustmentFormModel : PageModel
     {
         private readonly IMapper _mapper;

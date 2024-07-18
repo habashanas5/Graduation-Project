@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GraduationProject.Pages.StockCounts
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class StockCountListModel : PageModel
     {
         public StockCountListModel() { }

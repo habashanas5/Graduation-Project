@@ -15,7 +15,7 @@ using System.ComponentModel;
 
 namespace GraduationProject.Pages.ManufacturingOrder
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class PurchaseOrderFormModel : PageModel
     {
         private readonly IMapper _mapper;

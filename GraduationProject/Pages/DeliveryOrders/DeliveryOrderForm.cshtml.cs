@@ -20,7 +20,7 @@ using System.ComponentModel;
 
 namespace GraduationProject.Pages.DeliveryOrders
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class DeliveryOrderFormModel : PageModel
     {
         private readonly IMapper _mapper;

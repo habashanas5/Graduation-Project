@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GraduationProject.Pages.TransferIns
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class TransferInListModel : PageModel
     {
         public TransferInListModel() { }

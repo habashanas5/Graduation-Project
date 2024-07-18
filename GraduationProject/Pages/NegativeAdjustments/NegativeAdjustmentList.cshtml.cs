@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GraduationProject.Pages.NegativeAdjustments
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class NegativeAdjustmentListModel : PageModel
     {
         public NegativeAdjustmentListModel() { }

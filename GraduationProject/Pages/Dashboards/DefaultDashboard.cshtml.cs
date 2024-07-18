@@ -25,7 +25,7 @@ using Newtonsoft.Json;
 
 namespace GraduationProject.Pages.Dashboards
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class DefaultDashboardModel : PageModel
     {
         private readonly SalesOrderService _salesOrderService;

@@ -16,7 +16,7 @@ using System.ComponentModel;
 
 namespace GraduationProject.Pages.StockCounts
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class StockCountFormModel : PageModel
     {
         private readonly IMapper _mapper;

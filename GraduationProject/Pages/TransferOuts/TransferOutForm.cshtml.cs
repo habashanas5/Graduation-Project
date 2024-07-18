@@ -16,7 +16,7 @@ using System.ComponentModel;
 
 namespace GraduationProject.Pages.TransferOuts
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class TransferOutFormModel : PageModel
     {
         private readonly IMapper _mapper;

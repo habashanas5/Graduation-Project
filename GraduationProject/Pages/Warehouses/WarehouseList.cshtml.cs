@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Indotalent.Pages.Warehouses
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class WarehouseListModel : PageModel
     {
         public WarehouseListModel() { }

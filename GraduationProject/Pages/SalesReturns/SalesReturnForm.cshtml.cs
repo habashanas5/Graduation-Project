@@ -17,7 +17,7 @@ using System.ComponentModel;
 
 namespace GraduationProject.Pages.SalesReturns
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class SalesReturnFormModel : PageModel
     {
         private readonly IMapper _mapper;

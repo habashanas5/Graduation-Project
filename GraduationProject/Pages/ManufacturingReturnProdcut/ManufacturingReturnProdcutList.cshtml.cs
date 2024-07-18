@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GraduationProject.Pages.ManufacturingReturnProdcut
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class ManufacturingReturnProdcutListModel : PageModel
     {
         public ManufacturingReturnProdcutListModel() { }

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace GraduationProject.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class GoodsReceiveDetailsController : Controller
     {
         private readonly ApplicationDbContext _context;

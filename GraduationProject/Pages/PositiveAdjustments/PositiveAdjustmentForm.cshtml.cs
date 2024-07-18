@@ -15,7 +15,7 @@ using System.ComponentModel;
 
 namespace GraduationProject.Pages.PositiveAdjustments
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class PositiveAdjustmentFormModel : PageModel
     {
         private readonly IMapper _mapper;

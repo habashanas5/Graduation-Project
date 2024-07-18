@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace GraduationProject.Pages.Warehouses
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class WarehouseFormModel : PageModel
     {
         private readonly IMapper _mapper;

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GraduationProject.Pages.PositiveAdjustments
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class PositiveAdjustmentListModel : PageModel
     {
         public PositiveAdjustmentListModel() { }

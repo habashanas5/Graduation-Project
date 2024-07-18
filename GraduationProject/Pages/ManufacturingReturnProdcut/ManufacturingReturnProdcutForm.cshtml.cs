@@ -17,7 +17,7 @@ using System.ComponentModel;
 
 namespace GraduationProject.Pages.ManufacturingReturnProdcut
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class ManufacturingReturnProdcutFormModel : PageModel
     {
         private readonly IMapper _mapper;

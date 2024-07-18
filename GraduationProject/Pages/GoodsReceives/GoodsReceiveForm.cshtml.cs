@@ -17,7 +17,7 @@ using System.ComponentModel;
 
 namespace GraduationProject.Pages.GoodsReceives
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class GoodsReceiveFormModel : PageModel
     {
         private readonly IMapper _mapper;

@@ -16,7 +16,7 @@ using System.ComponentModel;
 
 namespace GraduationProject.Pages.Scrappings
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class ScrappingFormModel : PageModel
     {
         private readonly IMapper _mapper;
