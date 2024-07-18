@@ -47,8 +47,6 @@ namespace GraduationProject.Pages.SalesOrders
                         var line = await stream.ReadLineAsync();
                         var values = line.Split(',');
 
-
-
                         var salesOrderItem = new SalesOrderItem
                         {
                             SalesOrderId = int.Parse(values[0]),
