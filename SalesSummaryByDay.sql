@@ -1,16 +1,13 @@
-CREATE TABLE [GraduationProject].[dbo].[SalesSummaryByDay] (
-    [Date] DATE,
-    [Product] NVARCHAR(255),
-    [NumberOfSales] INT,
-    [NumberOfProductSold] INT
-);
-
-INSERT INTO [GraduationProject].[dbo].[SalesSummaryByDay] ([Date], [Product], [NumberOfSales], [NumberOfProductSold])
+INSERT INTO [GraduationProject].[dbo].[SalesSummaryByDay] 
+    ([Date], [ProductId], [ProductName], [NumberOfSales], [NumberOfProductSold], [RowGuid],[IsNotDeleted])
 SELECT 
     CONVERT(date, so.OrderDate) AS [Date],
-    p.Name AS [Product],
-    COUNT(soi.Id) AS [Number of Sales],
-    SUM(soi.Quantity) AS [Number of Product Sold]
+    p.Id AS [ProductId],      
+    p.Name AS [ProductName],
+    COUNT(soi.Id) AS [NumberOfSales],
+    SUM(soi.Quantity) AS [NumberOfProductSold],
+    NEWID() AS [RowGuid],
+	 1 AS [IsNotDeleted]
 FROM 
     [GraduationProject].[dbo].[SalesOrder] so
 JOIN 
@@ -20,6 +17,6 @@ JOIN
 WHERE 
     so.IsNotDeleted = 1 AND soi.IsNotDeleted = 1
 GROUP BY 
-    CONVERT(date, so.OrderDate), p.Name
+    CONVERT(date, so.OrderDate), p.Id, p.Name
 ORDER BY 
-    [Date], [Product];
+    [Date], [ProductId];

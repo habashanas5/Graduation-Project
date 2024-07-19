@@ -4,6 +4,7 @@ using GraduationProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraduationProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240719065753_AddTableSalesSummaryByDay")]
+    partial class AddTableSalesSummaryByDay
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2101,9 +2104,6 @@ namespace GraduationProject.Data.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ProductName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid>("RowGuid")
                         .HasColumnType("uniqueidentifier");
 
@@ -3024,13 +3024,13 @@ namespace GraduationProject.Data.Migrations
 
             modelBuilder.Entity("GraduationProject.Models.Entities.SalesSummaryByDay", b =>
                 {
-                    b.HasOne("GraduationProject.Models.Entities.Product", "Products")
+                    b.HasOne("GraduationProject.Models.Entities.Product", "ProductGroup")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Products");
+                    b.Navigation("ProductGroup");
                 });
 
             modelBuilder.Entity("GraduationProject.Models.Entities.Scrapping", b =>

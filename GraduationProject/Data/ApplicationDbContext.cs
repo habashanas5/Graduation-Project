@@ -58,6 +58,7 @@ namespace GraduationProject.Data
         public DbSet<DeliveryCompany> DeliveryCompany { get; set; } = default!;
         public DbSet<SalesReturnProduct> SalesReturnProduct { get; set; } = default!;
         public DbSet<GraduationProject.Models.Entities.GoodsReceiveDetail> GoodsReceiveDetail { get; set; } = default!;
+        public DbSet<SalesSummaryByDay> SalesSummaryByDay { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -70,8 +71,6 @@ namespace GraduationProject.Data
             builder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins", "security");
             builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims", "security");
             builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens", "security");
-            //builder.Entity<Factories>().ToTable("Factory");
-
 
             builder.Entity<FileImage>().HasKey(f => f.Id);
             builder.Entity<FileImage>().Property(f => f.OriginalFileName).HasMaxLength(100);
