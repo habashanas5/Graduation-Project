@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GraduationProject.Pages.DeliveryOrders
 {
-    [Authorize(Roles = "Admin,WarehouseManager")]
+    [Authorize(Roles = "Admin")]
     public class DeliveryOrderListModel : PageModel
     {
         public DeliveryOrderListModel() { }

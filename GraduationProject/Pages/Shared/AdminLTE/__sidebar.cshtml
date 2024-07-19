@@ -194,12 +194,15 @@
                                 <p>Warehouses</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a asp-page="/DeliveryOrders/DeliveryOrderList" class="nav-link @(currentPageFolderName.Equals("DeliveryOrders") ? "active" : "")">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Delivery Orders</p>
-                            </a>
-                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a asp-page="/DeliveryOrders/DeliveryOrderList" class="nav-link @(currentPageFolderName.Equals("DeliveryOrders") ? "active" : "")">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Delivery Orders</p>
+                                </a>
+                            </li>
+                        }
                         <li class="nav-item">
                             <a asp-page="/SalesReturns/SalesReturnList" class="nav-link @(currentPageFolderName.Equals("SalesReturns") ? "active" : "")">
                                 <i class="far fa-circle nav-icon"></i>
