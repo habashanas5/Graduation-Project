@@ -28,6 +28,17 @@ namespace GraduationProject.Applications.SalesOrderItems
         {
             if (entity != null)
             {
+             /*   var warehouseProduct = await _context.WarehouseProduct
+               .FirstOrDefaultAsync(wp => wp.WarehouseId == entity.WarehouseNumber && wp.ProductId == entity.ProductId);
+
+                if (warehouseProduct == null || warehouseProduct.Quantity < entity.Quantity)
+                {
+                    throw new Exception("Not enough quantity in the warehouse or product not found in warehouse");
+                }
+
+                warehouseProduct.Quantity -= (int)(entity.Quantity ?? 0);
+                _context.WarehouseProduct.Update(warehouseProduct);*/
+
                 if (entity is IHasAudit auditEntity && !string.IsNullOrEmpty(_userId))
                 {
                     auditEntity.CreatedAtUtc = DateTime.Now;

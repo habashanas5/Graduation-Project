@@ -1,4 +1,5 @@
 ﻿using GraduationProject.Models.Contracts;
+using GraduationProject.Models.Entity;
 
 namespace GraduationProject.Models.Entities
 {
@@ -13,6 +14,8 @@ namespace GraduationProject.Models.Entities
         public double? UnitPrice { get; set; } = 0;
         public double? Quantity { get; set; } = 1;
         public double? Total { get; set; } = 0;
+        public int WarehouseNumber { get; set; }
+        public Warehouse? Warehouse { get; set; }
 
         public void RecalculateTotal()
         {

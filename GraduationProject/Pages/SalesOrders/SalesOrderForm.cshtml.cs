@@ -4,6 +4,7 @@ using GraduationProject.Applications.NumberSequences;
 using GraduationProject.Applications.Products;
 using GraduationProject.Applications.SalesOrders;
 using GraduationProject.Applications.Taxes;
+using GraduationProject.Applications.Warehouses;
 using GraduationProject.Infrastructures.Extensions;
 using GraduationProject.Models.Entities;
 using GraduationProject.Models.Enums;
@@ -24,12 +25,15 @@ namespace GraduationProject.Pages.SalesOrders
         private readonly CustomerService _customerService;
         private readonly TaxService _taxService;
         private readonly ProductService _productService;
+        private readonly WarehouseService _warehouseService;
+
         public SalesOrderFormModel(
             IMapper mapper,
             SalesOrderService salesOrderService,
             NumberSequenceService numberSequenceService,
             CustomerService customerService,
             TaxService taxService,
+            WarehouseService warehouseService,
             ProductService productService
             )
         {
@@ -38,6 +42,7 @@ namespace GraduationProject.Pages.SalesOrders
             _numberSequenceService = numberSequenceService;
             _taxService = taxService;
             _customerService = customerService;
+            _warehouseService = warehouseService;
             _productService = productService;
         }
 
@@ -93,6 +98,8 @@ namespace GraduationProject.Pages.SalesOrders
         public ICollection<object> ProductLookup { get; set; } = default!;
         public ICollection<object> PriceLookup { get; set; } = default!;
         public ICollection<object> NumberLookup { get; set; } = default!;
+        public ICollection<object> WarehouseLookup { get; set; } = default!;
+
         private void BindLookup()
         {
 
@@ -121,6 +128,9 @@ namespace GraduationProject.Pages.SalesOrders
                 .Select(x => new { ProductId = x.Id, ProductNumber = x.Number } as object)
                 .ToList();
 
+            WarehouseLookup = _warehouseService.GetAll().Where(x => x.IsDefault == false)
+                .Select(x => new { WarehouseId = x.Id, WarehouseName = x.Name } as object)
+                .ToList();
 
         }
 

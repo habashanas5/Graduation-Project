@@ -5,6 +5,7 @@ using GraduationProject.Applications.SalesOrderItems;
 using GraduationProject.Applications.SalesOrders;
 using GraduationProject.Applications.Taxes;
 using GraduationProject.Models.Entities;
+using GraduationProject.Models.Entity;
 using GraduationProject.Models.Enums;
 
 namespace GraduationProject.Data.Demo
@@ -46,6 +47,7 @@ namespace GraduationProject.Data.Demo
                     await salesOrderService.AddAsync(salesOrder);
 
                     int numberOfProducts = random.Next(3, 6);
+
                     for (int i = 0; i < numberOfProducts; i++)
                     {
                         var product = products[random.Next(0, products.Count())];
@@ -56,6 +58,8 @@ namespace GraduationProject.Data.Demo
                             Summary = product.Number,
                             UnitPrice = product.UnitPrice,
                             Quantity = random.Next(2, 5),
+                            WarehouseNumber = 1
+
                         };
                         salesOrderItem.RecalculateTotal();
                         await salesOrderItemService.AddAsync(salesOrderItem);

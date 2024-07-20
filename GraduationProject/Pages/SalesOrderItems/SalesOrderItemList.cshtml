@@ -54,6 +54,7 @@
                     { field: 'Customer', width: 100 },
                     { field: 'Product', width: 100 },
                     { field: 'Summary', width: 100 },
+                    { field: 'WarehouseNumber', width: 100 },
                     { field: 'UnitPrice', width: 100, type: 'number', format: 'N2', textAlign: 'Right' },
                     { field: 'Quantity', width: 100, type: 'number', format: 'N2', textAlign: 'Right' },
                     { field: 'Total', width: 100, type: 'number', format: 'N2', textAlign: 'Right' },
@@ -64,7 +65,7 @@
                 beforeDataBound: () => {
                 },
                 dataBound: function () {
-                    grid.autoFitColumns(['CreatedAtUtc', 'OrderDate', 'SalesOrder', 'Customer', 'Product', 'Summary', 'UnitPrice', 'Quantity', 'Total']);
+                    grid.autoFitColumns(['CreatedAtUtc', 'OrderDate', 'SalesOrder', 'Customer', 'Product', 'Summary', 'WarehouseNumber', 'UnitPrice', 'Quantity', 'Total']);
                 },
                 excelExportComplete: () => {
                 },

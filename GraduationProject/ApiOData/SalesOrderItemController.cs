@@ -35,7 +35,8 @@ namespace GraduationProject.ApiOData
                     UnitPrice = rec.UnitPrice,
                     Quantity = rec.Quantity,
                     Total = rec.Total,
-                    OrderDate = rec.SalesOrder!.OrderDate
+                    OrderDate = rec.SalesOrder!.OrderDate,
+                    WarehouseNumber = rec.WarehouseNumber,
                 });
         }
 

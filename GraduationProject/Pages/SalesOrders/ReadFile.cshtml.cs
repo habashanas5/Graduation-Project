@@ -71,7 +71,7 @@ namespace GraduationProject.Pages.SalesOrders
                             Summary = values[2],
                             UnitPrice = double.Parse(values[3]),
                             Quantity = int.Parse(values[4]),
-
+                            WarehouseNumber = 1
                         };
                         salesOrderItem.RecalculateTotal();
 

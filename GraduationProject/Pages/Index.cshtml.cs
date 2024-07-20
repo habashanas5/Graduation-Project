@@ -3,6 +3,7 @@ using GraduationProject.Applications.SalesOrders;
 using GraduationProject.Data;
 using GraduationProject.Infrastructures.Emails;
 using GraduationProject.Models.Entities;
+using GraduationProject.Models.Entity;
 using GraduationProject.Models.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -202,7 +203,8 @@ namespace GraduationProject.Pages
                     Summary = $"Product: {cartItem.ProductName}, Quantity: {cartItem.Quantity}",
                     UnitPrice = cartItem.Price,
                     Quantity = cartItem.Quantity,
-                    Total = cartItem.Price * cartItem.Quantity
+                    Total = cartItem.Price * cartItem.Quantity,
+                    WarehouseNumber = 1
                 };
 
                 _context.SalesOrderItem.Add(salesOrderItem);
