@@ -59,6 +59,7 @@
                     { text: 'Edit', tooltipText: 'Edit', prefixIcon: 'e-edit', id: 'EditCustom' },
                     { text: 'Delete', tooltipText: 'Delete', prefixIcon: 'e-delete', id: 'DeleteCustom' },
                     { type: 'Separator' },
+                    { text: 'Read file', tooltipText: 'Read file', prefixIcon: 'e-Read_file', id: 'ReadFile' },
 
                 ],
                 beforeDataBound: () => {
@@ -104,6 +105,11 @@
                             var formUrl = '/SalesSummary/SalesSummaryForm?rowGuid=' + selectedRowGuid + '&action=edit';
                             window.location.href = formUrl;
                         }
+                    }
+
+                    if (args.item.id === 'ReadFile') {
+                        var formUrl = '/SalesSummary/ReadFile' + '?action=create';
+                        window.location.href = formUrl;
                     }
 
                     if (args.item.id === 'DeleteCustom') {
