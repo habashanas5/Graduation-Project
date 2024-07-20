@@ -61,6 +61,8 @@ namespace GraduationProject.Infrastructures.ODatas
             builder.EntitySet<AdjustmentMinusItemChildDto>("AdjustmentMinusItemChild");
             builder.EntitySet<ScrappingItemChildDto>("ScrappingItemChild");
             builder.EntitySet<StockCountItemChildDto>("StockCountItemChild");
+            builder.EntitySet<SalesSummaryByDaysDTO>("SalesSummaryByDays");
+
 
             services.AddControllers()
                 .AddOData(options => options.Select().Filter().OrderBy().Expand().Count().SetMaxTop(null)

@@ -104,6 +104,12 @@
                                     <p>Sales Order Items</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a asp-page="/SalesSummary/SalesSummaryList" class="nav-link @(currentPageFolderName.Equals("SalesSummary") ? "active" : "")">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Sales Summary By Day</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 }

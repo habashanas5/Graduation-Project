@@ -112,6 +112,7 @@ namespace GraduationProject.Data
             builder.ApplyConfiguration(new AdjustmentPlusConfiguration());
             builder.ApplyConfiguration(new ScrappingConfiguration());
             builder.ApplyConfiguration(new DeliveryCompanyConfiguration());
+            builder.ApplyConfiguration(new SalesSummaryByDaysConfiguration());
 
         }
     }

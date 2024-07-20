@@ -1,0 +1,87 @@
+﻿@page "{rowGuid?}"
+@using GraduationProject.Models.Enums
+@model GraduationProject.Pages.SalesSummary.SalesSummaryFormModel
+@{
+    Layout = "~/Pages/Shared/AdminLTE/_Admin.cshtml";
+    var statusMessage = Model.StatusMessage;
+    Model.StatusMessage = string.Empty;
+}
+
+<div class="form-card">
+    <form id="formMain" method="post" enctype="multipart/form-data" novalidate="">
+        <input type="hidden" asp-for="@Model.SalesSummaryByDayForm.RowGuid" />
+        <div class="form-card-body">
+
+            <p class="small-italic-left">General</p>
+            <fieldset>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="@Model.SalesSummaryByDayForm.ProductName" class="form-label"></label>
+                            <select asp-for="@Model.SalesSummaryByDayForm.ProductName" asp-items="@Model.ProductLookup" class="form-control">
+                                <option value="">-- Select Product --</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="@Model.SalesSummaryByDayForm.ProductId" class="form-label"></label>
+                            <input asp-for="@Model.SalesSummaryByDayForm.ProductId" class="form-control" type="text" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="@Model.SalesSummaryByDayForm.NumberOfProductSold" class="form-label"></label>
+                            <input asp-for="@Model.SalesSummaryByDayForm.NumberOfProductSold" class="form-control" type="text" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="@Model.SalesSummaryByDayForm.NumberOfSales" class="form-label"></label>
+                            <input asp-for="@Model.SalesSummaryByDayForm.NumberOfSales" class="form-control" type="text" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+        </div>
+        <div class="form-card-footer">
+            <button type="submit" id="btnSubmit" class="e-btn e-control @(Model.Action == "delete" ? "e-danger" : "")">@(Model.Action == "delete" ? "Delete" : "Submit")</button>
+        </div>
+
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            showStatusMessage('@statusMessage');
+        new ej.inputs.TextBox({}, '#SalesSummaryByDayForm_ProductName');
+        new ej.inputs.TextBox({}, '#SalesSummaryByDayForm_ProductId');
+        new ej.inputs.TextBox({}, '#SalesSummaryByDayForm_NumberOfProductSold');
+        new ej.inputs.TextBox({}, '#SalesSummaryByDayForm_NumberOfSales');
+        new ej.buttons.Button({ isPrimary: true }, '#btnSubmit');
+        var validationOptions = {
+            rules: {
+                'DeliveryCompanyForm.ProductName': { required: true },
+                'DeliveryCompanyForm.NumberOfProductSold': { required: true },
+                'DeliveryCompanyForm.NumberOfSales': { required: true },
+            }
+        }
+
+            var formValidator = new ej.inputs.FormValidator('#formMain', validationOptions);
+            var formElement = document.getElementById('formMain');
+            formElement.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (formValidator.validate()) {
+                    formElement.submit();
+                }
+            })
+        });
+    </script>
+}

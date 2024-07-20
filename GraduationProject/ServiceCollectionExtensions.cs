@@ -22,6 +22,7 @@ using GraduationProject.Applications.PurchaseReturns;
 using GraduationProject.Applications.SalesOrderItems;
 using GraduationProject.Applications.SalesOrders;
 using GraduationProject.Applications.SalesReturns;
+using GraduationProject.Applications.SalesSummaryByDays;
 using GraduationProject.Applications.Scrappings;
 using GraduationProject.Applications.StockCounts;
 using GraduationProject.Applications.Taxes;
@@ -92,7 +93,8 @@ namespace GraduationProject
             services.AddScoped<AdjustmentMinusService>();
             services.AddScoped<AdjustmentPlusService>();
             services.AddScoped<ScrappingService>();
-            services.AddScoped<DeliveryOrderService>();
+            services.AddScoped<DeliveryCompanyService>();
+            services.AddScoped<SalesSummaryByDayService>();
 
 
             return services;
