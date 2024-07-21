@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraduationProject", "GraduationProject\GraduationProject.csproj", "{97C35138-5A78-4DD2-B4C9-7D9AF602A7C6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{14CF1DC7-932A-4144-A328-772C62E6302A} = {14CF1DC7-932A-4144-A328-772C62E6302A}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat.Web", "..\..\SignalR-Chat-main\SignalR-Chat-main\src\Chat.Web\Chat.Web.csproj", "{14CF1DC7-932A-4144-A328-772C62E6302A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{97C35138-5A78-4DD2-B4C9-7D9AF602A7C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97C35138-5A78-4DD2-B4C9-7D9AF602A7C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97C35138-5A78-4DD2-B4C9-7D9AF602A7C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14CF1DC7-932A-4144-A328-772C62E6302A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14CF1DC7-932A-4144-A328-772C62E6302A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14CF1DC7-932A-4144-A328-772C62E6302A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14CF1DC7-932A-4144-A328-772C62E6302A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
