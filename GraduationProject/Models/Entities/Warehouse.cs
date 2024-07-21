@@ -16,6 +16,8 @@ namespace GraduationProject.Models.Entity
         public string? City { get; set; }
         public string? State { get; set; }
         public string? PostalCode { get; set; }
+        public decimal? Lat { get; set; }
+        public decimal? Lng { get; set; }
         public ICollection<WarehouseProduct>? WarehouseProducts { get; set; }
         public ICollection<SalesOrderItem>? SalesOrderItem { get; set; }
 

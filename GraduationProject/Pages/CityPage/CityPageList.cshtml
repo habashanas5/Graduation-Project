@@ -1,11 +1,12 @@
 ﻿@page
-@model Indotalent.Pages.Warehouses.WarehouseListModel
+@model GraduationProject.Pages.CityPage.CityPageListModel
 @{
     Layout = "~/Pages/Shared/AdminLTE/_Admin.cshtml";
     var statusMessage = Model.StatusMessage;
     Model.StatusMessage = string.Empty;
-    ViewData["Module"] = "Inventory";
+    ViewData["Module"] = "Settings";
 }
+
 
 <div class="row">
     <div class="col-12">
@@ -16,14 +17,13 @@
 @section Scripts {
     <script>
 
-
         document.addEventListener('DOMContentLoaded', function () {
 
             showStatusMessage('@statusMessage');
 
             var grid = new ej.grids.Grid({
                 dataSource: new ej.data.DataManager({
-                    url: '/odata/Warehouse',
+                    url: '/odata/CityInfo',
                     adaptor: new ej.data.ODataV4Adaptor()
                 }),
                 allowFiltering: true,
@@ -46,18 +46,16 @@
                     {
                         field: 'RowGuid', isPrimaryKey: true, headerText: 'RowGuid', visible: false
                     },
-                    { field: 'CreatedAtUtc', width: 100, format: 'yyyy-MM-dd HH:ss', textAlign: 'Left', type: 'dateTime' },
-                    { field: 'Name', width: 100 },
-                    { field: 'IsDefault', width: 100, textAlign: 'Center', displayAsCheckBox: true, type: 'boolean' },
-                    { field: 'Description', width: 100 },
-                    { field: 'PhoneNumber', width: 100 },
-                    { field: 'Address', width: 100 },
-                    { field: 'City', width: 100 },
-                    { field: 'ZipCode', width: 100 },
-                    { field: 'State', width: 100 },
+                    { field: 'CityName', width: 100 },
+                    { field: 'CityAscii', width: 100 },
                     { field: 'Lat', width: 100 },
                     { field: 'Lng', width: 100 },
-
+                    { field: 'Country', width: 100 },
+                    { field: 'Iso2', width: 100 },
+                    { field: 'Iso3', width: 100 },
+                    { field: 'AdminName', width: 100 },
+                    { field: 'Capital', width: 100 },
+                    { field: 'Population', width: 100 },
 
                 ],
                 toolbar: [
@@ -66,29 +64,30 @@
                     { text: 'Add', tooltipText: 'Add', prefixIcon: 'e-add', id: 'AddCustom' },
                     { text: 'Edit', tooltipText: 'Edit', prefixIcon: 'e-edit', id: 'EditCustom' },
                     { text: 'Delete', tooltipText: 'Delete', prefixIcon: 'e-delete', id: 'DeleteCustom' },
-                    { text: 'AddProducts', tooltipText: 'AddProducts', prefixIcon: 'e-products', id: 'AddProducts' },
+                    { type: 'Separator' },
+                    { text: 'Read file', tooltipText: 'Read file', prefixIcon: 'e-Read_file', id: 'ReadFile' },
 
                 ],
                 beforeDataBound: () => {
                 },
                 dataBound: function () {
-                    grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom'], false);
-                    grid.autoFitColumns(['CreatedAtUtc', 'Name', 'IsDefault', 'Description', 'PhoneNumber', 'Address', 'City', 'ZipCode', 'State', 'Lat', 'Lng']);
+                    grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom', 'PdfCustom'], false);
+                    grid.autoFitColumns(['CityName', 'CityAscii', 'Lat', 'Lng', 'Country', 'Iso2', 'Iso3', 'AdminName', 'Capital', 'Population']);
                 },
                 excelExportComplete: () => {
                 },
                 rowSelected: () => {
                     if (grid.getSelectedRecords().length == 1) {
-                        grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom'], true);
+                        grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom', 'PdfCustom'], true);
                     } else {
-                        grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom'], false);
+                        grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom', 'PdfCustom'], false);
                     }
                 },
                 rowDeselected: () => {
                     if (grid.getSelectedRecords().length == 1) {
-                        grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom'], true);
+                        grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom', 'PdfCustom'], true);
                     } else {
-                        grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom'], false);
+                        grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom', 'PdfCustom'], false);
                     }
                 },
                 rowSelecting: () => {
@@ -102,21 +101,21 @@
                     }
 
                     if (args.item.id === 'AddCustom') {
-                        var formUrl = '/Warehouses/WarehouseForm' + '?action=create';
-                        window.location.href = formUrl;
-                    }
-
-                    if (args.item.id === 'AddProducts') {
-                        var formUrl = 'http://localhost:5244/warehouseProducts/index';
+                        var formUrl = '/CityPage/CityPageForm' + '?action=create';
                         window.location.href = formUrl;
                     }
 
                     if (args.item.id === 'EditCustom') {
                         if (grid.getSelectedRecords().length) {
                             var selectedRowGuid = grid.getSelectedRecords()[0].RowGuid;
-                            var formUrl = '/Warehouses/WarehouseForm?rowGuid=' + selectedRowGuid + '&action=edit';
+                            var formUrl = '/CityPage/CityPageForm?rowGuid=' + selectedRowGuid + '&action=edit';
                             window.location.href = formUrl;
                         }
+                    }
+
+                    if (args.item.id === 'ReadFile') {
+                        var formUrl = '/CityPage/ReadFile' + '?action=create';
+                        window.location.href = formUrl;
                     }
 
                     if (args.item.id === 'DeleteCustom') {
@@ -129,7 +128,7 @@
                                     click: () => {
                                         dialogObj.hide();
                                         var selectedRowGuid = grid.getSelectedRecords()[0].RowGuid;
-                                        var formUrl = '/Warehouses/WarehouseForm?rowGuid=' + selectedRowGuid + '&action=delete';
+                                        var formUrl = '/CityPage/CityPageForm?rowGuid=' + selectedRowGuid + '&action=delete';
                                         window.location.href = formUrl;
                                     }
                                 },
@@ -138,9 +137,8 @@
                                 closeOnEscape: true
                             });
 
-                        }              
+                        }
                     }
-
                 }
             });
 

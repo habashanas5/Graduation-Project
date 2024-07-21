@@ -1,6 +1,7 @@
 ﻿using GraduationProject.Applications.AdjustmentMinuss;
 using GraduationProject.Applications.AdjustmentPluss;
 using GraduationProject.Applications.ApplicationUsers;
+using GraduationProject.Applications.City;
 using GraduationProject.Applications.Companies;
 using GraduationProject.Applications.CustomerCategories;
 using GraduationProject.Applications.CustomerContacts;
@@ -95,7 +96,7 @@ namespace GraduationProject
             services.AddScoped<ScrappingService>();
             services.AddScoped<DeliveryCompanyService>();
             services.AddScoped<SalesSummaryByDayService>();
-
+            services.AddScoped<CityInfoService>();
 
             return services;
         }

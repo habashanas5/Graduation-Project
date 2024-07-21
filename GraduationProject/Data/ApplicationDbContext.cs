@@ -59,6 +59,7 @@ namespace GraduationProject.Data
         public DbSet<SalesReturnProduct> SalesReturnProduct { get; set; } = default!;
         public DbSet<GraduationProject.Models.Entities.GoodsReceiveDetail> GoodsReceiveDetail { get; set; } = default!;
         public DbSet<SalesSummaryByDay> SalesSummaryByDay { get; set; } = default!;
+        public DbSet<CityInfo> CityInfo { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -113,6 +114,7 @@ namespace GraduationProject.Data
             builder.ApplyConfiguration(new ScrappingConfiguration());
             builder.ApplyConfiguration(new DeliveryCompanyConfiguration());
             builder.ApplyConfiguration(new SalesSummaryByDaysConfiguration());
+            builder.ApplyConfiguration(new CityConfiguration());
 
         }
     }

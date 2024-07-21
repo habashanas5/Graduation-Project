@@ -62,6 +62,7 @@ namespace GraduationProject.Infrastructures.ODatas
             builder.EntitySet<ScrappingItemChildDto>("ScrappingItemChild");
             builder.EntitySet<StockCountItemChildDto>("StockCountItemChild");
             builder.EntitySet<SalesSummaryByDaysDTO>("SalesSummaryByDays");
+            builder.EntitySet<CityInfoDTO>("CityInfo");
 
 
             services.AddControllers()

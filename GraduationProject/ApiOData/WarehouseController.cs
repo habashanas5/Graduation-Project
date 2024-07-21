@@ -31,8 +31,9 @@ namespace GraduationProject.ApiOData
                     Address = rec.Address,
                     City = rec.City,
                     State = rec.State,
-                    PostalCode = rec.PostalCode
-
+                    PostalCode = rec.PostalCode,
+                    Lat = rec.Lat,
+                    Lng = rec.Lng,
                 });
         }
 

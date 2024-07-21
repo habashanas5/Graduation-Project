@@ -54,6 +54,10 @@ namespace GraduationProject.Pages.Warehouses
 
             [DisplayName("PhoneNumber")]
             public string? PhoneNumber { get; set; }
+            [DisplayName("Latitude")]
+            public string? Lat { get; set; }
+            [DisplayName("Longitude")]
+            public string? Lng { get; set; }
 
         }
 

@@ -110,7 +110,7 @@ namespace GraduationProject.Pages.SalesSummary
                 };
             }
         }
-        public async Task<IActionResult> OnPostAsync([Bind(Prefix = nameof(SalesSummaryByDayForm))] ProductModel input)
+        public async Task<IActionResult> OnPostAsync([Bind(Prefix = nameof(SalesSummaryByDayForm))] SalesSummaryByDayModel input)
         {
             if (!ModelState.IsValid)
             {
