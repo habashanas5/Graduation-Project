@@ -1,6 +1,7 @@
 ﻿using GraduationProject.Data;
 using GraduationProject.Infrastructures.Repositories;
 using GraduationProject.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace GraduationProject.Applications.City
 {
@@ -17,6 +18,12 @@ namespace GraduationProject.Applications.City
                   auditColumnTransformer)
         {
             _context = context;
+        }
+
+        public async Task<CityInfo?> GetCityInfoAsync(string cityName, string country)
+        {
+            return await _context.CityInfo
+                .FirstOrDefaultAsync(ci => ci.CityName == cityName && ci.Country == country);
         }
     }
 }

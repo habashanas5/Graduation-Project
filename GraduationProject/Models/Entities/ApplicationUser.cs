@@ -1,4 +1,5 @@
 ﻿using GraduationProject.Models.Contracts;
+using GraduationProject.Models.Entity;
 using GraduationProject.Models.Enums;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
@@ -29,6 +30,10 @@ namespace GraduationProject.Models.Entities
         public string? Country { get; set; }
         public string? ZipCode { get; set; }
         public string? Avatar { get; set; }
+        public decimal Lat { get; set; }
+        public decimal Lng { get; set; }
+        public int? CityInfoId { get; set; }
+        public CityInfo? CityInfo { get; set; }
         public UserType UserType { get; set; } = UserType.Customer;
         public List<UserType> SelectedRoles { get; set; } = new List<UserType>();
         public bool IsDefaultAdmin { get; set; } = false;
@@ -39,6 +44,8 @@ namespace GraduationProject.Models.Entities
         public CustomerGroup? CustomerGroup { get; set; }
         public required int CustomerCategoryIdUser { get; set; }
         public CustomerCategory? CustomerCategory { get; set; }
+        public int? NearestWarehouseId { get; set; }
+        public Warehouse NearestWarehouse { get; set; }
         public List<SalesReturn> SalesReturns { get; set; } = new List<SalesReturn>();
 
         //IHasAudit

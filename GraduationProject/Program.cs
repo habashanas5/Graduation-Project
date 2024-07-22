@@ -1,6 +1,8 @@
 using DeviceDetectorNET.Parser.Device;
 using GraduationProject;
+using GraduationProject.Applications;
 using GraduationProject.Applications.ApplicationUsers;
+using GraduationProject.Applications.City;
 using GraduationProject.Applications.Companies;
 using GraduationProject.Applications.DeliveryCompanys;
 using GraduationProject.AppSettings;
@@ -69,6 +71,10 @@ builder.Services.AddScoped<IDeliveryCompanyService, DeliveryCompanyService>();
 builder.Services.AddScoped<DeliveryCompanyService>();
 
 builder.Services.AddScoped<ApplicationUserService>();
+
+builder.Services.AddScoped<CityInfoService>();
+
+builder.Services.AddScoped<DistanceService>();
 
 builder.Services.AddTransient<IEmailSender, SMTPEmailService>();
 

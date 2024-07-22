@@ -26,14 +26,9 @@ namespace GraduationProject.ApiOData
                  RowGuid = rec.RowGuid,
                  CreatedAtUtc = rec.CreatedAtUtc,
                  CityName = rec.CityName,
-                 CityAscii = rec.CityAscii,
                  Lat = rec.Lat,
                  Lng = rec.Lng,
                  Country = rec.Country,
-                 Iso2 = rec.Iso2,
-                 Iso3 = rec.Iso3,
-                 AdminName = rec.AdminName,
-                 Capital = rec.Capital,
                  Population = rec.Population,
                 });
         }

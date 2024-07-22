@@ -2,6 +2,7 @@
 using GraduationProject.Infrastructures.Repositories;
 using GraduationProject.Models.Contracts;
 using GraduationProject.Models.Entities;
+using GraduationProject.Models.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
@@ -169,7 +170,6 @@ namespace GraduationProject.Applications.ApplicationUsers
                 await _context.SaveChangesAsync();
             }
         }
-
-
+    
     }
 }

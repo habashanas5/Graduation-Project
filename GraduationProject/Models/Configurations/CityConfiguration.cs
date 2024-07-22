@@ -14,10 +14,6 @@ namespace GraduationProject.Models.Configurations
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.Property(c => c.CityAscii)
-                .IsRequired()
-                .HasMaxLength(100);
-
             builder.Property(c => c.Lat)
                 .IsRequired()
                 .HasColumnType("decimal(9,6)");
@@ -29,22 +25,6 @@ namespace GraduationProject.Models.Configurations
             builder.Property(c => c.Country)
                 .IsRequired()
                 .HasMaxLength(100);
-
-            builder.Property(c => c.Iso2)
-                .IsRequired()
-                .HasMaxLength(2);
-
-            builder.Property(c => c.Iso3)
-                .IsRequired()
-                .HasMaxLength(3);
-
-            builder.Property(c => c.AdminName)
-                .IsRequired(false)
-                .HasMaxLength(100);
-
-            builder.Property(c => c.Capital)
-                .IsRequired(false)
-                .HasMaxLength(50);
 
             builder.Property(c => c.Population)
                 .IsRequired();

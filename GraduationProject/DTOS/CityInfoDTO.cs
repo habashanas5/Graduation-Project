@@ -2,7 +2,7 @@
 {
     public class CityInfoDTO
     {
-        public long? Id { get; set; }
+        public int? Id { get; set; }
         public string? CityName { get; set; }
         public string? CityAscii { get; set; }
         public decimal? Lat { get; set; }
@@ -12,7 +12,7 @@
         public string? Iso3 { get; set; }
         public string? AdminName { get; set; }
         public string? Capital { get; set; }
-        public long? Population { get; set; }
+        public int? Population { get; set; }
         public Guid? RowGuid { get; set; }
         public DateTime? CreatedAtUtc { get; set; }
     }

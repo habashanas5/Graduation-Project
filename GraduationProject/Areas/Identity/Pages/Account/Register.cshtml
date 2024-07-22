@@ -57,7 +57,7 @@
                 <span asp-validation-for="Input.ZipCode" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <select asp-for="Input.Country" class="form-control">
+                <select asp-for="Input.Country" class="form-control" id="countrySelect">
                     <option value="">-- Select Country --</option>
                     @foreach (var country in Model.Countries)
                     {
@@ -89,6 +89,18 @@
                 </select>
                 <label asp-for="Input.CustomerCategoryId">Customer Category</label>
                 <span asp-validation-for="Input.CustomerCategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating mb-3">
+                <select asp-for="Input.CityInfoId" class="form-control" id="citySelect">
+                    <option value="">-- Select City Info --</option>
+                    @foreach (var category in Model.Cities)
+                    {
+                        <option value="@category.Id">@category.CityName - @category.Country - @category.Lat - @category.Lng</option>
+                    }
+                </select>
+                <label asp-for="Input.CityInfoId"> City Info</label>
+                <span asp-validation-for="Input.CityInfoId" class="text-danger"></span>
             </div>
 
             <div class="d-flex justify-content-center">

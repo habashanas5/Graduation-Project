@@ -333,13 +333,7 @@
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Sequence</p>
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-page="/CityPage/CityPageLIst" class="nav-link @(currentPageFolderName.Equals("CityPage") ? "active" : "")">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Cities Info</p>
-                                </a>
-                            </li>
+                            </li>                          
                         </ul>
                     </li>
                     <li class="nav-item @(ViewData["Module"]?.ToString() == "Log" ? "menu-open" : "")">

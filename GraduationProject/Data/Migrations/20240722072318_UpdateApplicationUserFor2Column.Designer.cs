@@ -4,6 +4,7 @@ using GraduationProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraduationProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240722072318_UpdateApplicationUserFor2Column")]
+    partial class UpdateApplicationUserFor2Column
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,9 +185,6 @@ namespace GraduationProject.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("CityInfoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -249,10 +249,7 @@ namespace GraduationProject.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal?>("Lat")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("Lng")
+                    b.Property<decimal?>("Latitude")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -261,8 +258,8 @@ namespace GraduationProject.Data.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<int?>("NearestWarehouseId")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("Longitude")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(100)
@@ -322,13 +319,9 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CityInfoId");
-
                     b.HasIndex("CustomerCategoryId");
 
                     b.HasIndex("CustomerGroupId");
-
-                    b.HasIndex("NearestWarehouseId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -385,6 +378,19 @@ namespace GraduationProject.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AdminName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Capital")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("CityAscii")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("CityName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -407,15 +413,25 @@ namespace GraduationProject.Data.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
+                    b.Property<string>("Iso2")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
+
+                    b.Property<string>("Iso3")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
+
                     b.Property<decimal>("Lat")
                         .HasColumnType("decimal(9,6)");
 
                     b.Property<decimal>("Lng")
                         .HasColumnType("decimal(9,6)");
 
-                    b.Property<int?>("Population")
+                    b.Property<long?>("Population")
                         .IsRequired()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
                     b.Property<Guid>("RowGuid")
                         .ValueGeneratedOnAdd()
@@ -2777,10 +2793,6 @@ namespace GraduationProject.Data.Migrations
 
             modelBuilder.Entity("GraduationProject.Models.Entities.ApplicationUser", b =>
                 {
-                    b.HasOne("GraduationProject.Models.Entities.CityInfo", "CityInfo")
-                        .WithMany()
-                        .HasForeignKey("CityInfoId");
-
                     b.HasOne("GraduationProject.Models.Entities.CustomerCategory", "CustomerCategory")
                         .WithMany()
                         .HasForeignKey("CustomerCategoryId");
@@ -2789,23 +2801,15 @@ namespace GraduationProject.Data.Migrations
                         .WithMany()
                         .HasForeignKey("CustomerGroupId");
 
-                    b.HasOne("GraduationProject.Models.Entity.Warehouse", "NearestWarehouse")
-                        .WithMany()
-                        .HasForeignKey("NearestWarehouseId");
-
                     b.HasOne("GraduationProject.Models.Entities.Company", "SelectedCompany")
                         .WithMany()
                         .HasForeignKey("SelectedCompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CityInfo");
-
                     b.Navigation("CustomerCategory");
 
                     b.Navigation("CustomerGroup");
-
-                    b.Navigation("NearestWarehouse");
 
                     b.Navigation("SelectedCompany");
                 });

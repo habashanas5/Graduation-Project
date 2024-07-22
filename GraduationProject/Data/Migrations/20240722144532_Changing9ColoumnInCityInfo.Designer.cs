@@ -4,6 +4,7 @@ using GraduationProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraduationProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240722144532_Changing9ColoumnInCityInfo")]
+    partial class Changing9ColoumnInCityInfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,9 +264,6 @@ namespace GraduationProject.Data.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<int?>("NearestWarehouseId")
-                        .HasColumnType("int");
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -328,8 +328,6 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("CustomerGroupId");
 
-                    b.HasIndex("NearestWarehouseId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -384,6 +382,11 @@ namespace GraduationProject.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CityAscii")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("CityName")
                         .IsRequired()
@@ -2789,10 +2792,6 @@ namespace GraduationProject.Data.Migrations
                         .WithMany()
                         .HasForeignKey("CustomerGroupId");
 
-                    b.HasOne("GraduationProject.Models.Entity.Warehouse", "NearestWarehouse")
-                        .WithMany()
-                        .HasForeignKey("NearestWarehouseId");
-
                     b.HasOne("GraduationProject.Models.Entities.Company", "SelectedCompany")
                         .WithMany()
                         .HasForeignKey("SelectedCompanyId")
@@ -2804,8 +2803,6 @@ namespace GraduationProject.Data.Migrations
                     b.Navigation("CustomerCategory");
 
                     b.Navigation("CustomerGroup");
-
-                    b.Navigation("NearestWarehouse");
 
                     b.Navigation("SelectedCompany");
                 });

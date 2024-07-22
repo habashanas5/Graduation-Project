@@ -4,6 +4,7 @@ using GraduationProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraduationProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240722091805_Update4ColoumnInApplicationUser")]
+    partial class Update4ColoumnInApplicationUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -249,20 +252,11 @@ namespace GraduationProject.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal?>("Lat")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("Lng")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<int?>("NearestWarehouseId")
-                        .HasColumnType("int");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(100)
@@ -328,8 +322,6 @@ namespace GraduationProject.Data.Migrations
 
                     b.HasIndex("CustomerGroupId");
 
-                    b.HasIndex("NearestWarehouseId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -385,6 +377,19 @@ namespace GraduationProject.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AdminName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Capital")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("CityAscii")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("CityName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -407,10 +412,22 @@ namespace GraduationProject.Data.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
-                    b.Property<decimal>("Lat")
+                    b.Property<string>("Iso2")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
+
+                    b.Property<string>("Iso3")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
+
+                    b.Property<decimal?>("Lat")
+                        .IsRequired()
                         .HasColumnType("decimal(9,6)");
 
-                    b.Property<decimal>("Lng")
+                    b.Property<decimal?>("Lng")
+                        .IsRequired()
                         .HasColumnType("decimal(9,6)");
 
                     b.Property<int?>("Population")
@@ -2789,10 +2806,6 @@ namespace GraduationProject.Data.Migrations
                         .WithMany()
                         .HasForeignKey("CustomerGroupId");
 
-                    b.HasOne("GraduationProject.Models.Entity.Warehouse", "NearestWarehouse")
-                        .WithMany()
-                        .HasForeignKey("NearestWarehouseId");
-
                     b.HasOne("GraduationProject.Models.Entities.Company", "SelectedCompany")
                         .WithMany()
                         .HasForeignKey("SelectedCompanyId")
@@ -2804,8 +2817,6 @@ namespace GraduationProject.Data.Migrations
                     b.Navigation("CustomerCategory");
 
                     b.Navigation("CustomerGroup");
-
-                    b.Navigation("NearestWarehouse");
 
                     b.Navigation("SelectedCompany");
                 });

@@ -11,11 +11,15 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
+using GraduationProject.Applications;
+using GraduationProject.Applications.ApplicationUsers;
+using GraduationProject.Applications.City;
 using GraduationProject.Applications.Companies;
 using GraduationProject.AppSettings;
 using GraduationProject.Data;
 using GraduationProject.Infrastructures.Countries;
 using GraduationProject.Models.Entities;
+using GraduationProject.Models.Entity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -42,6 +46,8 @@ namespace GraduationProject.Areas.Identity.Pages.Account
        // private readonly RegistrationConfiguration _registrationConfiguration;
         private readonly CompanyService _companyService;
         private readonly ICountryService _countrySevice;
+       // private readonly ApplicationUserService _userService;
+       // private readonly CityInfoService _cityInfoService;
 
         public RegisterModel(
             ApplicationDbContext context,
@@ -52,7 +58,11 @@ namespace GraduationProject.Areas.Identity.Pages.Account
             IEmailSender emailSender,
           //  IOptions<RegistrationConfiguration> registrationConfiguration,
             CompanyService companyService,
-            ICountryService countrySevice)
+           // CityInfoService cityInfoService,
+            ICountryService countrySevice
+           // ApplicationUserService userServic
+           )
+
         {
             _context = context;
             _userManager = userManager;
@@ -61,10 +71,11 @@ namespace GraduationProject.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-           // _registrationConfiguration = registrationConfiguration.Value;
+            // _registrationConfiguration = registrationConfiguration.Value;
             _companyService = companyService;
             _countrySevice = countrySevice;
-
+            //_userService = userService;
+            // _cityInfoService = cityInfoService;
         }
 
         /// <summary>
@@ -136,6 +147,9 @@ namespace GraduationProject.Areas.Identity.Pages.Account
             [Display(Name = "Customer Category")]
             public int CustomerCategoryId { get; set; }
 
+            [Display(Name = "City Info")]
+            public int CityInfoId { get; set; }
+
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
@@ -146,6 +160,7 @@ namespace GraduationProject.Areas.Identity.Pages.Account
             public string City { get; set; }
             [Display(Name = "State")]
             public string State { get; set; }
+
             [Display(Name = "Country")]
             public string Country { get; set; }
             [Display(Name = "ZipCode")]
@@ -154,6 +169,7 @@ namespace GraduationProject.Areas.Identity.Pages.Account
         }
 
         public List<CustomerGroup> CustomerGroups { get; set; }
+        public List<CityInfo> Cities { get; set; }
         public List<CustomerCategory> CustomerCategories { get; set; }
         public ICollection<SelectListItem> Countries { get; set; }
 
@@ -162,6 +178,7 @@ namespace GraduationProject.Areas.Identity.Pages.Account
             CustomerGroups = await _context.CustomerGroup.ToListAsync();
             CustomerCategories = await _context.CustomerCategory.ToListAsync();
             Countries = _countrySevice.GetCountries();
+            Cities = await _context.CityInfo.ToListAsync();
 
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -187,6 +204,32 @@ namespace GraduationProject.Areas.Identity.Pages.Account
                 user.Country = Input.Country;
                 user.ZipCode = Input.ZipCode;
                 user.PhoneNumber = Input.PhoneNumber;
+                user.CityInfoId = Input.CityInfoId;
+
+                var cityInfo = await _context.CityInfo.FindAsync(Input.CityInfoId);
+                if (cityInfo != null)
+                {
+                    user.Lat = cityInfo.Lat;
+                    user.Lng = cityInfo.Lng;
+                }
+
+                var warehouses = await _context.Warehouse.ToListAsync();
+                Warehouse nearestWarehouse = null;
+                double minDistance = double.MaxValue;
+                foreach (var warehouse in warehouses)
+                {
+                    var distance = DistanceService.CalculateDistance(user.Lat, user.Lng, warehouse.Lat, warehouse.Lng);
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        nearestWarehouse = warehouse;
+                    }
+                }
+
+                if (nearestWarehouse != null)
+                {
+                    user.NearestWarehouseId = nearestWarehouse.Id;
+                }
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
