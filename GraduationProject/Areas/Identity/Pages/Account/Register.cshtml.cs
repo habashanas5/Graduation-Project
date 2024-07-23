@@ -156,13 +156,13 @@ namespace GraduationProject.Areas.Identity.Pages.Account
 
             [Display(Name = "Address")]
             public string Address { get; set; }
-            [Display(Name = "City")]
-            public string City { get; set; }
+            //[Display(Name = "City")]
+            //public string City { get; set; }
             [Display(Name = "State")]
             public string State { get; set; }
 
-            [Display(Name = "Country")]
-            public string Country { get; set; }
+            //[Display(Name = "Country")]
+            //public string Country { get; set; }
             [Display(Name = "ZipCode")]
             public string ZipCode { get; set; }
 
@@ -199,9 +199,9 @@ namespace GraduationProject.Areas.Identity.Pages.Account
                 user.CustomerGroupIdUser = Input.CustomerGroupId;
                 user.CustomerCategoryIdUser = Input.CustomerCategoryId;
                 user.Address = Input.Address;
-                user.City = Input.City;
+                //user.City = Input.City;
                 user.State = Input.State;
-                user.Country = Input.Country;
+                //user.Country = Input.Country;
                 user.ZipCode = Input.ZipCode;
                 user.PhoneNumber = Input.PhoneNumber;
                 user.CityInfoId = Input.CityInfoId;
@@ -213,7 +213,12 @@ namespace GraduationProject.Areas.Identity.Pages.Account
                     user.Lng = cityInfo.Lng;
                 }
 
-                var warehouses = await _context.Warehouse.ToListAsync();
+                //var warehouses = await _context.Warehouse.ToListAsync();
+                var warehouseIds = new List<int> { 1, 3, 4 }; 
+
+                var warehouses = await _context.Warehouse
+                    .Where(w => warehouseIds.Contains(w.Id))
+                    .ToListAsync();
                 Warehouse nearestWarehouse = null;
                 double minDistance = double.MaxValue;
                 foreach (var warehouse in warehouses)

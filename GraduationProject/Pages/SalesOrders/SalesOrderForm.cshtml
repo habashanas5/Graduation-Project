@@ -46,6 +46,14 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="@Model.SalesOrderForm.WarehouseId" class="form-label"></label>
+                            <select asp-for="@Model.SalesOrderForm.WarehouseId" asp-items="@Model.WarehouseLookup" class="form-control">
+                                <option value="">-- Select Warehouse --</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label asp-for="@Model.SalesOrderForm.Description" class="form-label"></label>
@@ -70,6 +78,7 @@
                             </select>
                         </div>
                     </div>
+                
                 </div>
             </fieldset>
             
@@ -139,6 +148,7 @@
 
             new ej.inputs.TextBox({}, '#SalesOrderForm_Description');
             new ej.dropdowns.DropDownList({ allowFiltering: true }, '#SalesOrderForm_CustomerId');
+            new ej.dropdowns.DropDownList({ allowFiltering: true }, '#SalesOrderForm_WarehouseId');
             new ej.dropdowns.DropDownList({ allowFiltering: true }, '#SalesOrderForm_TaxId');
             new ej.dropdowns.DropDownList({}, '#SalesOrderForm_OrderStatus');
             new ej.calendars.DateTimePicker({}, '#SalesOrderForm_OrderDate');
@@ -150,6 +160,7 @@
                     'SalesOrderForm.TaxId': { required: true },
                     'SalesOrderForm.OrderDate': { required: true },
                     'SalesOrderForm.OrderStatus': { required: true },
+                    'SalesOrderForm.WarehouseId': { required: true },
                 }
             }
 

@@ -58,7 +58,7 @@ namespace GraduationProject.Data.Demo
                             Summary = product.Number,
                             UnitPrice = product.UnitPrice,
                             Quantity = random.Next(2, 5),
-                            WarehouseNumber = 1
+                            NearestWarehouseId = 1
 
                         };
                         salesOrderItem.RecalculateTotal();

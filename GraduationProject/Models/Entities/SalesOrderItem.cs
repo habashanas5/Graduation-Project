@@ -14,7 +14,7 @@ namespace GraduationProject.Models.Entities
         public double? UnitPrice { get; set; } = 0;
         public double? Quantity { get; set; } = 1;
         public double? Total { get; set; } = 0;
-        public int WarehouseNumber { get; set; }
+        public int? NearestWarehouseId { get; set; }
         public Warehouse? Warehouse { get; set; }
 
         public void RecalculateTotal()

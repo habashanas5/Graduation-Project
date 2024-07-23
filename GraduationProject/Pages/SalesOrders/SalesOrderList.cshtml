@@ -18,7 +18,6 @@
 @section Scripts {
     <script>
 
-
         document.addEventListener('DOMContentLoaded', function () {
 
             showStatusMessage('@statusMessage');
@@ -57,7 +56,9 @@
                     { field: 'BeforeTaxAmount', width: 100, type: 'number', format: 'N2', textAlign: 'Right' },
                     { field: 'TaxAmount', width: 100, type: 'number', format: 'N2', textAlign: 'Right' },
                     { field: 'AfterTaxAmount', width: 100, type: 'number', format: 'N2', textAlign: 'Right' },
-                ],
+                    { field: 'NearestWarehouseName', width: 100 },
+
+                ], 
                 toolbar: [
                     'ExcelExport', 'Search',
                     { type: 'Separator' },
@@ -73,7 +74,7 @@
                 },
                 dataBound: function () {
                     grid.toolbarModule.enableItems(['EditCustom', 'DeleteCustom', 'PdfCustom'], false);
-                    grid.autoFitColumns(['CreatedAtUtc', 'Number', 'OrderDate', 'OrderStatus', 'Customer', 'Tax', 'BeforeTaxAmount', 'TaxAmount', 'AfterTaxAmount']);
+                    grid.autoFitColumns(['CreatedAtUtc', 'Number', 'OrderDate', 'OrderStatus', 'Customer', 'Tax', 'BeforeTaxAmount', 'TaxAmount', 'AfterTaxAmount', 'NearestWarehouseName']);
                 },
                 excelExportComplete: () => {
                 },

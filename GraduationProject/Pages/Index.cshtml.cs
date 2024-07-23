@@ -140,6 +140,7 @@ namespace GraduationProject.Pages
                 await _context.SaveChangesAsync();
             }
 
+            var nearestWarehouseId = applicationUser.NearestWarehouseId; 
             var existingOrder = await _context.SalesOrder.FirstOrDefaultAsync(order => order.UserId == userId && order.OrderStatus == SalesOrderStatus.Draft);
             if (existingOrder == null)
             {
@@ -150,7 +151,9 @@ namespace GraduationProject.Pages
                     OrderStatus = SalesOrderStatus.Draft,
                     CustomerId = customer.Id,
                     TaxId = 1,
-                    UserId = userId
+                    UserId = userId,
+                    NearestWarehouseId = nearestWarehouseId
+
                 };
                 _context.SalesOrder.Add(newOrder);
             }
@@ -181,6 +184,9 @@ namespace GraduationProject.Pages
                     return new JsonResult(new { success = false, message = "Customer not found" });
                 }
 
+                var applicationUser = await _userManager.FindByIdAsync(userId);
+                var nearestWarehouseId = applicationUser?.NearestWarehouseId;
+
                 salesOrder = new SalesOrder
                 {
                     Number = Guid.NewGuid().ToString(),
@@ -188,7 +194,8 @@ namespace GraduationProject.Pages
                     OrderStatus = SalesOrderStatus.Confirmed,
                     CustomerId = customer.Id,
                     TaxId = 1,
-                    UserId = userId
+                    UserId = userId,
+                    NearestWarehouseId = nearestWarehouseId
                 };
                 _context.SalesOrder.Add(salesOrder);
                 await _context.SaveChangesAsync();
@@ -204,7 +211,7 @@ namespace GraduationProject.Pages
                     UnitPrice = cartItem.Price,
                     Quantity = cartItem.Quantity,
                     Total = cartItem.Price * cartItem.Quantity,
-                    WarehouseNumber = 1
+                    NearestWarehouseId = salesOrder.NearestWarehouseId,
                 };
 
                 _context.SalesOrderItem.Add(salesOrderItem);

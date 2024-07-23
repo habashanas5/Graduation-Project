@@ -53,6 +53,7 @@ namespace GraduationProject.Pages.SalesOrders
                 TaxAmount = 0,
                 AfterTaxAmount = 0,
                 IsNotDeleted = true,
+                NearestWarehouseId= 1
             };
 
             try
@@ -71,7 +72,7 @@ namespace GraduationProject.Pages.SalesOrders
                             Summary = values[2],
                             UnitPrice = double.Parse(values[3]),
                             Quantity = int.Parse(values[4]),
-                            WarehouseNumber = 1
+                            NearestWarehouseId = 1
                         };
                         salesOrderItem.RecalculateTotal();
 

@@ -1,6 +1,7 @@
 using AutoMapper;
 using GraduationProject.Applications.Customers;
 using GraduationProject.Applications.NumberSequences;
+using GraduationProject.Applications.ProductGroups;
 using GraduationProject.Applications.Products;
 using GraduationProject.Applications.SalesOrders;
 using GraduationProject.Applications.Taxes;
@@ -82,6 +83,9 @@ namespace GraduationProject.Pages.SalesOrders
 
             [DisplayName("After Tax Amount")]
             public double? AfterTaxAmount { get; set; }
+
+            [DisplayName("Warehouse")]
+            public int WarehouseId { get; set; }
         }
 
         public class MappingProfile : Profile
@@ -95,10 +99,10 @@ namespace GraduationProject.Pages.SalesOrders
 
         public ICollection<SelectListItem> CustomerLookup { get; set; } = default!;
         public ICollection<SelectListItem> TaxLookup { get; set; } = default!;
+        public ICollection<SelectListItem> WarehouseLookup { get; set; } = default!;
         public ICollection<object> ProductLookup { get; set; } = default!;
         public ICollection<object> PriceLookup { get; set; } = default!;
         public ICollection<object> NumberLookup { get; set; } = default!;
-        public ICollection<object> WarehouseLookup { get; set; } = default!;
 
         private void BindLookup()
         {
@@ -115,6 +119,14 @@ namespace GraduationProject.Pages.SalesOrders
                 Text = $"{x.Name}"
             }).ToList();
 
+            WarehouseLookup = _warehouseService
+                .GetAll()
+                .Where(x => x.IsDefault == false)
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name
+                }).ToList();
 
             ProductLookup = _productService.GetAll()
                 .Select(x => new { ProductId = x.Id, ProductName = $"{x.Name} / {x.UnitPrice}" } as object)
@@ -126,11 +138,7 @@ namespace GraduationProject.Pages.SalesOrders
 
             NumberLookup = _productService.GetAll()
                 .Select(x => new { ProductId = x.Id, ProductNumber = x.Number } as object)
-                .ToList();
-
-            WarehouseLookup = _warehouseService.GetAll().Where(x => x.IsDefault == false)
-                .Select(x => new { WarehouseId = x.Id, WarehouseName = x.Name } as object)
-                .ToList();
+            .ToList();
 
         }
 
@@ -168,8 +176,6 @@ namespace GraduationProject.Pages.SalesOrders
 
         public async Task<IActionResult> OnPostAsync([Bind(Prefix = nameof(SalesOrderForm))] SalesOrderModel input)
         {
-
-
             if (!ModelState.IsValid)
             {
                 var message = string.Join(" ", ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage)));

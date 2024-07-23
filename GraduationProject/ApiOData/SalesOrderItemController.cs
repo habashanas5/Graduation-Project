@@ -36,7 +36,7 @@ namespace GraduationProject.ApiOData
                     Quantity = rec.Quantity,
                     Total = rec.Total,
                     OrderDate = rec.SalesOrder!.OrderDate,
-                    WarehouseNumber = rec.WarehouseNumber,
+                    WarehouseNumber = rec.NearestWarehouseId,
                 });
         }
 

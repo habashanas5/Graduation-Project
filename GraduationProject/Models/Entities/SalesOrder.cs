@@ -1,4 +1,5 @@
 ﻿using GraduationProject.Models.Contracts;
+using GraduationProject.Models.Entity;
 using GraduationProject.Models.Enums;
 
 namespace GraduationProject.Models.Entities
@@ -19,5 +20,7 @@ namespace GraduationProject.Models.Entities
         public double? AfterTaxAmount { get; set; }
         public string? UserId { get; set; }
         public ApplicationUser? User { get; set; }
+        public int? NearestWarehouseId { get; set; }
+        public Warehouse? NearestWarehouse { get; set; }
     }
 }

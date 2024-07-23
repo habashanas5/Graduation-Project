@@ -16,5 +16,8 @@ namespace GraduationProject.DTOS
         public double? BeforeTaxAmount { get; set; }
         public double? TaxAmount { get; set; }
         public double? AfterTaxAmount { get; set; }
+        public int? NearestWarehouseId { get; set; }
+        public string? NearestWarehouseName { get; set; }
+
     }
 }

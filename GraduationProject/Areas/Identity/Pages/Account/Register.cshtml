@@ -37,15 +37,40 @@
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
+                <select asp-for="Input.CityInfoId" class="form-control" id="citySelect">
+                    <option value="">-- Select City Info --</option>
+                    @foreach (var category in Model.Cities)
+                    {
+                        <option value="@category.Id">@category.Country - @category.CityName</option>
+                    }
+                </select>
+                <label asp-for="Input.CityInfoId"> City Info</label>
+                <span asp-validation-for="Input.CityInfoId" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
                 <input asp-for="Input.Address" class="form-control" autocomplete="username" aria-required="true" />
                 <label asp-for="Input.Address">Address</label>
                 <span asp-validation-for="Input.Address" class="text-danger"></span>
             </div>
-            <div class="form-floating mb-3">
+            <!--
+                <div class="form-floating mb-3">
                 <input asp-for="Input.City" class="form-control" autocomplete="username" aria-required="true" />
                 <label asp-for="Input.City">City</label>
                 <span asp-validation-for="Input.City" class="text-danger"></span>
             </div>
+            <div class="form-floating mb-3">
+                <select asp-for="Input.Country" class="form-control" id="countrySelect">
+                    <option value="">-- Select Country --</option>
+            @foreach (var country in Model.Countries)
+            {
+                            <option value="@country.Value">@country.Text</option>
+            }
+                </select>
+                <label asp-for="Input.Country">Country</label>
+                <span asp-validation-for="Input.Country" class="text-danger"></span>
+            </div>
+            -->
+            
             <div class="form-floating mb-3">
                 <input asp-for="Input.State" class="form-control" autocomplete="username" aria-required="true" />
                 <label asp-for="Input.State">State</label>
@@ -56,17 +81,7 @@
                 <label asp-for="Input.ZipCode">ZipCode</label>
                 <span asp-validation-for="Input.ZipCode" class="text-danger"></span>
             </div>
-            <div class="form-floating mb-3">
-                <select asp-for="Input.Country" class="form-control" id="countrySelect">
-                    <option value="">-- Select Country --</option>
-                    @foreach (var country in Model.Countries)
-                    {
-                        <option value="@country.Value">@country.Text</option>
-                    }
-                </select>
-                <label asp-for="Input.Country">Country</label>
-                <span asp-validation-for="Input.Country" class="text-danger"></span>
-            </div>
+            
             <div class="form-floating mb-3">
                 <select asp-for="Input.CustomerGroupId" class="form-control" id="CustomerForm_CustomerGroupId">
                     <option value="">-- Select Customer Group --</option>
@@ -89,18 +104,6 @@
                 </select>
                 <label asp-for="Input.CustomerCategoryId">Customer Category</label>
                 <span asp-validation-for="Input.CustomerCategoryId" class="text-danger"></span>
-            </div>
-
-            <div class="form-floating mb-3">
-                <select asp-for="Input.CityInfoId" class="form-control" id="citySelect">
-                    <option value="">-- Select City Info --</option>
-                    @foreach (var category in Model.Cities)
-                    {
-                        <option value="@category.Id">@category.CityName - @category.Country - @category.Lat - @category.Lng</option>
-                    }
-                </select>
-                <label asp-for="Input.CityInfoId"> City Info</label>
-                <span asp-validation-for="Input.CityInfoId" class="text-danger"></span>
             </div>
 
             <div class="d-flex justify-content-center">
