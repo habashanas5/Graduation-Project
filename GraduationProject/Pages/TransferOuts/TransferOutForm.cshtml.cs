@@ -70,11 +70,11 @@ namespace GraduationProject.Pages.TransferOuts
             [DisplayName("Warehouse To")]
             public int WarehouseToId { get; set; }
 
-            [DisplayName("Product")]
-            public int ProductId { get; set; } 
+            //[DisplayName("Product")]
+            //public int ProductId { get; set; } 
 
-            [DisplayName("Quantity")]
-            public int Quantity { get; set; } 
+            //[DisplayName("Quantity")]
+            //public int Quantity { get; set; } 
         }
 
         public class MappingProfile : Profile

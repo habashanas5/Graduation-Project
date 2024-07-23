@@ -309,6 +309,18 @@ namespace GraduationProject.Applications.InventoryTransactions
             return transaction;
         }
 
+        public async Task<WarehouseProduct> GetWarehouseProductAsync(int warehouseId, int productId)
+        {
+            return await _context.WarehouseProduct
+                .Where(wp => wp.WarehouseId == warehouseId && wp.ProductId == productId)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task UpdateWarehouseProductAsync(WarehouseProduct warehouseProduct)
+        {
+            _context.WarehouseProduct.Update(warehouseProduct);
+            await _context.SaveChangesAsync();
+        }
 
     }
 }

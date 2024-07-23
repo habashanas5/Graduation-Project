@@ -88,11 +88,21 @@ namespace GraduationProject.ApiOData
                 {
                     return NotFound();
                 }
+                var oldMovement = child.Movement;
 
                 var dto = _mapper.Map<TransferInItemChildDto>(child);
                 delta.Patch(dto);
                 var entity = _mapper.Map(dto, child);
                 await _inventoryTransactionService.UpdateAsync(entity);
+
+                // Update warehouse product quantity
+                var warehouseProduct = await _inventoryTransactionService.GetWarehouseProductAsync(entity.WarehouseId, entity.ProductId);
+                if (warehouseProduct != null)
+                {
+                    warehouseProduct.Quantity -= (int)oldMovement; // Revert old movement
+                    warehouseProduct.Quantity += (int)entity.Movement; // Apply new movement
+                    await _inventoryTransactionService.UpdateWarehouseProductAsync(warehouseProduct);
+                }
 
                 return Ok(_mapper.Map<TransferInItemChildDto>(entity));
 
@@ -138,6 +148,14 @@ namespace GraduationProject.ApiOData
                 entity.Number = _numberSequenceService.GenerateNumber(nameof(InventoryTransaction), "", "IVT");
                 await _inventoryTransactionService.AddAsync(entity);
 
+                // Update warehouse product quantity
+                var warehouseProduct = await _inventoryTransactionService.GetWarehouseProductAsync(entity.WarehouseId, entity.ProductId);
+                if (warehouseProduct != null)
+                {
+                    warehouseProduct.Quantity += (int)entity.Movement;
+                    await _inventoryTransactionService.UpdateWarehouseProductAsync(warehouseProduct);
+                }
+
                 var dto = _mapper.Map<InventoryTransaction>(entity);
                 return Created("TransferInItemChild", dto);
 
@@ -160,6 +178,14 @@ namespace GraduationProject.ApiOData
                 if (child == null)
                 {
                     return BadRequest();
+                }
+
+                // Update warehouse product quantity
+                var warehouseProduct = await _inventoryTransactionService.GetWarehouseProductAsync(child.WarehouseId, child.ProductId);
+                if (warehouseProduct != null)
+                {
+                    warehouseProduct.Quantity -= (int) child.Movement; // Revert movement
+                    await _inventoryTransactionService.UpdateWarehouseProductAsync(warehouseProduct);
                 }
 
                 await _inventoryTransactionService.DeleteByIdAsync(child.Id);

@@ -49,19 +49,7 @@
                             <label asp-for="@Model.TransferOutForm.TransferReleaseDate" class="form-label"></label>
                             <input asp-for="@Model.TransferOutForm.TransferReleaseDate" class="form-control" />
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label asp-for="@Model.TransferOutForm.ProductId" class="form-label"></label>
-                            <input asp-for="@Model.TransferOutForm.ProductId" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label asp-for="@Model.TransferOutForm.Quantity" class="form-label"></label>
-                            <input asp-for="@Model.TransferOutForm.Quantity" class="form-control" />
-                        </div>
-                    </div>
+                    </div>                                     
                     <div class="col-md-6">
                         <div class="form-group">
                             <label asp-for="@Model.TransferOutForm.Status" class="form-label"></label>
@@ -107,8 +95,6 @@
 @section Scripts {
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-
-            
 
             showStatusMessage('@statusMessage');
 

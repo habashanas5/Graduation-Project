@@ -203,6 +203,18 @@ namespace GraduationProject.Pages
 
             foreach (var cartItem in cartItems)
             {
+
+                var warehouseProduct = await _context.WarehouseProduct
+         .FirstOrDefaultAsync(wp => wp.WarehouseId == salesOrder.NearestWarehouseId && wp.ProductId == cartItem.ProductId);
+
+                if (warehouseProduct == null || warehouseProduct.Quantity < cartItem.Quantity)
+                {
+                    return new JsonResult(new { success = false, message = "Insufficient product quantity in the nearest warehouse" });
+                }
+
+                warehouseProduct.Quantity -= (int)cartItem.Quantity;
+                _context.WarehouseProduct.Update(warehouseProduct);
+
                 var salesOrderItem = new SalesOrderItem
                 {
                     SalesOrderId = salesOrder.Id,
