@@ -12,11 +12,6 @@ namespace GraduationProject.Models.Enums
         Completed = 2,
         [Description("Reviewed")]
         Reviewed = 3,
-        [Description("Discrepancy Found")]
-        DiscrepancyFound = 4,
-        [Description("Adjusted")]
-        Adjusted = 5,
-
 
     }
 }

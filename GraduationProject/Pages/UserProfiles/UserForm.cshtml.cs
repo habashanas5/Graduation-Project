@@ -14,7 +14,7 @@ using System.ComponentModel;
 
 namespace GraduationProject.Pages.UserProfiles
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class UserFormModel : PageModel
     {
         private readonly IMapper _mapper;

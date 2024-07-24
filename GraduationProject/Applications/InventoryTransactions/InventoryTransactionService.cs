@@ -83,16 +83,20 @@ namespace GraduationProject.Applications.InventoryTransactions
 
         public double GetStock(int warehouseId, int productId)
         {
-            var result = 0.0;
-            result = GetAll()
-                .Include(x => x.Product)
-                .Where(x =>
-                x.Status >= InventoryTransactionStatus.Confirmed &&
-                x.WarehouseId == warehouseId &&
-                x.ProductId == productId &&
-                x.Product!.Physical == true)
-                .Sum(x => x.Stock);
-            return result;
+            /* var result = 0.0;
+             result = GetAll()
+                 .Include(x => x.Product)
+                 .Where(x =>
+                 x.Status >= InventoryTransactionStatus.Confirmed &&
+                 x.WarehouseId == warehouseId &&
+                 x.ProductId == productId &&
+                 x.Product!.Physical == true)
+                 .Sum(x => x.Stock);
+             return result;*/
+            return _context.WarehouseProduct
+                     .Where(wp => wp.WarehouseId == warehouseId && wp.ProductId == productId)
+                     .Select(wp => wp.Quantity)
+                     .FirstOrDefault();
         }
 
         public InventoryTransaction CalculateInvenTrans(InventoryTransaction transaction)

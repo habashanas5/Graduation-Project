@@ -12,7 +12,7 @@ using Microsoft.Extensions.Options;
 
 namespace GraduationProject.Pages.UserProfiles
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class ChangeAvatarFormModel : PageModel
     {
         private readonly IMapper _mapper;

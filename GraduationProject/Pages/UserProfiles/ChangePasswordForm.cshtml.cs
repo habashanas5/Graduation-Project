@@ -14,7 +14,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GraduationProject.Pages.UserProfiles
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,WarehouseManager")]
     public class ChangePasswordFormModel : PageModel
     {
         private readonly IMapper _mapper;

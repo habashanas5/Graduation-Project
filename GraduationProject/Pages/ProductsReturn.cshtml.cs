@@ -1,4 +1,5 @@
 using DeviceDetectorNET.Class;
+using GraduationProject.Applications.InventoryTransactions;
 using GraduationProject.Data;
 using GraduationProject.Models.Entities;
 using GraduationProject.Models.Enums;
@@ -15,15 +16,19 @@ namespace GraduationProject.Pages
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IEmailSender _emailSender;
+        private readonly InventoryTransactionService _InventoryTransactionService;
 
         public Products_ReturnModel(
             ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
+            InventoryTransactionService InventoryTransactionService,
             IEmailSender emailSender)
         {
             _context = context;
             _userManager = userManager; 
             _emailSender = emailSender;
+            _InventoryTransactionService = InventoryTransactionService;
+
         }
 
         [BindProperty]
@@ -63,7 +68,21 @@ namespace GraduationProject.Pages
                     Quantity = product.Quantity,
                     Reason = product.Reason
                 });
+
+                var nearestWarehouseId = user.NearestWarehouseId;
+                if (nearestWarehouseId.HasValue)
+                {
+                    // Get the warehouse product
+                    var warehouseProduct = await _InventoryTransactionService.GetWarehouseProductAsync(nearestWarehouseId.Value, product.ProductId);
+
+                    if (warehouseProduct != null)
+                    {
+                        warehouseProduct.Quantity += product.Quantity; 
+                        await _InventoryTransactionService.UpdateWarehouseProductAsync(warehouseProduct);
+                    }
+                }
             }
+
 
             _context.SalesReturn.Add(salesReturn);
             var adminEmail = "habashanas716@gmail.com";
