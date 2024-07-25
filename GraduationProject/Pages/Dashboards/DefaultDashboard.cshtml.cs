@@ -18,10 +18,14 @@ using GraduationProject.Infrastructures.Extensions;
 using GraduationProject.Models.Entities;
 using GraduationProject.Models.Enums;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using GraduationProject.Applications.Products;
+
 
 namespace GraduationProject.Pages.Dashboards
 {
@@ -44,6 +48,8 @@ namespace GraduationProject.Pages.Dashboards
         private readonly SalesOrderItemService _salesOrderItemService;
         private readonly PurchaseOrderItemService _purchaseOrderItemService;
         private readonly WarehouseService _warehouseService;
+        private readonly IEmailSender _emailSender;
+        private readonly ProductService _productService;
 
         public DefaultDashboardModel(
                 SalesOrderService salesOrderService,
@@ -61,7 +67,9 @@ namespace GraduationProject.Pages.Dashboards
                 InventoryTransactionService inventoryTransactionService,
                 SalesOrderItemService salesOrderItemService,
                 PurchaseOrderItemService purchaseOrderItemService,
-                WarehouseService warehouseService
+                WarehouseService warehouseService,
+                IEmailSender emailSender,
+                ProductService productService
             )
         {
             _salesOrderService = salesOrderService;
@@ -80,6 +88,8 @@ namespace GraduationProject.Pages.Dashboards
             _salesOrderItemService = salesOrderItemService;
             _purchaseOrderItemService = purchaseOrderItemService;
             _warehouseService = warehouseService;
+            _emailSender = emailSender;
+            _productService = productService;
         }
 
         [TempData]
@@ -297,6 +307,31 @@ namespace GraduationProject.Pages.Dashboards
                     Group = x.Product!.ProductGroup!.Name,
                     Quantity = x.Quantity
                 });
+
+
+            var products = _productService.GetAll().Where(x => x.Physical == true).ToList();
+            foreach (var product in products)
+            {
+                var salesQuantity = _salesOrderItemService
+                    .GetAll()
+                    .Include(x => x.Product)
+                    .Where(x => x.ProductId == product.Id && x.SalesOrder!.OrderStatus >= SalesOrderStatus.Confirmed)
+                    .Sum(x => x.Quantity);
+
+                var manufacturingQuantity = _purchaseOrderItemService
+                    .GetAll()
+                    .Include(x => x.Product)
+                    .Where(x => x.ProductId == product.Id && x.PurchaseOrder!.OrderStatus >= ManufacturingOrderStatus.Confirmed)
+                    .Sum(x => x.Quantity);
+
+                var difference = salesQuantity - manufacturingQuantity;
+
+                if (difference > 2000)
+                {
+                    var adminEmail = "habashanas716@gmail.com";
+                    _emailSender.SendEmailAsync(adminEmail, $"Please Check Product {product.Name} Sales & Manufacturing", $"Sales quantity ({salesQuantity}) exceeds manufacturing quantity ({manufacturingQuantity}) by more than 2000 units.");
+                }
+            }
 
             var combination = sales.Concat(purchase).ToList();
 

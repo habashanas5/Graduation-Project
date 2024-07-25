@@ -31,6 +31,8 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Linq;
+
 
 namespace GraduationProject.Areas.Identity.Pages.Account
 {
@@ -147,8 +149,8 @@ namespace GraduationProject.Areas.Identity.Pages.Account
             [Display(Name = "Customer Category")]
             public int CustomerCategoryId { get; set; }
 
-            [Display(Name = "City Info")]
-            public int CityInfoId { get; set; }
+            //[Display(Name = "City Info")]
+            //public int CityInfoId { get; set; }
 
             [Phone]
             [Display(Name = "Phone number")]
@@ -156,13 +158,13 @@ namespace GraduationProject.Areas.Identity.Pages.Account
 
             [Display(Name = "Address")]
             public string Address { get; set; }
-            //[Display(Name = "City")]
-            //public string City { get; set; }
+            [Display(Name = "City")]
+            public string City { get; set; }
             [Display(Name = "State")]
             public string State { get; set; }
 
-            //[Display(Name = "Country")]
-            //public string Country { get; set; }
+            [Display(Name = "Country")]
+            public string Country { get; set; }
             [Display(Name = "ZipCode")]
             public string ZipCode { get; set; }
 
@@ -199,21 +201,26 @@ namespace GraduationProject.Areas.Identity.Pages.Account
                 user.CustomerGroupIdUser = Input.CustomerGroupId;
                 user.CustomerCategoryIdUser = Input.CustomerCategoryId;
                 user.Address = Input.Address;
-                //user.City = Input.City;
+                user.City = Input.City;
                 user.State = Input.State;
-                //user.Country = Input.Country;
+                user.Country = Input.Country;
                 user.ZipCode = Input.ZipCode;
                 user.PhoneNumber = Input.PhoneNumber;
-                user.CityInfoId = Input.CityInfoId;
+                //user.CityInfoId = Input.CityInfoId;
 
-                var cityInfo = await _context.CityInfo.FindAsync(Input.CityInfoId);
+                /*var cityInfo = await _context.CityInfo.FindAsync(Input.CityInfoId);
                 if (cityInfo != null)
                 {
                     user.Lat = cityInfo.Lat;
                     user.Lng = cityInfo.Lng;
-                }
+                }*/
 
                 //var warehouses = await _context.Warehouse.ToListAsync();
+
+                var (latitude, longitude) = await GetCoordinatesAsync(Input.City, Input.Country);
+                user.Lat = (decimal)latitude;
+                user.Lng = (decimal)longitude;
+                
                 var warehouseIds = new List<int> { 1, 3, 4 }; 
 
                 var warehouses = await _context.Warehouse
@@ -299,6 +306,41 @@ namespace GraduationProject.Areas.Identity.Pages.Account
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
             return (IUserEmailStore<ApplicationUser>)_userStore;
+        }
+
+        static async Task<(double latitude, double longitude)> GetCoordinatesAsync(string city, string country)
+        {
+            string url = $"https://nominatim.openstreetmap.org/search?q={city},{country}&format=json";
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("User-Agent", "MyApp/1.0");
+
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string json = await response.Content.ReadAsStringAsync();
+                        JArray jsonArray = JArray.Parse(json);
+                        if (jsonArray.Count > 0)
+                        {
+                            double latitude = Convert.ToDouble(jsonArray[0]["lat"]);
+                            double longitude = Convert.ToDouble(jsonArray[0]["lon"]);
+                            return (latitude, longitude);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Error: Received response status code {response.StatusCode} for {city}, {country}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Exception occurred for {city}, {country}: {ex.Message}");
+                }
+            }
+            return (0, 0);
         }
     }
 }
