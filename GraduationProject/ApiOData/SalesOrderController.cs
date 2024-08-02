@@ -27,6 +27,7 @@ namespace GraduationProject.ApiOData
                 .Include(x => x.Customer)
                 .Include(x => x.Tax)
                 .Include(x => x.NearestWarehouse)
+                .Include(x => x.NearestDeliveryCompany)
                 .Select(rec => new SalesOrderDto
                 {
                     Id = rec.Id,
@@ -41,7 +42,10 @@ namespace GraduationProject.ApiOData
                     AfterTaxAmount = rec.AfterTaxAmount,
                     RowGuid = rec.RowGuid,
                     CreatedAtUtc = rec.CreatedAtUtc,
-                    NearestWarehouseName = rec.NearestWarehouse != null ? rec.NearestWarehouse.Name : null
+                    NearestWarehouseName = rec.NearestWarehouse != null ? rec.NearestWarehouse.Name : null,
+                    NearestDeliveryName = rec.NearestDeliveryCompany != null ? rec.NearestDeliveryCompany.Name : null,
+                    NearestDeliveryId = rec.NearestDeliveryId
+
                 });
         }
 

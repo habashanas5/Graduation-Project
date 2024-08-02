@@ -1,3 +1,4 @@
+using GraduationProject.Applications;
 using GraduationProject.Applications.SalesOrderItems;
 using GraduationProject.Applications.SalesOrders;
 using GraduationProject.Data;
@@ -93,7 +94,7 @@ namespace GraduationProject.Pages
                .ToListAsync();
         }
 
-        public async Task<IActionResult> OnPostAddToCart(int productId, string productName, double price)
+        public async Task<IActionResult> OnPostAddToCart(int productId, string productName, double price, int quantity)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -101,7 +102,8 @@ namespace GraduationProject.Pages
 
             if (existingItem != null)
             {
-                existingItem.Quantity++;
+                //existingItem.Quantity++;
+                existingItem.Quantity += quantity;
                 _context.CartItem.Update(existingItem);
             }
             else
@@ -111,7 +113,7 @@ namespace GraduationProject.Pages
                     ProductId = productId,
                     ProductName = productName,
                     Price = price,
-                    Quantity = 1,
+                    Quantity = quantity,
                     CreatedDate = DateTime.UtcNow,
                     UserId = userId
                 };
@@ -124,6 +126,28 @@ namespace GraduationProject.Pages
             if (applicationUser == null)
             {
                 return new JsonResult(new { success = false, message = "User not found" });
+            }
+
+            var latitude = applicationUser.Lat;
+            var longitude = applicationUser.Lng;
+
+            var deliveryCompanies = await _context.DeliveryCompany.ToListAsync();
+            DeliveryCompany nearestDeliveryCompany = null;
+            double minDistance = double.MaxValue;
+
+            foreach (var company in deliveryCompanies)
+            {
+                var distance = DistanceService.CalculateDistance(latitude, longitude, company.Lat, company.Lng);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    nearestDeliveryCompany = company;
+                }
+            }
+
+            if (nearestDeliveryCompany == null)
+            {
+                return new JsonResult(new { success = false, message = "No delivery companies found" });
             }
 
             var customer = await _context.Customer.FirstOrDefaultAsync(c => c.EmailAddress == User.Identity.Name);
@@ -152,7 +176,8 @@ namespace GraduationProject.Pages
                     CustomerId = customer.Id,
                     TaxId = 1,
                     UserId = userId,
-                    NearestWarehouseId = nearestWarehouseId
+                    NearestWarehouseId = nearestWarehouseId,
+                    NearestDeliveryId = nearestDeliveryCompany.Id,
 
                 };
                 _context.SalesOrder.Add(newOrder);

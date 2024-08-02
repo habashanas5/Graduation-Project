@@ -1,4 +1,5 @@
-﻿using GraduationProject.Models.Enums;
+﻿using GraduationProject.Models.Entities;
+using GraduationProject.Models.Enums;
 
 namespace GraduationProject.DTOS
 {
@@ -18,6 +19,8 @@ namespace GraduationProject.DTOS
         public double? AfterTaxAmount { get; set; }
         public int? NearestWarehouseId { get; set; }
         public string? NearestWarehouseName { get; set; }
+        public int? NearestDeliveryId { get; set; }
+        public string? NearestDeliveryName { get; set; }
 
     }
 }

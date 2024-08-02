@@ -28,7 +28,11 @@ namespace GraduationProject.ApiOData
                     Email = dc.Email,
                     Address = dc.Address,
                     RowGuid = dc.RowGuid,
-                    CreatedAtUtc = dc.CreatedAtUtc
+                    CreatedAtUtc = dc.CreatedAtUtc,
+                    City = dc.City,
+                    Lat = dc.Lat,
+                    Lng = dc.Lng,
+                    Country = dc.Country,
                 });
         }
     }

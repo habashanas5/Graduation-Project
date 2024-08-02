@@ -4,6 +4,7 @@ using GraduationProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraduationProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240802125558_AddNewColomnsToDeliveryCompanyNews")]
+    partial class AddNewColomnsToDeliveryCompanyNews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -793,16 +796,14 @@ namespace GraduationProject.Data.Migrations
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("City")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ContactNumber")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("Country")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("datetime");
@@ -821,11 +822,9 @@ namespace GraduationProject.Data.Migrations
                         .HasDefaultValue(true);
 
                     b.Property<decimal>("Lat")
-                        .HasMaxLength(100)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Lng")
-                        .HasMaxLength(100)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Name")
@@ -1951,12 +1950,6 @@ namespace GraduationProject.Data.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
-                    b.Property<int?>("NearestDeliveryCompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("NearestDeliveryId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("NearestWarehouseId")
                         .HasColumnType("int");
 
@@ -1994,8 +1987,6 @@ namespace GraduationProject.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("NearestDeliveryCompanyId");
 
                     b.HasIndex("NearestWarehouseId");
 
@@ -3078,10 +3069,6 @@ namespace GraduationProject.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GraduationProject.Models.Entities.DeliveryCompany", "NearestDeliveryCompany")
-                        .WithMany()
-                        .HasForeignKey("NearestDeliveryCompanyId");
-
                     b.HasOne("GraduationProject.Models.Entity.Warehouse", "NearestWarehouse")
                         .WithMany()
                         .HasForeignKey("NearestWarehouseId");
@@ -3097,8 +3084,6 @@ namespace GraduationProject.Data.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("Customer");
-
-                    b.Navigation("NearestDeliveryCompany");
 
                     b.Navigation("NearestWarehouse");
 

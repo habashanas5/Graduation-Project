@@ -15,6 +15,11 @@ namespace GraduationProject.Models.Configurations
             builder.Property(dc => dc.Address).HasMaxLength(255);
             builder.Property(dc => dc.RowGuid).IsRequired();
             builder.Property(dc => dc.CreatedAtUtc).IsRequired();
+            builder.Property(dc => dc.City).HasMaxLength(100);
+            builder.Property(dc => dc.Country).HasMaxLength(100);
+            builder.Property(dc => dc.Lat).HasMaxLength(100);
+            builder.Property(dc => dc.Lng).HasMaxLength(100);
+
         }
     }
 }

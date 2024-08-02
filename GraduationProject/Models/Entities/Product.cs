@@ -20,7 +20,7 @@ namespace GraduationProject.Models.Entities
         public string? MetaKeyWords { get; set; }
         public byte[]? ImageData { get; set; }
         public string? ImageFileName { get; set; }
-        public ICollection<WarehouseProduct>? WarehouseProducts { get; set; }
+        public ICollection<WarehouseProduct>? WarehouseProducts { get; set; }    
 
     }
 }

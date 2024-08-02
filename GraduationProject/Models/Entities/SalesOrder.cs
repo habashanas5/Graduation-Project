@@ -22,5 +22,7 @@ namespace GraduationProject.Models.Entities
         public ApplicationUser? User { get; set; }
         public int? NearestWarehouseId { get; set; }
         public Warehouse? NearestWarehouse { get; set; }
+        public int? NearestDeliveryId { get; set; }
+        public DeliveryCompany? NearestDeliveryCompany { get; set; }
     }
 }

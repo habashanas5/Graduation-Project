@@ -52,23 +52,23 @@
             const newProduct = document.createElement('div');
             newProduct.className = 'product-item';
             newProduct.innerHTML = `
-                                <h4>Product ${productCount}</h4>
-                                <div class="form-group">
-                                    <label for="product${productCount}">Product Name</label>
-                                    <select class="form-control" id="product${productCount}" name="SalesReturn.Products[${productCount - 1}].ProductId" required>
-                                        <option value="">Select a product</option>
-                                        ${JSON.parse(productsOptions).map(p => `<option value="${p.Id}">${p.Name}</option>`).join('')}
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="quantity${productCount}">Quantity</label>
-                                    <input type="number" class="form-control" id="quantity${productCount}" name="SalesReturn.Products[${productCount - 1}].Quantity" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="reason${productCount}">Reason for Return</label>
-                                    <input type="text" class="form-control" id="reason${productCount}" name="SalesReturn.Products[${productCount - 1}].Reason" required />
-                                </div>
-                            `;
+                                        <h4>Product ${productCount}</h4>
+                                        <div class="form-group">
+                                            <label for="product${productCount}">Product Name</label>
+                                            <select class="form-control" id="product${productCount}" name="SalesReturn.Products[${productCount - 1}].ProductId" required>
+                                                <option value="">Select a product</option>
+                                                ${JSON.parse(productsOptions).map(p => `<option value="${p.Id}">${p.Name}</option>`).join('')}
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="quantity${productCount}">Quantity</label>
+                                            <input type="number" class="form-control" id="quantity${productCount}" name="SalesReturn.Products[${productCount - 1}].Quantity" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reason${productCount}">Reason for Return</label>
+                                            <input type="text" class="form-control" id="reason${productCount}" name="SalesReturn.Products[${productCount - 1}].Reason" required />
+                                        </div>
+                                    `;
             container.appendChild(newProduct);
         });
     </script>

@@ -1135,6 +1135,7 @@
                                     <form id="addToCartForm-@product.Id" asp-page-handler="AddToCart" class="add-to-cart-form">
                                         <input type="hidden" name="productId" value="@product.Id" />
                                         <input type="hidden" name="productName" value="@product.Name" />
+                                        <input type="number" name="quantity" min="1" value="1" />
                                         <input type="hidden" name="price" value="@product.UnitPrice" />
                                         <button type="submit" class="action--btn cart--btn add-to-cart" aria-label="Add To Cart">
                                             <i class="fi fi-rs-shopping-bag"></i>
@@ -1391,22 +1392,26 @@
 
                     const productNameElement = document.querySelectorAll('.product--content .product--title')[index];
                     const productPriceElement = document.querySelectorAll('.new--price')[index];
-                    if (productNameElement && productPriceElement) {
+                    const quantityInput = document.querySelectorAll('.add-to-cart-form input[name="quantity"]')[index];
+
+                    if (productNameElement && productPriceElement && quantityInput) {
 
                         const item = {
                             name: document.querySelectorAll('.product--content .product--title')[index].textContent,
                             price: parseFloat(document.querySelectorAll('.new--price')[index].textContent.slice(1)),
-                            quantity: 1,
+                            quantity: parseInt(quantityInput.value),
                         };
 
                         const existingItem = cartItems.find(cartItem => cartItem.name === item.name);
                         if (existingItem) {
-                            existingItem.quantity++;
+                           // existingItem.quantity++;
+                            totalAmount -= existingItem.price * existingItem.quantity;
+                            existingItem.quantity = item.quantity;
                         } else {
                             cartItems.push(item);
                         }
 
-                        totalAmount += item.price;
+                        totalAmount += item.price * item.quantity;
 
                         const form = button.closest('form');
                         const formData = new FormData(form);

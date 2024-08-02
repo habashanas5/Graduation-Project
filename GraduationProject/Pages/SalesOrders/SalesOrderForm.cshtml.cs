@@ -1,5 +1,6 @@
 using AutoMapper;
 using GraduationProject.Applications.Customers;
+using GraduationProject.Applications.DeliveryCompanys;
 using GraduationProject.Applications.NumberSequences;
 using GraduationProject.Applications.ProductGroups;
 using GraduationProject.Applications.Products;
@@ -27,6 +28,7 @@ namespace GraduationProject.Pages.SalesOrders
         private readonly TaxService _taxService;
         private readonly ProductService _productService;
         private readonly WarehouseService _warehouseService;
+        private readonly DeliveryCompanyService _deliveryCompanyService;
 
         public SalesOrderFormModel(
             IMapper mapper,
@@ -35,7 +37,8 @@ namespace GraduationProject.Pages.SalesOrders
             CustomerService customerService,
             TaxService taxService,
             WarehouseService warehouseService,
-            ProductService productService
+            ProductService productService,
+            DeliveryCompanyService deliveryCompany
             )
         {
             _mapper = mapper;
@@ -45,6 +48,7 @@ namespace GraduationProject.Pages.SalesOrders
             _customerService = customerService;
             _warehouseService = warehouseService;
             _productService = productService;
+            _deliveryCompanyService = deliveryCompany;
         }
 
         [TempData]
@@ -86,6 +90,9 @@ namespace GraduationProject.Pages.SalesOrders
 
             [DisplayName("Warehouse")]
             public int WarehouseId { get; set; }
+
+            [DisplayName("Delivery Company")]
+            public int DeliveryId { get; set; }
         }
 
         public class MappingProfile : Profile
@@ -100,6 +107,7 @@ namespace GraduationProject.Pages.SalesOrders
         public ICollection<SelectListItem> CustomerLookup { get; set; } = default!;
         public ICollection<SelectListItem> TaxLookup { get; set; } = default!;
         public ICollection<SelectListItem> WarehouseLookup { get; set; } = default!;
+        public ICollection<SelectListItem> DeliveryLookup { get; set; } = default!;
         public ICollection<object> ProductLookup { get; set; } = default!;
         public ICollection<object> PriceLookup { get; set; } = default!;
         public ICollection<object> NumberLookup { get; set; } = default!;
@@ -127,6 +135,13 @@ namespace GraduationProject.Pages.SalesOrders
                     Value = x.Id.ToString(),
                     Text = x.Name
                 }).ToList();
+
+            DeliveryLookup = _deliveryCompanyService.GetAll().Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = $"{x.Name}"
+            }).ToList();
+
 
             ProductLookup = _productService.GetAll()
                 .Select(x => new { ProductId = x.Id, ProductName = $"{x.Name} / {x.UnitPrice}" } as object)

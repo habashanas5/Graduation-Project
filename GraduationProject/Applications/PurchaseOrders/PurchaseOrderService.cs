@@ -2,7 +2,9 @@
 using GraduationProject.Infrastructures.Repositories;
 using GraduationProject.Models.Contracts;
 using GraduationProject.Models.Entities;
+using GraduationProject.Models.Enums;
 using Microsoft.EntityFrameworkCore;
+using uaParserResource;
 
 namespace GraduationProject.Applications.PurchaseOrders
 {
