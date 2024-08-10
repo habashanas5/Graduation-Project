@@ -232,13 +232,22 @@ namespace GraduationProject.Pages
                 var warehouseProduct = await _context.WarehouseProduct
          .FirstOrDefaultAsync(wp => wp.WarehouseId == salesOrder.NearestWarehouseId && wp.ProductId == cartItem.ProductId);
 
-                if (warehouseProduct == null || warehouseProduct.Quantity < cartItem.Quantity)
+                if (warehouseProduct == null)
+                //    if (warehouseProduct == null || warehouseProduct.Quantity < cartItem.Quantity)
                 {
-                    return new JsonResult(new { success = false, message = "Insufficient product quantity in the nearest warehouse" });
+                    return new JsonResult(new { success = false, message = "There is an error on your register" });
                 }
 
                 warehouseProduct.Quantity -= (int)cartItem.Quantity;
                 _context.WarehouseProduct.Update(warehouseProduct);
+
+                var product = await _context.Product.FindAsync(cartItem.ProductId);
+                var (ROP, EOQ) = CalculateReorderParameters(product);
+
+                if (warehouseProduct.Quantity <= ROP)
+                {
+                    await CreateManufacturingOrder(product, EOQ, warehouseProduct.WarehouseId);
+                }
 
                 var salesOrderItem = new SalesOrderItem
                 {
@@ -284,5 +293,67 @@ namespace GraduationProject.Pages
             return new JsonResult(new { success = true });
 
         }
+
+        private (int ROP, int EOQ) CalculateReorderParameters(Product product)
+        {
+            int dailyUsageRate = 1000; 
+            int leadTimeDays = 15; 
+            int orderCost = 200; 
+            int annualDemand = 80000; 
+            int holdingCostPerUnit = 2; 
+
+            int ROP = dailyUsageRate * leadTimeDays;
+            int EOQ = (int)Math.Sqrt((2 * orderCost * annualDemand) / holdingCostPerUnit);
+
+            return (ROP, EOQ);
+        }
+
+        private async Task CreateManufacturingOrder(Product product, int quantity, int warehouseId)
+        {
+            var vendorId = 1;
+
+            var manufacturingOrder = new ManufacturingOrdersTable
+            {
+                Number = Guid.NewGuid().ToString(),
+                OrderDate = DateTime.UtcNow,
+                OrderStatus = ManufacturingOrderStatus.Confirmed,
+                Description = $"Reorder for {product.Name}",
+                VendorId = vendorId,
+                TaxId = 1, 
+                BeforeTaxAmount = product.UnitPrice * quantity,
+                TaxAmount = 0.1 * (product.UnitPrice * quantity), 
+                AfterTaxAmount = (product.UnitPrice * quantity) * 1.1 
+            };
+            _context.PurchaseOrder.Add(manufacturingOrder);
+            await _context.SaveChangesAsync();
+
+            var manufacturingOrderItem = new ManufacturingOrdersItems
+            {
+                PurchaseOrderId = manufacturingOrder.Id,
+                ProductId = product.Id,
+                Summary = $"Reorder for {product.Name}, Quantity: {quantity}",
+                UnitPrice = product.UnitPrice,
+                Quantity = quantity,
+                Total = product.UnitPrice * quantity
+            };
+            _context.PurchaseOrderItem.Add(manufacturingOrderItem);
+
+            await _context.SaveChangesAsync();
+
+            /*var newOrder = new WarehouseProduct
+            {
+                WarehouseId = warehouseId,
+                ProductId = product.Id,
+                Quantity = quantity,
+                CreatedByUserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                CreatedAtUtc = DateTime.UtcNow,
+                UpdatedByUserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                UpdatedAtUtc = DateTime.UtcNow,
+                IsNotDeleted = true
+            };
+            _context.WarehouseProduct.Add(newOrder);
+            await _context.SaveChangesAsync();*/
+        }
+
     }
 }

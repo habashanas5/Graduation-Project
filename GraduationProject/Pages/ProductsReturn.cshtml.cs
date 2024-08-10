@@ -86,7 +86,10 @@ namespace GraduationProject.Pages
 
             _context.SalesReturn.Add(salesReturn);
             var adminEmail = "habashanas716@gmail.com";
+            var WarehouseManagerEmail = "s12028074@stu.najah.edu";
+
             await _emailSender.SendEmailAsync(adminEmail, "Products Return", "A new product return has been placed.");
+            await _emailSender.SendEmailAsync(WarehouseManagerEmail, "Products Return", "A new product return has been placed.");
 
             await _context.SaveChangesAsync();
 

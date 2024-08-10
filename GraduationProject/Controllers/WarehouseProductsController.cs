@@ -66,7 +66,7 @@ namespace GraduationProject.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(warehouseProduct);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();              
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ProductId"] = new SelectList(_context.Product, "Id", "Name", warehouseProduct.ProductId);
@@ -167,6 +167,6 @@ namespace GraduationProject.Controllers
         private bool WarehouseProductExists(int id)
         {
             return _context.WarehouseProduct.Any(e => e.Id == id);
-        }
+        }     
     }
 }

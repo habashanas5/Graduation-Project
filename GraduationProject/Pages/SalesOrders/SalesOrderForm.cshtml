@@ -14,7 +14,7 @@
 }
 
 <div class="form-card">
-    <form id="formMain" method="post" novalidate="">
+    <form id="formMain" method="post" novalidate="" enctype="multipart/form-data">
         <input type="hidden" asp-for="@Model.SalesOrderForm.RowGuid" />
         <input type="hidden" asp-for="@Model.SalesOrderForm.Id" />
         <div class="form-card-body">
