@@ -1,0 +1,2 @@
+## Abstract 
+### In a global supply chain, efficient distribution is crucial for meeting customer demands promptly. This document outlines a comprehensive workflow for a distribution company that bridges the gap between customers and manufacturers. The workflow involves receiving customer orders, creating orders for manufacturers, managing inventory in warehouses, and distributing goods to sub-distributors and end customers. The proposed system ensures high efficiency in managing orders, and inventory, enabling the company to deliver products swiftly and accurately.
